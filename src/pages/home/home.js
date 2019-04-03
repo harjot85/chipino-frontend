@@ -1,5 +1,7 @@
 import React from 'react'
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { getSocialMediaIconLinks } from 'redux/actions/text'
 
 export default class Home extends Component {
   render() {
@@ -10,3 +12,18 @@ export default class Home extends Component {
     )
   }
 }
+
+const mapStateToProps = store => ({
+  socialMedia: store.text.smLinkFB
+})
+
+const mapDispatchToProps = {
+  getSocialMediaIconLinks
+}
+
+export default (
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(Home)
+  );
