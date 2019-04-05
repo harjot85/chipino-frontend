@@ -1,6 +1,6 @@
 import * as actionType from '../actionTypes';
 
-export const socialMediaReducer = (state = {
+export const textReducer = (state = {
     smLinkFB: "",
 }, action) => {
     switch (action.type){
@@ -19,4 +19,4 @@ export const socialMediaReducer = (state = {
     return state;
 };
 
-export default socialMediaReducer;
+export default textReducer;

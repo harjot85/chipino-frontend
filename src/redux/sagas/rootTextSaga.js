@@ -22,7 +22,7 @@ function* getSocialMediaIconLinks(){
     }
 }
 
-function watchgetSocialMediaIconLinks(){
+function* watchgetSocialMediaIconLinks(){
     yield takeLatest(action.GET_SOCIALMEDIACLASSES_FULFILLED, getSocialMediaIconLinks)
 }
 

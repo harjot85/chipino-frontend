@@ -3,7 +3,7 @@ import axios from "axios";
 //Temporary API for testing
 export function getSocialMediaContent() {
     return axios.get(
-        "https://reqres.in/api/users",
+        "https://localhost:5001/",
         {
             method: "GET"
         }
