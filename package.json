@@ -6,11 +6,16 @@
     "axios": "^0.18.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+<<<<<<< HEAD
     "react-redux": "^6.0.1",
     "react-scripts": "2.1.8",
     "redux": "^4.0.1",
     "redux-devtools-extension": "^2.13.8",
     "redux-saga": "^1.0.2"
+=======
+    "react-router-dom": "^5.0.0",
+    "react-scripts": "2.1.8"
+>>>>>>> 569c7b78e22697b6e940282cfbd7cb50a11e2282
   },
   "scripts": {
     "start": "react-scripts start",

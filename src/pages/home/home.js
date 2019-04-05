@@ -1,7 +1,7 @@
-import React from 'react'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { getSocialMediaIconLinks } from 'redux/actions/text'
+import Footer from "../../components/footer/footer";
 
 export default class Home extends Component {
   constructor(props) {
@@ -16,9 +16,10 @@ export default class Home extends Component {
 
   render() {
     return (
-      <div>
-        
-      </div>
+      <React.Fragment>
+        <h1>Chipino Home component</h1>
+        <Footer />
+      </React.Fragment>
     )
   }
 }
