@@ -4,7 +4,7 @@ export const textReducer = (state = {
     smLinkFB: "",
 }, action) => {
     switch (action.type){
-        case actionType.GET_SOCIALMEDIACLASSES_FULFILLED:{
+        case actionType.GET_SOCIALMEDIACLASSES_SUCCESS:{
             state = {
                 ...state, 
                 smLinkFB: ""

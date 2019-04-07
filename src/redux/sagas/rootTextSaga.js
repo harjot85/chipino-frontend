@@ -6,7 +6,7 @@ function* getSocialMediaIconLinks(){
     try{
         const response = yield textApi.getSocialMediaContent()
         yield put ({
-            type: action.GET_SOCIALMEDIACLASSES_FULFILLED,
+            type: action.GET_SOCIALMEDIACLASSES_SUCCESS,
             payload:{
                 data: response.data
             }
@@ -23,7 +23,7 @@ function* getSocialMediaIconLinks(){
 }
 
 function* watchgetSocialMediaIconLinks(){
-    yield takeLatest(action.GET_SOCIALMEDIACLASSES_FULFILLED, getSocialMediaIconLinks)
+    yield takeLatest(action.GET_SOCIALMEDIACLASSES_SUCCESS, getSocialMediaIconLinks)
 }
 
 export default function* rootTextSaga(){

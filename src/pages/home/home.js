@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { getSocialMediaIconLinks } from 'redux/actions/text'
+import { getSocialMediaIconLinks } from '../../redux/actions/text'
 import Footer from "../../components/footer/footer";
 
-export default class Home extends Component {
+export class Home extends Component {
   constructor(props) {
     super(props);
 
@@ -11,12 +11,17 @@ export default class Home extends Component {
   }
 
   componentDidMount(){
+    const icons = this.getIcons();
+  }
+
+  getIcons = () => {
     this.props.getSocialMediaIconLinks();
   }
 
   render() {
     return (
       <React.Fragment>
+        {this.icons}
         <h1>Chipino Home component</h1>
         <Footer />
       </React.Fragment>
