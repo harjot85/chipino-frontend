@@ -3,26 +3,26 @@ import { connect } from "react-redux";
 import { getSocialMedia } from "../../redux/actions/text";
 
 export class Footer extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
   }
   componentDidMount() {
     this.props.getSocialMedia();
-   // console.log("Component Did Mount: " + this.props.socialMedia);
+    // console.log("Component Did Mount: " + this.props.socialMedia);
   }
 
-  
   render() {
-    const p = this.props.socialMedia// || this.props.socialMedia.link;
-    {
-      console.log(JSON.stringify(p))
-    }
+    //const p = this.props.socialMedia.socialMedia; // || this.props.socialMedia.link;
+    console.log("render: " + this.props.socialMedia);
+    const socialM = Object.keys(this.props.socialMedia || []).map(social => ({key: social.id, name: social.socialMedia}));
+    
+    console.log(socialM)
+
     return (
       <div>
-        {console.log(JSON.stringify(p.socialMedia))}
+        {/* {console.log(JSON.stringify(p.socialMedia))} */}
         <ul>
-          
-          <li>{JSON.stringify(p.socialMedia)}</li>
+          <li>{JSON.stringify(socialM)}</li>
           <li>Insta</li>
           <li>Face</li>
           <li>Twit</li>
