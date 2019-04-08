@@ -1,8 +1,8 @@
 import * as actionType from '../actionTypes';
 
-export function getSocialMediaIconLinks(){
+export function getSocialMedia(){
     return {
-        type: actionType.GET_SOCIALMEDIACLASSES_SUCCESS
+        type: actionType.GET_SOCIALMEDIA
     }
 }
 

@@ -2,19 +2,19 @@ import {put, takeLatest, spawn, all} from 'redux-saga/effects';
 import * as textApi from '../../api/text/index';
 import * as action from '../actionTypes';
 
-function* getSocialMediaIconLinks(){
+function* getSocialMedia(){
     try{
         const response = yield textApi.getSocialMediaContent()
         yield put ({
-            type: action.GET_SOCIALMEDIACLASSES_SUCCESS,
+            type: action.GET_SOCIALMEDIA_SUCCESS,
             payload:{
-                data: response.data
+                socialMedia: response.data
             }
         })
     }
     catch(error){
         yield put ({
-            type: action.GET_SOCIALMEDIACLASSES_ERROR,
+            type: action.GET_SOCIALMEDIA_ERROR,
             payload: {
                 error,
             }
@@ -22,12 +22,12 @@ function* getSocialMediaIconLinks(){
     }
 }
 
-function* watchgetSocialMediaIconLinks(){
-    yield takeLatest(action.GET_SOCIALMEDIACLASSES_SUCCESS, getSocialMediaIconLinks)
+function* watchgetSocialMedia(){
+    yield takeLatest(action.GET_SOCIALMEDIA, getSocialMedia);
 }
 
 export default function* rootTextSaga(){
     yield all([
-        spawn(watchgetSocialMediaIconLinks)
+        spawn(watchgetSocialMedia)
     ])
 }

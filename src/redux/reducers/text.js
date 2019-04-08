@@ -1,13 +1,13 @@
 import * as actionType from '../actionTypes';
 
 export const textReducer = (state = {
-    smLinkFB: "",
+    socialMedia: false,
 }, action) => {
     switch (action.type){
-        case actionType.GET_SOCIALMEDIACLASSES_SUCCESS:{
+        case actionType.GET_SOCIALMEDIA_SUCCESS:{
             state = {
                 ...state, 
-                smLinkFB: ""
+                socialMedia: action.payload
             };
             break;
         }
