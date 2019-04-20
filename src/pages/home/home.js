@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+
 import Footer from "../../components/footer/footer";
 
 export default class Home extends Component {
+
   render() {
     return (
       <React.Fragment>
@@ -11,3 +13,4 @@ export default class Home extends Component {
     )
   }
 }
+
