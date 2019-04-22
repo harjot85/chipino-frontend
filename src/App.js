@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Home from "./pages/home/home";
 import Projects from "./pages/projects/projects";
 import Contact from "./pages/contact/contact";
@@ -11,24 +11,26 @@ import { Provider } from "react-redux";
 class App extends Component {
   render() {
     return (
+      
       <Provider store={store}>
         <Router>
-          <div>
+           <div>
             <ul style={{ background:'turquoise', display: 'flex', 'justify-content':'space-around', 'list-style-type':'none'}}>
               <li><Link to="/">Home</Link></li> |
               <li><Link to="/projects">Projects</Link></li> |
               <li><Link to="/contact">Contact</Link></li> |
               <li><Link to="/about">About</Link></li>
-            </ul>
-            <Switch>
+            </ul> 
+            <div>
               <Route exact path="/" component={Home} />
               <Route path="/projects" component={Projects} />
               <Route path="/contact" component={Contact} />
               <Route path="/about" component={About} />
-            </Switch>
+            </div>
           </div>
         </Router>
       </Provider>
+      
     );
   }
 }
