@@ -13,7 +13,7 @@ const FooterStyled = styled.div`
 `;
 
 const FooterIcon = styled.div`
-  font-size: 44px;
+  font-size: 32px;
   color: black;
   &:hover {
    color:#42a7f4; 
@@ -24,6 +24,13 @@ const FooterIconContainer = styled.div`
   margin-top: 3%;
   margin-left: 5%;
   margin-right: 5%;
+  border: 3px solid black;
+  border-radius: 50%;
+  padding: 8px;
+
+  &:hover {
+    border-color:#42a7f4; 
+   }
 `;
 
 export class Footer extends Component {
@@ -55,7 +62,7 @@ export class Footer extends Component {
         />
         <FooterStyled>
           {/* {console.log(JSON.stringify(p.socialMedia))} */}
-          <Row style={{ display: "flex", borderTop: "5px solid black", position: 'fixed', width:'15%' , bottom: 90 }}>
+          <Row style={{ display: "flex", borderTop: "5px solid black", position: 'fixed', width:'20%' , bottom: 90 }}>
             <FooterIconContainer className="social-div fb">
               <a href="/">
                 <FooterIcon className="fab fa-github" />
