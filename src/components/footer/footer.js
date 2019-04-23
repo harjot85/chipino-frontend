@@ -62,7 +62,7 @@ export class Footer extends Component {
         />
         <FooterStyled>
           {/* {console.log(JSON.stringify(p.socialMedia))} */}
-          <Row style={{ display: "flex", borderTop: "5px solid black", position: 'fixed', width:'20%' , bottom: 90 }}>
+          <Row style={{ display: "flex", borderTop: "5px solid black", position: 'fixed', width:'15%' , bottom: 90 }}>
             <FooterIconContainer className="social-div fb">
               <a href="/">
                 <FooterIcon className="fab fa-github" />

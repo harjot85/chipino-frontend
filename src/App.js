@@ -15,12 +15,12 @@ class App extends Component {
       <Provider store={store}>
         <Router>
            <div>
-            <ul style={{ background:'turquoise', display: 'flex', 'justify-content':'space-around', 'list-style-type':'none'}}>
+            {/* <ul style={{ background:'turquoise', display: 'flex', 'justify-content':'space-around', 'list-style-type':'none'}}>
               <li><Link to="/">Home</Link></li> |
               <li><Link to="/projects">Projects</Link></li> |
               <li><Link to="/contact">Contact</Link></li> |
               <li><Link to="/about">About</Link></li>
-            </ul> 
+            </ul>  */}
             <div>
               <Route exact path="/" component={Home} />
               <Route path="/projects" component={Projects} />
