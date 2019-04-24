@@ -2,36 +2,8 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getSocialMedia } from "../../redux/actions/text";
 import { Row } from "reactstrap";
-import styled from "styled-components";
 
-
-const FooterStyled = styled.div`
-  margin-bottom: 0em;
-  left: 0;
-  bottom: 0;
-  text-align: center;
-`;
-
-const FooterIcon = styled.div`
-  font-size: 32px;
-  color: black;
-  &:hover {
-   color:#42a7f4; 
-  }
-`;
-
-const FooterIconContainer = styled.div`
-  margin-top: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
-  border: 3px solid black;
-  border-radius: 50%;
-  padding: 8px;
-
-  &:hover {
-    border-color:#42a7f4; 
-   }
-`;
+import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
 
 export class Footer extends Component {
   constructor(props) {
@@ -62,7 +34,15 @@ export class Footer extends Component {
         />
         <FooterStyled>
           {/* {console.log(JSON.stringify(p.socialMedia))} */}
-          <Row style={{ display: "flex", borderTop: "5px solid black", position: 'fixed', width:'15%' , bottom: 90 }}>
+          <Row
+            style={{
+              display: "flex",
+              borderTop: "5px solid #4599BB",
+              position: "fixed",
+              width: "15%",
+              bottom: 90
+            }}
+          >
             <FooterIconContainer className="social-div fb">
               <a href="/">
                 <FooterIcon className="fab fa-github" />
