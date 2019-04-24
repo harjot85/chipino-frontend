@@ -40,7 +40,7 @@ export class Footer extends Component {
               borderTop: "5px solid #4599BB",
               position: "fixed",
               width: "15%",
-              bottom: 90
+              bottom: 10
             }}
           >
             <FooterIconContainer className="social-div fb">

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "reactstrap";
-import Footer from "../../components/footer/footer";
 import NavPanel from "../../components/navpanel/navpanel";
 import { InfoPanelText } from "./styled";
 
@@ -40,11 +39,6 @@ export default class Home extends Component {
             </Col>
           </Row>
         </Container>
-        <Row>
-          <Col>
-            <Footer />
-          </Col>
-        </Row>
       </React.Fragment>
     );
   }

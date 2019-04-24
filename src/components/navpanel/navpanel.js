@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import chester from "../../resources/chester.png";
-
+import Footer from "../../components/footer/footer";
 import { Col, Row } from "reactstrap";
 import { NavigationWrapper, LinkStyled } from "./styled";
 
@@ -56,6 +56,10 @@ export default class NavPanel extends Component {
                 </NavigationWrapper>
               </div>
             </Col>
+          </Row>
+
+          <Row>
+              <Footer/>
           </Row>
         </Col>
       </React.Fragment>
