@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Col, Row, Container } from "reactstrap";
 import NavPanel from "../../components/navpanel/navpanel";
-import { InfoPanelText } from "./styled";
+import { InfoPanelText } from "../home/styled";
 
 export default class Home extends Component {
   render() {
@@ -25,15 +25,12 @@ export default class Home extends Component {
               }}
             >
               <InfoPanelText>
-                LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. HUIC
-                EGO, SI NEGARET QUICQUAM INTERESSE AD BEATE VIVENDUM QUALI
-                UTERETUR VICTU, CONCEDEREM, LAUDAREM ETIAM; UTRUM IGITUR TIBI
-                LITTERAM VIDEOR AN TOTAS PAGINAS COMMOVERE? EIURO, INQUIT
-                ADRIDENS, INIQUUM, HAC QUIDEM DE RE; NIHIL OPUS EST EXEMPLIS HOC
-                FACERE LONGIUS. OCULORUM, INQUIT PLATO, EST IN NOBIS SENSUS
-                ACERRIMUS, QUIBUS SAPIENTIAM NON CERNIMUS. QUAE SIMILITUDO IN
-                GENERE ETIAM HUMANO APPARET. HAEC PARA/DOCA ILLI, NOS
-                ADMIRABILIA DICAMUS. DUO REGES: CONSTRUCTIO INTERRETE.
+              Here we can out the info for the About page. This info is no info and I am totally making this info up to
+              generate some fake info. 
+              Here we can out the info for the About page. This info is no info and I am totally making this info up to
+              generate some fake info. 
+              Here we can out the info for the About page. This info is no info and I am totally making this info up to
+              generate some fake info. 
               </InfoPanelText>
            
             </Col>
