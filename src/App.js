@@ -6,7 +6,6 @@ import Contact from "./pages/contact/contact";
 import About from "./pages/about/about";
 import store from "./redux/store";
 import { Provider } from "react-redux";
-import './App.css';
 
 
 class App extends Component {
@@ -14,11 +13,11 @@ class App extends Component {
     return (
       <Provider store={store}>
         <Router>
-          <div className='nav'>
-            <ul>
-              <li className='active'><Link to="/">Home</Link></li>
-              <li><Link to="/projects">Projects</Link></li>
-              <li><Link to="/contact">Contact</Link></li>
+          <div>
+            <ul style={{ background:'turquoise', display: 'flex', 'justify-content':'space-around', 'list-style-type':'none'}}>
+              <li><Link to="/">Home</Link></li> |
+              <li><Link to="/projects">Projects</Link></li> |
+              <li><Link to="/contact">Contact</Link></li> |
               <li><Link to="/about">About</Link></li>
             </ul>
             <Switch>

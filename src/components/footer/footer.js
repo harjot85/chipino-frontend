@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getSocialMedia } from "../../redux/actions/text";
-import './footer.css';
 
 export class Footer extends Component {
   constructor(props){
@@ -20,14 +19,14 @@ export class Footer extends Component {
     console.log(socialM)
 
     return (
-      <div className='footer'>
+      <div>
         {/* {console.log(JSON.stringify(p.socialMedia))} */}
-        <ol>
+        <ul>
           <li>{JSON.stringify(socialM)}</li>
-          <li>Instagram</li>
-          <li>Facebook</li>
-          <li>Twitter</li>
-        </ol>
+          <li>Insta</li>
+          <li>Face</li>
+          <li>Twit</li>
+        </ul>
       </div>
     );
   }
