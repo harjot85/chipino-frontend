@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import Home from "./pages/homeasdfasd/home";
+import Home from "./pages/home/home";
+import Projects from "./pages/projects/projects";
+import Contact from "./pages/contact/contact";
+import About from "./pages/about/about";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import "./style.css";
