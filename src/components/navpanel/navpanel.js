@@ -35,7 +35,7 @@ export default class NavPanel extends Component {
             <Col>
               <div
                 style={{
-                  padding: "30% 0 30% 0",
+                  padding: "30% 30% 30% 0",
                   textAlign: "right",
                   fontWeight: "600"
                 }}
