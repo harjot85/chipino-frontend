@@ -25,6 +25,7 @@ export default class Home extends Component {
               }}
             >
               <InfoPanelText>
+                <h2>THIS IS THE HOME PAGE</h2>
                 LOREM IPSUM DOLOR SIT AMET, CONSECTETUR ADIPISCING ELIT. HUIC
                 EGO, SI NEGARET QUICQUAM INTERESSE AD BEATE VIVENDUM QUALI
                 UTERETUR VICTU, CONCEDEREM, LAUDAREM ETIAM; UTRUM IGITUR TIBI
