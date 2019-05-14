@@ -23,15 +23,19 @@ export default class Projects extends Component {
              
               }}>
 
-              <InfoPanelText>
+              
               <h2>THIS IS WHERE GITHUB REPOST WILL BE PRESENTED</h2>
-              Here we can out the info for the About page. This info is no info and I am totally making this info up to
-              generate some fake info. 
-              Here we can out the info for the About page. This info is no info and I am totally making this info up to
-              generate some fake info. 
-              Here we can out the info for the About page. This info is no info and I am totally making this info up to
-              generate some fake info. 
-              </InfoPanelText>
+                <Row style={{textAlign: 'right'}}>
+                  <div style={{ display: 'inline-flex', height: '150px', width: '125px', backgroundColor: 'crimson', margin: '5px'}}>1 1</div>
+                  <div style={{display: 'inline-flex', height: '150px', width: '125px', backgroundColor: 'crimson', margin: '5px'}}>1 2</div>
+                  <div style={{display: 'inline-flex', height: '150px', width: '125px', backgroundColor: 'crimson', margin: '5px'}}>1 3</div>
+                </Row>
+                <Row style={{textAlign: 'right'}}>
+                  <div style={{display: 'inline-flex', height: '150px', width: '125px', backgroundColor: 'crimson', margin: '5px'}}>2 1</div>
+                  <div style={{display: 'inline-flex', height: '150px', width: '125px', backgroundColor: 'crimson', margin: '5px'}}>2 2</div>
+                  <div style={{display: 'inline-flex', height: '150px', width: '125px', backgroundColor: 'crimson', margin: '5px'}}>2 3</div>
+                </Row>
+              
             </Col>
           </Row>
         </Container>
