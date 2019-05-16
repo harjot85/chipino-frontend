@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getSocialMedia } from "../../redux/actions/text";
+import { getAllText } from "../../redux/actions/text";
 import { Row } from "reactstrap";
 
 import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
@@ -10,20 +10,21 @@ export class Footer extends Component {
     super(props);
   }
   componentDidMount() {
-    this.props.getSocialMedia();
-    // console.log("Component Did Mount: " + this.props.socialMedia);
+    this.props.getAllText();
+    console.log("Component Did Mount: " + this.props.AllText);
   }
 
   render() {
-    //const p = this.props.socialMedia.socialMedia; // || this.props.socialMedia.link;
-    console.log("render: " + this.props.socialMedia);
-    const socialM = Object.keys(this.props.socialMedia || []).map(social => ({
+    //const p = this.props.AllText.AllText; // || this.props.AllText.link;
+    console.log("render: " + this.props.AllText);
+    const socialM = Object.keys(this.props.AllText || []).map(social => ({
       key: social.id,
-      name: social.socialMedia
+      name: social.AllText
     }));
 
     console.log(socialM);
 
+    
     return (
       <React.Fragment>
         <link
@@ -33,7 +34,7 @@ export class Footer extends Component {
           crossOrigin="anonymous"
         />
         <FooterStyled>
-          {/* {console.log(JSON.stringify(p.socialMedia))} */}
+          {/* {console.log(JSON.stringify(p.AllText))} */}
           <Row
             style={{
               display: "flex",
@@ -43,6 +44,7 @@ export class Footer extends Component {
               bottom: 10
             }}
           >
+          
             <FooterIconContainer className="social-div fb">
               <a href="/">
                 <FooterIcon className="fab fa-github" />
@@ -66,11 +68,11 @@ export class Footer extends Component {
   }
 }
 const mapStateToProps = store => ({
-  socialMedia: store.text.socialMedia || []
+  allText: store.allText || []
 });
 
 const mapDispatchToProps = {
-  getSocialMedia
+  getAllText
 };
 
 export default connect(

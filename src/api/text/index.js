@@ -1,9 +1,9 @@
 import axios from "axios";
 
 //Temporary API for testing
-export function getSocialMediaContent() {
+export function getAllTextContent() {
     return axios.get(
-        "https://localhost:5001/",
+        "https://localhost:44302/api/content",
         {
             method: "GET"
         }
