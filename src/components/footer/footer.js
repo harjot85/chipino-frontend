@@ -11,20 +11,25 @@ export class Footer extends Component {
   }
   componentDidMount() {
     this.props.getAllText();
-    console.log("Component Did Mount: " + this.props.AllText);
   }
 
+  
   render() {
-    //const p = this.props.AllText.AllText; // || this.props.AllText.link;
-    console.log("render: " + this.props.AllText);
-    const socialM = Object.keys(this.props.AllText || []).map(social => ({
-      key: social.id,
-      name: social.AllText
+    const { ...p } = this.props;
+    
+    const i = p.allText.findIndex(x => x.id === 0)
+    console.log(i)
+    
+    const textElements = p.allText.map((textElement) => ({
+      key: textElement.id,
+      desc: textElement.description
     }));
 
-    console.log(socialM);
-
+    console.log(textElements)
     
+    const homeText = textElements.filter(x => x.key === 0).map(x => x.desc)
+    console.log("Home: " + homeText)
+
     return (
       <React.Fragment>
         <link
@@ -44,7 +49,8 @@ export class Footer extends Component {
               bottom: 10
             }}
           >
-          
+            {<p>{homeText}</p>}
+         
             <FooterIconContainer className="social-div fb">
               <a href="/">
                 <FooterIcon className="fab fa-github" />
@@ -67,8 +73,8 @@ export class Footer extends Component {
     );
   }
 }
-const mapStateToProps = store => ({
-  allText: store.allText || []
+const mapStateToProps = state => ({
+  allText: state.text.allText
 });
 
 const mapDispatchToProps = {

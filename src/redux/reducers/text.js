@@ -1,7 +1,7 @@
 import * as actionType from '../actionTypes';
 
 export const textReducer = (state = {
-    allText: false,
+    allText: [],
 }, action) => {
     switch (action.type){
         case actionType.GET_ALL_TEXT_SUCCESS:{
