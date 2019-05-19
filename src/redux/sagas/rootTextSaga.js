@@ -1,12 +1,12 @@
 import {put, takeLatest, spawn, all} from 'redux-saga/effects';
-import * as textApi from '../../api/text/index';
-import * as action from '../actionTypes';
+import * as textApi from '../../api/text/text';
+import * as actionType from '../actionTypes';
 
 function* getAllText(){
     try{
         const response = yield textApi.getAllTextContent()
         yield put ({
-            type: action.GET_ALL_TEXT_SUCCESS,
+            type: actionType.GET_ALL_TEXT_SUCCESS,
             payload:{
                 allText: response.data
             }
@@ -14,7 +14,7 @@ function* getAllText(){
     }
     catch(error){
         yield put ({
-            type: action.GET_ALL_TEXT_ERROR,
+            type: actionType.GET_ALL_TEXT_ERROR,
             payload: {
                 error,
             }
@@ -23,7 +23,7 @@ function* getAllText(){
 }
 
 function* watchgetAllText(){
-    yield takeLatest(action.GET_ALL_TEXT, getAllText);
+    yield takeLatest(actionType.GET_ALL_TEXT, getAllText);
 }
 
 export default function* rootTextSaga(){

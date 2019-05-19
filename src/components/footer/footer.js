@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getAllText } from "../../redux/actions/text";
+import { getAllSocialMediaIcons } from "../../redux/actions/socialMedia";
 import { Row } from "reactstrap";
 
 import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
@@ -11,24 +12,23 @@ export class Footer extends Component {
   }
   componentDidMount() {
     this.props.getAllText();
+    this.props.getAllSocialMediaIcons();
   }
 
   
   render() {
     const { ...p } = this.props;
     
+    console.log(p.socialMedia);
+
     const i = p.allText.findIndex(x => x.id === 0)
-    console.log(i)
     
     const textElements = p.allText.map((textElement) => ({
       key: textElement.id,
       desc: textElement.description
     }));
 
-    console.log(textElements)
-    
     const homeText = textElements.filter(x => x.key === 0).map(x => x.desc)
-    console.log("Home: " + homeText)
 
     return (
       <React.Fragment>
@@ -74,11 +74,13 @@ export class Footer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  allText: state.text.allText
+  allText: state.text.allText, 
+  socialMedia: state.socialMedia.socialMediaIcons
 });
 
 const mapDispatchToProps = {
-  getAllText
+  getAllText, 
+  getAllSocialMediaIcons
 };
 
 export default connect(

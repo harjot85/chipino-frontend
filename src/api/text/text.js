@@ -3,7 +3,7 @@ import axios from "axios";
 //Temporary API for testing
 export function getAllTextContent() {
     return axios.get(
-        "https://localhost:44302/api/content",
+        "https://staging-api-chipinomeshworks.herokuapp.com/api/content",
         {
             method: "GET"
         }
