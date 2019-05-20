@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-
-import { connect } from "react-redux";
-import { getAllText } from "../../redux/actions/text";
-import { getAllSocialMediaIcons } from "../../redux/actions/socialMedia";
-
 import { Row } from "reactstrap";
+
+//Components
 import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
+
+//Redux
+import { connect } from "react-redux";
+import { getAllSocialMediaIcons } from "../../redux/actions/socialMedia";
 
 export class Footer extends Component {
   componentDidMount() {
-    this.props.getAllText();
     this.props.getAllSocialMediaIcons();
   }
 
   render() {
     const { ...p } = this.props;
-
-    const textElements = p.allText.map(textElement => ({
-      key: textElement.id,
-      desc: textElement.description
-    }));
 
     const faviconCollection = p.socialMedia.map(favicon => ({
       id: favicon.id,
@@ -28,7 +23,6 @@ export class Footer extends Component {
       hoverColor: favicon.hoverColor
     }));
 
-    const homeText = textElements.filter(x => x.key === 0).map(x => x.desc);
     const iconClass = faviconCollection
       .filter(x => x.id === 501)
       .map(x => x.iconClass);
@@ -77,12 +71,10 @@ export class Footer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  allText: state.text.allText,
   socialMedia: state.socialMedia.socialMediaIcons
 });
 
 const mapDispatchToProps = {
-  getAllText,
   getAllSocialMediaIcons
 };
 
