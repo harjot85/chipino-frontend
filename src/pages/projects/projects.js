@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Row, Container } from "reactstrap";
 import NavPanel from "../../components/navpanel/navpanel";
-import { InfoPanelText } from '../home/styled';
 
 export default class Projects extends Component {
   render() {

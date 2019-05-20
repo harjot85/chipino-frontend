@@ -1,8 +1,8 @@
 import * as actionType from '../actionTypes';
 
-export function getSocialMedia(){
+export function getAllText(){
     return {
-        type: actionType.GET_SOCIALMEDIA
+        type: actionType.GET_ALL_TEXT
     }
 }
 

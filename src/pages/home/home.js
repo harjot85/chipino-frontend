@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Col, Row, Container } from "reactstrap";
+import { Row, Container } from "reactstrap";
 import NavPanel from "../../components/navpanel/navpanel";
 import { InfoPanelText } from "./styled";
+
 
 export default class Home extends Component {
   render() {
@@ -14,12 +15,11 @@ export default class Home extends Component {
         <Container style={{ height: "100%" }}>
           <Row style={{ display: "inline-flex", height: "100%" }}>
             <NavPanel />
-            <Col
-          
+            <div
               style={{
                 width: "75%",
                 backgroundColor: "grey",
-                borderRadius: "50% 0 0 50%",
+                borderRadius: "400px/50% 0 0 50%",
                 backgroundImage: 'linear-gradient(to bottom right, #3B3B3B, grey)'
              
               }}
@@ -36,7 +36,7 @@ export default class Home extends Component {
                 ADMIRABILIA DICAMUS. DUO REGES: CONSTRUCTIO INTERRETE.
               </InfoPanelText>
            
-            </Col>
+            </div>
           </Row>
         </Container>
       </React.Fragment>

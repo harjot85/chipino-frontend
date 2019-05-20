@@ -12,6 +12,7 @@ export const FooterIcon = styled.div`
   color: black;
   &:hover {
    color:#42a7f4; 
+   color: ${props => props.hoverColor|| "gold" };
   }
 `;
 
@@ -25,5 +26,6 @@ export const FooterIconContainer = styled.div`
   
   &:hover {
     border-color:#42a7f4; 
+   
    }
 `;
