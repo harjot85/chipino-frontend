@@ -1,34 +1,40 @@
 import React, { Component } from "react";
+
 import { connect } from "react-redux";
 import { getAllText } from "../../redux/actions/text";
 import { getAllSocialMediaIcons } from "../../redux/actions/socialMedia";
-import { Row } from "reactstrap";
 
+import { Row } from "reactstrap";
 import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
 
 export class Footer extends Component {
-  constructor(props) {
-    super(props);
-  }
   componentDidMount() {
     this.props.getAllText();
     this.props.getAllSocialMediaIcons();
   }
 
-  
   render() {
     const { ...p } = this.props;
-    
-    console.log(p.socialMedia);
 
-    const i = p.allText.findIndex(x => x.id === 0)
-    
-    const textElements = p.allText.map((textElement) => ({
+    const textElements = p.allText.map(textElement => ({
       key: textElement.id,
       desc: textElement.description
     }));
 
-    const homeText = textElements.filter(x => x.key === 0).map(x => x.desc)
+    const faviconCollection = p.socialMedia.map(favicon => ({
+      id: favicon.id,
+      iconClass: favicon.iconClass,
+      linkTo: favicon.linkTo,
+      hoverColor: favicon.hoverColor
+    }));
+
+    const homeText = textElements.filter(x => x.key === 0).map(x => x.desc);
+    const iconClass = faviconCollection
+      .filter(x => x.id === 501)
+      .map(x => x.iconClass);
+    const hoverColor = faviconCollection
+      .filter(x => x.id === 501)
+      .map(x => x.hoverColor);
 
     return (
       <React.Fragment>
@@ -39,7 +45,6 @@ export class Footer extends Component {
           crossOrigin="anonymous"
         />
         <FooterStyled>
-          {/* {console.log(JSON.stringify(p.AllText))} */}
           <Row
             style={{
               display: "flex",
@@ -49,11 +54,9 @@ export class Footer extends Component {
               bottom: 10
             }}
           >
-            {<p>{homeText}</p>}
-         
             <FooterIconContainer className="social-div fb">
               <a href="/">
-                <FooterIcon className="fab fa-github" />
+                <FooterIcon className={iconClass} hoverColor={hoverColor} />
               </a>
             </FooterIconContainer>
             <FooterIconContainer className="">
@@ -74,12 +77,12 @@ export class Footer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  allText: state.text.allText, 
+  allText: state.text.allText,
   socialMedia: state.socialMedia.socialMediaIcons
 });
 
 const mapDispatchToProps = {
-  getAllText, 
+  getAllText,
   getAllSocialMediaIcons
 };
 

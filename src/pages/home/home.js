@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row, Container } from "reactstrap";
+import { Row, Container } from "reactstrap";
 import NavPanel from "../../components/navpanel/navpanel";
 import { InfoPanelText } from "./styled";
 

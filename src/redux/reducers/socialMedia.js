@@ -10,10 +10,8 @@ export const socialMediaReducer = (
         ...state,
         socialMediaIcons: action.payload.socialMedia
       };
-
       break;
     }
-
     default: {
       break;
     }
