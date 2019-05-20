@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
 
 //Components
-import NavPanel from "../../components/navpanel/navpanel";
-import { InfoPanelText } from "../../utilities/styledShared";
-import { ContainerCurved } from "../../utilities/styledShared";
+import { InfoPanelText, ContainerCurved } from "../../utilities/styledShared";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
 import { connect } from "react-redux";
 
-export class About extends Component {
+export class HomeContentPanel extends Component {
   componentDidMount() {
     const { ...p } = this.props;
     p.getAllText();
@@ -21,19 +18,17 @@ export class About extends Component {
       key: textElement.id,
       data: textElement.pageData
     }));
-    const aboutText = text.filter(x => x.key === 101).map(x => x.data);
+    const homeText = text.filter(x => x.key === 201).map(x => x.data);
+
     return (
       <React.Fragment>
         <link
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ height: "100%", display: "flex" }}>
-          <NavPanel />
-          <ContainerCurved>
-            <InfoPanelText>{aboutText}</InfoPanelText>
-          </ContainerCurved>
-        </Container>
+        <ContainerCurved>
+          <InfoPanelText>{homeText}</InfoPanelText>
+        </ContainerCurved>
       </React.Fragment>
     );
   }
@@ -50,4 +45,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(About);
+)(HomeContentPanel);

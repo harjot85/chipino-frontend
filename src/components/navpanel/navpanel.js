@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import chester from "../../resources/chester.png";
 import Footer from "../../components/footer/footer";
 
 import { connect } from "react-redux";
@@ -9,12 +8,23 @@ import { Col, Row } from "reactstrap";
 import { NavigationWrapper, LinkStyled } from "./styled";
 
 export class NavPanel extends Component {
-
-  componentDidMount(){
+  componentDidMount() {
     this.props.getAllImages();
   }
 
   render() {
+    const { ...p } = this.props;
+
+    const logo = p.images.map(image => ({
+      key: image.id,
+      file: image.fileContent,
+      type: image.fileType
+    }));
+
+    const logoData = logo.filter(x => x.key === 201).map(x => x.file);
+    const logoType = logo.filter(x => x.key === 201).map(x => x.type);
+    const chesterLogo = logoType + logoData
+
     return (
       <React.Fragment>
         <Col style={{ width: "25%" }}>
@@ -22,7 +32,7 @@ export class NavPanel extends Component {
             <Col>
               <img
                 style={{ maxWidth: "300px", maxHeight: "250px" }}
-                src={chester}
+                src={chesterLogo}
                 alt="Chipino Meshworks"
               />
             </Col>
@@ -68,7 +78,7 @@ export class NavPanel extends Component {
           </Row>
 
           <Row>
-              <Footer/>
+            <Footer />
           </Row>
         </Col>
       </React.Fragment>
@@ -77,11 +87,11 @@ export class NavPanel extends Component {
 }
 
 const mapStateToProps = state => ({
-  images: state.media.images, 
+  images: state.media.images
 });
 
 const mapDispatchToProps = {
-  getAllImages, 
+  getAllImages
 };
 
 export default connect(
