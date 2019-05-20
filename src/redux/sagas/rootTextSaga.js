@@ -1,20 +1,20 @@
 import {put, takeLatest, spawn, all} from 'redux-saga/effects';
-import * as textApi from '../../api/text/index';
-import * as action from '../actionTypes';
+import * as textApi from '../../api/text/text';
+import * as actionType from '../actionTypes';
 
-function* getSocialMedia(){
+function* getAllText(){
     try{
-        const response = yield textApi.getSocialMediaContent()
+        const response = yield textApi.getAllTextContent()
         yield put ({
-            type: action.GET_SOCIALMEDIA_SUCCESS,
+            type: actionType.GET_ALL_TEXT_SUCCESS,
             payload:{
-                socialMedia: response.data
+                allText: response.data
             }
         })
     }
     catch(error){
         yield put ({
-            type: action.GET_SOCIALMEDIA_ERROR,
+            type: actionType.GET_ALL_TEXT_ERROR,
             payload: {
                 error,
             }
@@ -22,12 +22,12 @@ function* getSocialMedia(){
     }
 }
 
-function* watchgetSocialMedia(){
-    yield takeLatest(action.GET_SOCIALMEDIA, getSocialMedia);
+function* watchgetAllText(){
+    yield takeLatest(actionType.GET_ALL_TEXT, getAllText);
 }
 
 export default function* rootTextSaga(){
     yield all([
-        spawn(watchgetSocialMedia)
+        spawn(watchgetAllText)
     ])
 }

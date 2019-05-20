@@ -1,10 +1,19 @@
 import React, { Component } from "react";
 import chester from "../../resources/chester.png";
 import Footer from "../../components/footer/footer";
+
+import { connect } from "react-redux";
+import { getAllImages } from "../../redux/actions/media";
+
 import { Col, Row } from "reactstrap";
 import { NavigationWrapper, LinkStyled } from "./styled";
 
-export default class NavPanel extends Component {
+export class NavPanel extends Component {
+
+  componentDidMount(){
+    this.props.getAllImages();
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -35,7 +44,7 @@ export default class NavPanel extends Component {
             <Col>
               <div
                 style={{
-                  padding: "30% 0 30% 0",
+                  padding: "30% 30% 30% 0",
                   textAlign: "right",
                   fontWeight: "600"
                 }}
@@ -66,3 +75,16 @@ export default class NavPanel extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  images: state.media.images, 
+});
+
+const mapDispatchToProps = {
+  getAllImages, 
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(NavPanel);
