@@ -23,13 +23,6 @@ export class Footer extends Component {
       hoverColor: favicon.hoverColor
     }));
 
-    const iconClass = faviconCollection
-      .filter(x => x.id === 501)
-      .map(x => x.iconClass);
-    const hoverColor = faviconCollection
-      .filter(x => x.id === 501)
-      .map(x => x.hoverColor);
-
     return (
       <React.Fragment>
         <link
@@ -48,22 +41,14 @@ export class Footer extends Component {
               bottom: 10
             }}
           >
-            <FooterIconContainer className="social-div fb">
-              <a href="/">
-                <FooterIcon className={iconClass} hoverColor={hoverColor} />
-              </a>
-            </FooterIconContainer>
-            <FooterIconContainer className="">
-              <a href="/">
-                <FooterIcon className="fab fa-reddit-alien" />
-              </a>
-            </FooterIconContainer>
 
-            <FooterIconContainer className="">
-              <a href="/">
-                <FooterIcon className="fa-medium fab" />
+          {faviconCollection.map((socialMediaIcon) =>
+            <FooterIconContainer className="social-div fb" hoverColor={socialMediaIcon.hoverColor}>
+              <a href={socialMediaIcon.linkTo}>
+               <FooterIcon key={socialMediaIcon.id} className={socialMediaIcon.iconClass} hoverColor={socialMediaIcon.hoverColor} />
               </a>
-            </FooterIconContainer>
+            </FooterIconContainer>)}
+
           </Row>
         </FooterStyled>
       </React.Fragment>
