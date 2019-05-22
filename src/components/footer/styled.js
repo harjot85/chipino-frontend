@@ -7,14 +7,6 @@ export const FooterStyled = styled.div`
   text-align: center;
 `;
 
-export const FooterIcon = styled.div`
-  font-size: 32px;
-  color: black;
-  &:hover {
-   color:#42a7f4; 
-   color: ${props => props.hoverColor|| "gold" };
-  }
-`;
 
 export const FooterIconContainer = styled.div`
   margin-top: 3%;
@@ -25,7 +17,15 @@ export const FooterIconContainer = styled.div`
   padding: 8px;
   
   &:hover {
-    border-color:#42a7f4; 
-   
+    border-color: ${props => props.hoverColor|| "blue" };
    }
+`;
+
+export const FooterIcon = styled.div`
+  font-size: 32px;
+  color: black;
+  
+  ${FooterIconContainer}:hover & {
+   color: ${props => props.hoverColor|| "blue" };
+  }
 `;

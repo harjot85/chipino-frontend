@@ -1,25 +1,20 @@
 import React, { Component } from "react";
-
-import { connect } from "react-redux";
-import { getAllText } from "../../redux/actions/text";
-import { getAllSocialMediaIcons } from "../../redux/actions/socialMedia";
-
 import { Row } from "reactstrap";
+
+//Components
 import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
+
+//Redux
+import { connect } from "react-redux";
+import { getAllSocialMediaIcons } from "../../redux/actions/socialMedia";
 
 export class Footer extends Component {
   componentDidMount() {
-    this.props.getAllText();
     this.props.getAllSocialMediaIcons();
   }
 
   render() {
     const { ...p } = this.props;
-
-    const textElements = p.allText.map(textElement => ({
-      key: textElement.id,
-      desc: textElement.description
-    }));
 
     const faviconCollection = p.socialMedia.map(favicon => ({
       id: favicon.id,
@@ -27,14 +22,6 @@ export class Footer extends Component {
       linkTo: favicon.linkTo,
       hoverColor: favicon.hoverColor
     }));
-
-    const homeText = textElements.filter(x => x.key === 0).map(x => x.desc);
-    const iconClass = faviconCollection
-      .filter(x => x.id === 501)
-      .map(x => x.iconClass);
-    const hoverColor = faviconCollection
-      .filter(x => x.id === 501)
-      .map(x => x.hoverColor);
 
     return (
       <React.Fragment>
@@ -54,22 +41,14 @@ export class Footer extends Component {
               bottom: 10
             }}
           >
-            <FooterIconContainer className="social-div fb">
-              <a href="/">
-                <FooterIcon className={iconClass} hoverColor={hoverColor} />
-              </a>
-            </FooterIconContainer>
-            <FooterIconContainer className="">
-              <a href="/">
-                <FooterIcon className="fab fa-reddit-alien" />
-              </a>
-            </FooterIconContainer>
 
-            <FooterIconContainer className="">
-              <a href="/">
-                <FooterIcon className="fa-medium fab" />
+          {faviconCollection.map((socialMediaIcon) =>
+            <FooterIconContainer className="social-div fb" hoverColor={socialMediaIcon.hoverColor}>
+              <a href={socialMediaIcon.linkTo}>
+               <FooterIcon key={socialMediaIcon.id} className={socialMediaIcon.iconClass} hoverColor={socialMediaIcon.hoverColor} />
               </a>
-            </FooterIconContainer>
+            </FooterIconContainer>)}
+
           </Row>
         </FooterStyled>
       </React.Fragment>
@@ -77,12 +56,10 @@ export class Footer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  allText: state.text.allText,
   socialMedia: state.socialMedia.socialMediaIcons
 });
 
 const mapDispatchToProps = {
-  getAllText,
   getAllSocialMediaIcons
 };
 
