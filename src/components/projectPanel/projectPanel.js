@@ -25,10 +25,11 @@ export class ContentPanel extends Component {
         <ContainerCurved>
             <Row style={{ textAlign: "right" }}>
               {rs.map((item, index) =>{
+                let repoTech = item.language == null ? "Not Specified" : item.language; 
                 return(
                   <Card key={index} style={{
                     display: "inline-block",
-                    height: "200px",
+                    height: "235px",
                     width: "200px",
                     backgroundColor: "crimson",
                     margin: "10px",
@@ -41,10 +42,11 @@ export class ContentPanel extends Component {
                       <CardSubtitle><b>Full Name:</b> {item.full_name}</CardSubtitle>
                     </CardBody>
                     <CardBody>
-                      <CardText><b>Desc:</b> {item.description}</CardText>
-                      <CardText><b>Default Branch:</b> {item.default_branch}</CardText>
-                      <CardLink href={item.html_url}><b>URL:</b> {item.name}</CardLink><br/>
-                      <CardLink href={item.git_url}><b>GIT URL:</b> {item.name}</CardLink>
+                      <CardText><b>Technology: </b>{repoTech}</CardText>
+                      <CardText><b>Desc: </b>{item.description}</CardText>
+                      <CardText><b>Default Branch: </b>{item.default_branch}</CardText>
+                      <CardLink href={item.html_url}><b>URL: </b>{item.name}</CardLink><br/>
+                      <CardLink href={item.git_url}><b>GIT URL: </b>{item.name}</CardLink>
                     </CardBody>
                   </Card>       
                 )
