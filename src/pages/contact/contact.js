@@ -31,7 +31,7 @@ export default class Contact extends Component {
           rel="stylesheet"
         />
 
-        <Container style={{ height: "100%", display: "flex" }}>
+        <Container style={{ display: "flex" }}>
           <NavPanel />
 
           <ContainerCurved>

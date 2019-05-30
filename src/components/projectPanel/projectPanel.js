@@ -22,7 +22,9 @@ export class ContentPanel extends Component {
     
     return (
       <React.Fragment>
-        <ContainerCurved>
+        <ContainerCurved height="fit-content">
+          <div style={{float: 'right', padding: '1%', width: '70%', height:'100%' }}>
+            <Row style={{ textAlign: "right" }}><h1>Button can go here ! </h1></Row>
             <Row style={{ textAlign: "right" }}>
               {rs.map((item, index) =>{
                 let repoTech = item.language == null ? "Not Specified" : item.language; 
@@ -31,7 +33,7 @@ export class ContentPanel extends Component {
                     display: "inline-block",
                     height: "235px",
                     width: "200px",
-                    backgroundColor: "crimson",
+                    backgroundColor: "pink",
                     margin: "10px",
                     padding: "6px",
                     boxShadow: '0 2px 3px white'
@@ -51,8 +53,8 @@ export class ContentPanel extends Component {
                   </Card>       
                 )
               })}
-              
             </Row>
+            </div>
         </ContainerCurved>
       </React.Fragment>
     );

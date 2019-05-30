@@ -28,7 +28,7 @@ export class About extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ height: "100%", display: "flex" }}>
+        <Container style={{ display: "flex" }}>
           <NavPanel />
           <ContainerCurved>
             <InfoPanelText>{aboutText}</InfoPanelText>
