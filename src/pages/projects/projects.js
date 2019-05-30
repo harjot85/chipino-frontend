@@ -13,7 +13,7 @@ export default class Projects extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ height: "100%", display: "flex" }}>
+        <Container style={{ display: "flex" }}>
           <NavPanel />
           <ProjectPanel />
         </Container>
