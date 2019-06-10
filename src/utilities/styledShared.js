@@ -12,9 +12,10 @@ export const InfoPanelText = styled.div`
 `;
 
 export const ContainerCurved = styled.div`
-    width: 75%;
+    width:100%;
+    
     height:  ${props => props.height|| "-webkit-fill-available" };
     background-color: grey;
     border-radius: 400px/50% 0 0 50%;
-    background-image: linear-gradient(to bottom right, #3B3B3B, grey);
+    background-image: darkgrey;
 `;

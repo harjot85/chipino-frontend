@@ -13,7 +13,7 @@ export default class Home extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ display: "flex" }}>
+        <Container style={{ display: "flex", width: '100%' }}>
           <NavPanel />
           <HomeContentPanel />
         </Container>

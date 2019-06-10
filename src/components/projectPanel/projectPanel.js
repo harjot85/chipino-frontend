@@ -8,6 +8,7 @@ import { ContainerCurved } from '../../utilities/styledShared';
 import { getAllPublicRepos } from "../../redux/actions/github";
 import { connect } from "react-redux";
 
+
 export class ContentPanel extends Component {
   
   componentDidMount() {
@@ -17,6 +18,7 @@ export class ContentPanel extends Component {
   }
   
   render() {
+    
     const { ...p } = this.props;
     const rs = p.repoCollection;
     
