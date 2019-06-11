@@ -12,7 +12,7 @@ export const InfoPanelText = styled.div`
 `;
 
 export const ContainerCurved = styled.div`
-    width:100%;
+    
     
     height:  ${props => props.height|| "-webkit-fill-available" };
     background-color: grey;

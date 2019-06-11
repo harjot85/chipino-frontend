@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
+import { ContainerCurved } from "../../utilities/styledShared";
 
 //Components
 import NavPanel from "../../components/navpanel/navpanel";
@@ -13,10 +14,16 @@ export default class Projects extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ display: "flex" }}>
-          <NavPanel />
-          <ProjectPanel />
-        </Container>
+        <Row>
+          <Col lg={3}>
+            <NavPanel />
+          </Col>
+          <Col lg={9}>
+            <ContainerCurved>
+              <ProjectPanel />
+            </ContainerCurved>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }

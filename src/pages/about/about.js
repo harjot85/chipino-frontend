@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 //Components
 import NavPanel from "../../components/navpanel/navpanel";
@@ -28,12 +28,16 @@ export class About extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ display: "flex" }}>
-          <NavPanel />
-          <ContainerCurved>
-            <InfoPanelText>{aboutText}</InfoPanelText>
-          </ContainerCurved>
-        </Container>
+        <Row>
+          <Col lg ={3}>
+            <NavPanel />
+          </Col>
+          <Col lg = {9}>
+            <ContainerCurved>
+              <InfoPanelText>{aboutText}</InfoPanelText>
+            </ContainerCurved>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }

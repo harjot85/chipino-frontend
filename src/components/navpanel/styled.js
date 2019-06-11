@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 export const NavigationWrapper = styled.div`
   font-size: 28px;
-  padding-right: 5%;
+  
   font-family: "Poiret One", cursive;
 `;
 

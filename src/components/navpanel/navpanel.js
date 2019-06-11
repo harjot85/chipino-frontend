@@ -27,7 +27,7 @@ export class NavPanel extends Component {
 
     return (
       <React.Fragment>
-        <Col style={{ width: "25%" }}>
+        <Col >
           <Row>
             <Col>
               <img
@@ -54,8 +54,8 @@ export class NavPanel extends Component {
             <Col>
               <div
                 style={{
-                  padding: "30% 30% 30% 0",
-                  textAlign: "right",
+                  padding: "30% 0 30% 0",
+                  float: "right",
                   fontWeight: "600"
                 }}
               >

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 //Components
 import NavPanel from "../../components/navpanel/navpanel";
@@ -13,10 +13,14 @@ export default class Home extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ display: "flex", width: '100%' }}>
+        <Row>
+          <Col lg={3}>
           <NavPanel />
+          </Col>
+          <Col lg = {9}>
           <HomeContentPanel />
-        </Container>
+          </Col>
+          </Row>
       </React.Fragment>
     );
   }

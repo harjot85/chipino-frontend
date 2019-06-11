@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 //Components
 import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
@@ -38,17 +38,27 @@ export class Footer extends Component {
               borderTop: "5px solid #4599BB",
               position: "fixed",
               width: "15%",
-              bottom: 10
+              bottom: 10,
+              marginLeft: '8px',
+              paddingTop: '8px'
             }}
           >
-
-          {faviconCollection.map((socialMediaIcon) =>
-            <FooterIconContainer className="social-div fb" hoverColor={socialMediaIcon.hoverColor}>
-              <a href={socialMediaIcon.linkTo}>
-               <FooterIcon key={socialMediaIcon.id} className={socialMediaIcon.iconClass} hoverColor={socialMediaIcon.hoverColor} />
-              </a>
-            </FooterIconContainer>)}
-
+            {faviconCollection.map(socialMediaIcon => (
+              <Col lg={3} md={3} sm={4}  style={{paddingRight: "0px", paddingLeft: "0px"}}>
+                <FooterIconContainer
+                  className="social-div fb"
+                  hoverColor={socialMediaIcon.hoverColor}
+                >
+                  <a href={socialMediaIcon.linkTo}>
+                    <FooterIcon
+                      key={socialMediaIcon.id}
+                      className={socialMediaIcon.iconClass}
+                      hoverColor={socialMediaIcon.hoverColor}
+                    />
+                  </a>
+                </FooterIconContainer>
+              </Col>
+            ))}
           </Row>
         </FooterStyled>
       </React.Fragment>
