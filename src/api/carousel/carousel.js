@@ -2,7 +2,7 @@ import axios from "axios";
 
 export function getCarousel() {
   return axios.get(
-    "https://localhost:44302/api/carousel",
+    "https://staging-api-chipinomeshworks.herokuapp.com/api/carousel",
     {
       method: "GET"
     }
