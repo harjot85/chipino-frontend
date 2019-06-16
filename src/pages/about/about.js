@@ -3,8 +3,12 @@ import { Row, Col } from "reactstrap";
 
 //Components
 import NavPanel from "../../components/navpanel/navpanel";
-import { InfoPanelText } from "../../utilities/styledShared";
-import { ContainerCurved } from "../../utilities/styledShared";
+import {
+  ContainerCurved,
+  PageHeading,
+  ContainerStyled,
+  InfoPanelText
+} from "../../utilities/styledShared";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
@@ -29,12 +33,24 @@ export class About extends Component {
           rel="stylesheet"
         />
         <Row>
-          <Col lg ={3}>
+          <Col lg={3}>
             <NavPanel />
           </Col>
-          <Col lg = {9}>
+          <Col lg={9}>
             <ContainerCurved>
-              <InfoPanelText>{aboutText}</InfoPanelText>
+              <ContainerStyled>
+                <Row>
+                  <Col style={{ textAlign: "right" }}>
+                    <PageHeading>About</PageHeading>
+                    <hr />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <InfoPanelText>{aboutText}</InfoPanelText>
+                  </Col>
+                </Row>
+              </ContainerStyled>
             </ContainerCurved>
           </Col>
         </Row>

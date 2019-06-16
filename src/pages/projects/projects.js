@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
-import { ContainerCurved } from "../../utilities/styledShared";
+import { ContainerCurved, ContainerStyled } from "../../utilities/styledShared";
 
 //Components
 import NavPanel from "../../components/navpanel/navpanel";
@@ -20,7 +20,9 @@ export default class Projects extends Component {
           </Col>
           <Col lg={9}>
             <ContainerCurved>
+            <ContainerStyled>
               <ProjectPanel />
+              </ContainerStyled>
             </ContainerCurved>
           </Col>
         </Row>

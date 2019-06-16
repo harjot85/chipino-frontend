@@ -4,22 +4,19 @@ import {
   CarouselItem,
   CarouselControl,
   CarouselIndicators,
-  CarouselCaption
+  CarouselCaption,
+  Row,
+  Col
 } from "reactstrap";
 
 //Components
-import { ContainerCurved } from "../../utilities/styledShared";
-import styled from "styled-components";
+import { InfoPanelText, ContainerCurved, PageHeading, ContainerStyled } from "../../utilities/styledShared";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
-import { getCarousel } from "../../redux/actions/carousel"
+import { getCarousel } from "../../redux/actions/carousel";
 import { connect } from "react-redux";
 
-const ImageStyled = styled.img`
-  float: right;
-  padding-top:2%;
-  `;
 
 export class HomeContentPanel extends Component {
   constructor(props) {
@@ -62,23 +59,23 @@ export class HomeContentPanel extends Component {
 
   render() {
     const { ...p } = this.props;
-    
+
     const carouselItems = p.carousel.map(item => ({
       id: item.id,
       image: item.image,
       heading: item.heading,
-      description: item.description,
+      description: item.description
     }));
-   
+
     const text = p.textCollection.map(textElement => ({
       key: textElement.id,
       data: textElement.pageData
     }));
-    
-    // const homeText = text.filter(x => x.key === 201).map(x => x.data);
+
+    const homeText = text.filter(x => x.key === 201).map(x => x.data);
 
     const { activeIndex } = this.state;
-    
+
     const slides = carouselItems.map(item => {
       return (
         <CarouselItem
@@ -86,7 +83,7 @@ export class HomeContentPanel extends Component {
           onExited={this.onExited}
           key={item.id}
         >
-          <img src={item.image} alt={item.description} />
+          <img src={item.image} alt={item.description} style={{width: "100%", maxHeight: "500px"}} />
           <CarouselCaption
             captionText={item.description}
             captionHeader={item.heading}
@@ -95,7 +92,7 @@ export class HomeContentPanel extends Component {
       );
     });
 
-console.log("Rendered!")
+    console.log("Rendered!");
 
     return (
       <React.Fragment>
@@ -103,32 +100,48 @@ console.log("Rendered!")
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
+
         <ContainerCurved>
-          {/* <InfoPanelText>{homeText}</InfoPanelText> */}
-          
-          <Carousel
-            activeIndex={activeIndex}
-            next={this.next}
-            previous={this.previous}
-          >
-            <CarouselIndicators
-              items={carouselItems}
+          <ContainerStyled>
+            <Row>
+              <Col style={{textAlign:"right"}}>
+                <PageHeading>Page Title</PageHeading>
+                <hr />
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+            <Carousel
               activeIndex={activeIndex}
-              onClickHandler={this.goToIndex}
-            />
-            {slides}
-            <CarouselControl
-              direction="prev"
-              directionText="Previous"
-              onClickHandler={this.previous}
-            />
-            <CarouselControl
-              direction="next"
-              directionText="Next"
-              onClickHandler={this.next}
-            />
-          </Carousel>
-          
+              next={this.next}
+              previous={this.previous}
+            >
+              <CarouselIndicators
+                items={carouselItems}
+                activeIndex={activeIndex}
+                onClickHandler={this.goToIndex}
+              />
+              {slides}
+              <CarouselControl
+                direction="prev"
+                directionText="Previous"
+                onClickHandler={this.previous}
+              />
+              <CarouselControl
+                direction="next"
+                directionText="Next"
+                onClickHandler={this.next}
+              />
+            </Carousel>
+            </Col>
+            </Row>
+            <hr/>
+            <Row>
+              <Col>
+              <InfoPanelText>{homeText}</InfoPanelText>
+              </Col>
+            </Row>
+          </ContainerStyled>
         </ContainerCurved>
       </React.Fragment>
     );
@@ -136,13 +149,13 @@ console.log("Rendered!")
 }
 
 const mapStateToProps = state => ({
-  textCollection: state.text.allText, 
+  textCollection: state.text.allText,
   carousel: state.carousel.carousel
 });
 
 const mapDispatchToProps = {
   getAllText,
-  getCarousel,
+  getCarousel
 };
 
 export default connect(

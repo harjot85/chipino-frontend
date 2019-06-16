@@ -1,19 +1,16 @@
 import styled from "styled-components";
+import { Col } from 'reactstrap';
 
-export const FooterStyled = styled.div`
-  margin-bottom: 0em;
-  left: 0;
-  bottom: 0;
-  text-align: center;
+export const FooterStyled = styled(Col)`
+  border-top: 5px solid #07c; 
+  bottom: 80px;
+  padding-top: 10px;
 `;
 
-
 export const FooterIconContainer = styled.div`
-  margin-top: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
   border: 3px solid black;
   border-radius: 50%;
+  position: absolute;
   padding: 8px;
   
   &:hover {

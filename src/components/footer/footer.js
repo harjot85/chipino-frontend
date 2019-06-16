@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "reactstrap";
+import { Row } from "reactstrap";
 
 //Components
 import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
@@ -31,22 +31,11 @@ export class Footer extends Component {
           integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
           crossOrigin="anonymous"
         />
-        <FooterStyled>
-          <Row
-            style={{
-              display: "flex",
-              borderTop: "5px solid #4599BB",
-              position: "fixed",
-              width: "15%",
-              bottom: 10,
-              marginLeft: '8px',
-              paddingTop: '8px'
-            }}
-          >
+
+        <Row style={{ position: 'fixed', bottom: 0, display: '-webkit-box'}} >
             {faviconCollection.map(socialMediaIcon => (
-              <Col lg={3} md={3} sm={4}  style={{paddingRight: "0px", paddingLeft: "0px"}}>
+              <FooterStyled>
                 <FooterIconContainer
-                  className="social-div fb"
                   hoverColor={socialMediaIcon.hoverColor}
                 >
                   <a href={socialMediaIcon.linkTo}>
@@ -57,10 +46,9 @@ export class Footer extends Component {
                     />
                   </a>
                 </FooterIconContainer>
-              </Col>
+              </FooterStyled>
             ))}
-          </Row>
-        </FooterStyled>
+     </Row>   
       </React.Fragment>
     );
   }
