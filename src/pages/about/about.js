@@ -1,10 +1,14 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 //Components
 import NavPanel from "../../components/navpanel/navpanel";
-import { InfoPanelText } from "../../utilities/styledShared";
-import { ContainerCurved } from "../../utilities/styledShared";
+import {
+  ContainerCurved,
+  PageHeading,
+  ContainerStyled,
+  InfoPanelText
+} from "../../utilities/styledShared";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
@@ -28,12 +32,28 @@ export class About extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ display: "flex" }}>
-          <NavPanel />
-          <ContainerCurved>
-            <InfoPanelText>{aboutText}</InfoPanelText>
-          </ContainerCurved>
-        </Container>
+        <Row>
+          <Col lg={3}>
+            <NavPanel />
+          </Col>
+          <Col lg={9}>
+            <ContainerCurved>
+              <ContainerStyled>
+                <Row>
+                  <Col style={{ textAlign: "right" }}>
+                    <PageHeading>About</PageHeading>
+                    <hr />
+                  </Col>
+                </Row>
+                <Row>
+                  <Col>
+                    <InfoPanelText>{aboutText}</InfoPanelText>
+                  </Col>
+                </Row>
+              </ContainerStyled>
+            </ContainerCurved>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }

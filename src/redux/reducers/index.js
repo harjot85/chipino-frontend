@@ -2,6 +2,7 @@ import {combineReducers} from 'redux';
 import { textReducer } from './text'
 import socialMediaReducer from './socialMedia';
 import mediaReducer from './media';
+import carouselReducer from './carousel'
 import { githubReducer } from './github';
 
 
@@ -10,4 +11,5 @@ export const Reducers = combineReducers({
     socialMedia: socialMediaReducer,
     media: mediaReducer,
     github: githubReducer,
+    carousel: carouselReducer,
 });

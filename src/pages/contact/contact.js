@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 //Components
 import NavPanel from "../../components/navpanel/navpanel";
@@ -31,39 +31,48 @@ export default class Contact extends Component {
           rel="stylesheet"
         />
 
-        <Container style={{ display: "flex" }}>
-          <NavPanel />
-
-          <ContainerCurved>
-            <div
-              style={{
-                overflow: "hidden",
-                marginRight: "1%",
-                float: "right",
-                width: "65%"
-              }}
-            >
-              {this.state.loading ? (
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ display: "inline-block" }}>
-                    <Spinner name="cube-grid" color="Turquoise" fadeIn="none" />
+        <Row>
+          <Col lg={3}>
+            <NavPanel />
+          </Col>
+          <Col lg={9}>
+            <ContainerCurved>
+              
+              
+              <div
+                style={{
+                  overflow: "hidden",
+                  marginRight: "1%",
+                  float: "right",
+                  width: "65%"
+                }}
+              >
+                {this.state.loading ? (
+                  <div style={{ textAlign: "center" }}>
+                    <div style={{ display: "inline-block" }}>
+                      <Spinner
+                        name="cube-grid"
+                        color="Turquoise"
+                        fadeIn="none"
+                      />
+                    </div>
                   </div>
-                </div>
-              ) : null}
-              <br />
-              <Iframe
-                url="https://forms.gle/DSjzvpTkPB83bgRZ6"
-                width="950px"
-                height="850px"
-                id="myId"
-                className="myClassname"
-                display="initial"
-                position="relative"
-                onLoad={this.hideSpinner}
-              />
-            </div>
-          </ContainerCurved>
-        </Container>
+                ) : null}
+                <br />
+                <Iframe
+                  url="https://forms.gle/DSjzvpTkPB83bgRZ6"
+                  width="950px"
+                  height="850px"
+                  id="myId"
+                  className="myClassname"
+                  display="initial"
+                  position="relative"
+                  onLoad={this.hideSpinner}
+                />
+              </div>
+            </ContainerCurved>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }
