@@ -1,10 +1,6 @@
 import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
 
-//Components
-import NavPanel from "../../components/navpanel/navpanel";
-import { ContainerCurved } from "../../utilities/styledShared";
-
 import Iframe from "react-iframe";
 import Spinner from "react-spinkit";
 
@@ -32,13 +28,7 @@ export default class Contact extends Component {
         />
 
         <Row>
-          <Col lg={3}>
-            <NavPanel />
-          </Col>
           <Col lg={9}>
-            <ContainerCurved>
-              
-              
               <div
                 style={{
                   overflow: "hidden",
@@ -70,7 +60,6 @@ export default class Contact extends Component {
                   onLoad={this.hideSpinner}
                 />
               </div>
-            </ContainerCurved>
           </Col>
         </Row>
       </React.Fragment>

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { Row } from "reactstrap";
 
 //Components
-import { FooterStyled, FooterIcon, FooterIconContainer } from "./styled";
+import {  FooterIcon, FooterStyled } from "./styled";
 
 //Redux
 import { connect } from "react-redux";
@@ -32,12 +31,8 @@ export class Footer extends Component {
           crossOrigin="anonymous"
         />
 
-        <Row style={{ position: 'fixed', bottom: 0, display: '-webkit-box'}} >
+        <FooterStyled>
             {faviconCollection.map(socialMediaIcon => (
-              <FooterStyled>
-                <FooterIconContainer
-                  hoverColor={socialMediaIcon.hoverColor}
-                >
                   <a href={socialMediaIcon.linkTo}>
                     <FooterIcon
                       key={socialMediaIcon.id}
@@ -45,10 +40,8 @@ export class Footer extends Component {
                       hoverColor={socialMediaIcon.hoverColor}
                     />
                   </a>
-                </FooterIconContainer>
-              </FooterStyled>
             ))}
-     </Row>   
+     </FooterStyled>
       </React.Fragment>
     );
   }
