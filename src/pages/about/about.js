@@ -3,6 +3,7 @@ import { Row, Col } from "reactstrap";
 
 //Components
 import { PageHeading, InfoPanelText } from "../../utilities/styledShared";
+import Chester from "../../components/chester/chester";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
@@ -27,7 +28,7 @@ export class About extends Component {
           rel="stylesheet"
         />
         <Row>
-          <Col>
+          <Col >
             <Row>
               <Col style={{ textAlign: "left" }}>
                 <PageHeading>About</PageHeading>
@@ -35,8 +36,11 @@ export class About extends Component {
             </Row>
             <hr />
             <Row>
-              <Col>
+              <Col lg ={6} md ={6}>
                 <InfoPanelText>{aboutText}</InfoPanelText>
+              </Col>
+              <Col lg ={6} md ={6}>
+                <Chester/>
               </Col>
             </Row>
           </Col>

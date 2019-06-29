@@ -9,6 +9,11 @@ import { Col, Row } from "reactstrap";
 const ChesterImage = styled.img`
   width: 600px;
   height: 650px;
+
+  @media (max-width: 1400px) {
+    width: 500px;
+    height: 540px;  
+  }
 `;
 
 export class Chester extends Component {

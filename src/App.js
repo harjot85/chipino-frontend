@@ -7,7 +7,6 @@ import About from "./pages/about/about";
 import store from "./redux/store";
 import { Provider } from "react-redux";
 import Navigation from "./components/navigation/navigation";
-import "./style.css";
 
 class App extends Component {
   render() {

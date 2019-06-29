@@ -36,16 +36,16 @@ export class ProjectCollection extends Component {
 
     return (
       <React.Fragment>
-        <Row style={{padding: "0 "}}>
+        <Row>
           {rs.slice(0, 4).map((item, index) => {
             let repoTech =
               item.language == null ? "Not Specified" : item.language;
             return (
               <Col
                 sm="12"
-                lg={{ size: "auto", offset: 2 }}
-                md={{ size: "auto", offset: 2 }}
-                style={{ margin: "auto 0px" }}
+                lg="3"
+                md="4"
+                style={{  }}
               >
                 <ProjectCard key={index}>
                   <CardLink href={item.html_url} style={{ color: "#202A2E" }}>

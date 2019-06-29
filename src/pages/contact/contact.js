@@ -28,38 +28,28 @@ export default class Contact extends Component {
         />
 
         <Row>
-          <Col lg={9}>
-              <div
-                style={{
-                  overflow: "hidden",
-                  marginRight: "1%",
-                  float: "right",
-                  width: "65%"
-                }}
-              >
-                {this.state.loading ? (
-                  <div style={{ textAlign: "center" }}>
-                    <div style={{ display: "inline-block" }}>
-                      <Spinner
-                        name="cube-grid"
-                        color="Turquoise"
-                        fadeIn="none"
-                      />
-                    </div>
+          <Col lg={12}>
+            <div style={{ overflow: "hidden" }}
+            >
+              {this.state.loading ? (
+                // todo: Do we still need this spinner ? 
+                <div style={{ textAlign: "center" }}>
+                  <div style={{ display: "inline-block" }}>
+                    <Spinner name="cube-grid" color="Turquoise" fadeIn="none" />
                   </div>
-                ) : null}
-                <br />
-                <Iframe
-                  url="https://forms.gle/DSjzvpTkPB83bgRZ6"
-                  width="950px"
-                  height="850px"
-                  id="myId"
-                  className="myClassname"
-                  display="initial"
-                  position="relative"
-                  onLoad={this.hideSpinner}
-                />
-              </div>
+                </div>
+              ) : null}
+              <Iframe
+                url="https://forms.gle/DSjzvpTkPB83bgRZ6"
+                height="1000px"
+                width="100%"
+                id="myId"
+                className="myClassname"
+                display="initial"
+                position="relative"
+                onLoad={this.hideSpinner}
+              />
+            </div>
           </Col>
         </Row>
       </React.Fragment>
