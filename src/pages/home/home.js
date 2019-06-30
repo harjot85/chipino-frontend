@@ -14,10 +14,14 @@ import { PageHeading } from "../../utilities/styledShared";
 
 const Section = styled(Row)`
   padding: ${props => props.padding || "2%"};
-  &&& {
-    margin-right: 0px !important;
-  }
 `;
+
+const styles = {
+  row: {
+    marginLeft: '0px', 
+    marginRight: '0px'
+  }
+}
 
 export default class Home extends Component {
   render() {
@@ -28,7 +32,7 @@ export default class Home extends Component {
           rel="stylesheet"
         />
 
-        <Section>
+        <Section style={styles.row}>
           <Col lg={6} md={6}>
             <HomeContentPanel />
           </Col>
@@ -37,13 +41,13 @@ export default class Home extends Component {
           </Col>
         </Section>
 
-        <Section style={{}}>
+        <Section style={styles.row}>
           <Col>
             <About />
           </Col>
         </Section>
 
-        <Section padding="4% 2% 20% 2%">
+        <Section padding="4% 2% 20% 2%" style={styles.row}>
           <Col lg="12" md="12" sm="12">
             <PageHeading>Projects</PageHeading>
             <hr />
@@ -56,7 +60,7 @@ export default class Home extends Component {
           </Col>
         </Section>
 
-        <Section>
+        <Section style={styles.row}>
           <Col lg="12" md="12" sm="12">
             <PageHeading>Say Hello</PageHeading>
             <hr />
@@ -66,10 +70,8 @@ export default class Home extends Component {
           </Col>
         </Section>
 
-        <Row>
-          <Col>
+        <Row style={styles.row}>
             <Footer />
-          </Col>
         </Row>
       </React.Fragment>
     );

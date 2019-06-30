@@ -23,7 +23,7 @@ export class Footer extends Component {
     }));
 
     return (
-      <React.Fragment>
+      <>
         <link
           rel="stylesheet"
           href="https://use.fontawesome.com/releases/v5.4.2/css/all.css"
@@ -42,7 +42,7 @@ export class Footer extends Component {
                   </a>
             ))}
      </FooterStyled>
-      </React.Fragment>
+      </>
     );
   }
 }

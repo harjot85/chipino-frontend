@@ -2,14 +2,12 @@ import styled from "styled-components";
 import { Col } from "reactstrap";
 
 export const FooterStyled = styled(Col)`
-  width: 100%;
   height: 100%;
   background-color: black;
   left: 0;
   bottom: 0;
   text-align: center;
   margin-top: 2%;
-  
 `;
 
 export const FooterIcon = styled.div`
