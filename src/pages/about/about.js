@@ -2,13 +2,8 @@ import React, { Component } from "react";
 import { Row, Col } from "reactstrap";
 
 //Components
-import NavPanel from "../../components/navpanel/navpanel";
-import {
-  ContainerCurved,
-  PageHeading,
-  ContainerStyled,
-  InfoPanelText
-} from "../../utilities/styledShared";
+import { PageHeading, InfoPanelText } from "../../utilities/styledShared";
+import Chester from "../../components/chester/chester";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
@@ -33,25 +28,21 @@ export class About extends Component {
           rel="stylesheet"
         />
         <Row>
-          <Col lg={3}>
-            <NavPanel />
-          </Col>
-          <Col lg={9}>
-            <ContainerCurved>
-              <ContainerStyled>
-                <Row>
-                  <Col style={{ textAlign: "right" }}>
-                    <PageHeading>About</PageHeading>
-                    <hr />
-                  </Col>
-                </Row>
-                <Row>
-                  <Col>
-                    <InfoPanelText>{aboutText}</InfoPanelText>
-                  </Col>
-                </Row>
-              </ContainerStyled>
-            </ContainerCurved>
+          <Col >
+            <Row>
+              <Col style={{ textAlign: "left" }}>
+                <PageHeading>About</PageHeading>
+              </Col>
+            </Row>
+            <hr />
+            <Row>
+              <Col lg ={6} md ={6}>
+                <InfoPanelText>{aboutText}</InfoPanelText>
+              </Col>
+              <Col lg ={6} md ={6}>
+                <Chester/>
+              </Col>
+            </Row>
           </Col>
         </Row>
       </React.Fragment>
