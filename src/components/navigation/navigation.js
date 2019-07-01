@@ -11,9 +11,7 @@ import {
 import styled from "styled-components";
 
 const NavbarStyled = styled(Navbar)`
-    height: 80px;
-    
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); 
+  height: 80px;
 `;
 
 const NavItemStyled = styled(NavItem)`
@@ -28,17 +26,38 @@ export default class Navigation extends Component {
 
     this.toggle = this.toggle.bind(this);
     this.state = {
-      isOpen: false
+      isOpen: false,
+      shadow: "0 0 10px rgba(0, 0, 0, 0)"
     };
   }
+
+  shadowOnScroll = e => {
+    if (window.scrollY > 400) {
+      this.setState({ shadow: "0 0 10px rgba(0, 0, 0, 0.4)" });
+    } else {
+      this.setState({ shadow: "0 0 10px rgba(0, 0, 0, 0)" });
+    }
+  };
+
+  componentDidMount() {
+    window.addEventListener("scroll", this.shadowOnScroll);
+  }
+
   toggle() {
     this.setState({
       isOpen: !this.state.isOpen
     });
   }
+
   render() {
     return (
-      <NavbarStyled color="white" light expand="md" sticky={"top"}>
+      <NavbarStyled
+        color="white"
+        light
+        expand="md"
+        sticky={"top"}
+        style={{ boxShadow: this.state.shadow }}
+      >
         <NavbarBrand href="/">Chipino Meshworks</NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
