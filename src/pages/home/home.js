@@ -8,20 +8,8 @@ import Contact from "../contact/contact";
 import Footer from "../../components/footer/footer";
 import HomeContentPanel from "../../components/homeContentPanel/homeContentPanel";
 
-import styled from "styled-components";
 import ProjectCollection from "../../components/projectCollection/projectCollection";
-import { PageHeading } from "../../utilities/styledShared";
-
-const Section = styled(Row)`
-  padding: ${props => props.padding || "2%"};
-`;
-
-const styles = {
-  row: {
-    marginLeft: '0px', 
-    marginRight: '0px'
-  }
-}
+import { PageHeading, Section, Styles } from "../../utilities/styledShared";
 
 export default class Home extends Component {
   render() {
@@ -32,7 +20,7 @@ export default class Home extends Component {
           rel="stylesheet"
         />
 
-        <Section style={styles.row}>
+        <Section id="home" padding="2% 2% 20% 2%" style={Styles.row}>
           <Col lg={6} md={6}>
             <HomeContentPanel />
           </Col>
@@ -41,13 +29,13 @@ export default class Home extends Component {
           </Col>
         </Section>
 
-        <Section style={styles.row}>
+        <Section id="about" style={Styles.row}>
           <Col>
             <About />
           </Col>
         </Section>
 
-        <Section padding="4% 2% 20% 2%" style={styles.row}>
+        <Section id="projects" padding="5% 2% 20% 2%" style={Styles.row}>
           <Col lg="12" md="12" sm="12">
             <PageHeading>Projects</PageHeading>
             <hr />
@@ -60,7 +48,7 @@ export default class Home extends Component {
           </Col>
         </Section>
 
-        <Section style={styles.row}>
+        <Section id="contact" style={Styles.row}>
           <Col lg="12" md="12" sm="12">
             <PageHeading>Say Hello</PageHeading>
             <hr />
@@ -70,8 +58,8 @@ export default class Home extends Component {
           </Col>
         </Section>
 
-        <Row style={styles.row}>
-            <Footer />
+        <Row style={Styles.row}>
+          <Footer />
         </Row>
       </React.Fragment>
     );
