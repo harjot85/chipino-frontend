@@ -9,7 +9,7 @@ import {
   DropdownItem
 } from "reactstrap";
 
-import { PageHeading } from "../../utilities/styledShared";
+import { PageHeading, Styles } from "../../utilities/styledShared";
 
 //Redux
 import { getAllPublicRepos } from "../../redux/actions/github";
@@ -20,7 +20,6 @@ export class Projects extends Component {
   constructor(props) {
     super(props);
 
-    //this.toggle = this.toggle.bind(this);
     this.state = {
       dropdownOpen: false
     };
@@ -40,38 +39,26 @@ export class Projects extends Component {
   render() {
     return (
       <React.Fragment>
-        <Row>
-          <Col
-            lg={{ size: "auto", offset: 1 }}
-            md={{ size: "auto", offset: 1 }}
-          >
+        <Row style={Styles.row}>
+          <Col>
             <PageHeading>Projects</PageHeading>
           </Col>
         </Row>
         <hr />
-        <Row>
-          <Col
-            lg={{ size: "auto", offset: 1 }}
-            md={{ size: "auto", offset: 1 }}
-          >
-            <Button outline color="primary" size="md">
-              Language
+        <Row style={Styles.row} >
+          <Col>
+            <Button outline color="primary" size="md" style={{marginRight:"1%"}}>
+              Technology
             </Button>
-          </Col>
-
-          <Col
-            lg={{ size: "auto", offset: 0 }}
-            md={{ size: "auto", offset: 0 }}
-          >
-            <Button outline color="primary" size="md">
-              Type
+          
+            <Button outline color="primary" size="md" style={{marginRight:"1%"}}>
+              Most Recent
             </Button>
-          </Col>
-
-          <Col style={{ textAlign: "left" }}>
+          
             <ButtonDropdown
               isOpen={this.state.dropdownOpen}
               toggle={this.toggle}
+              style={{marginRight:"1%"}}
             >
               <DropdownToggle caret color="primary">
                 Solutions
@@ -87,7 +74,7 @@ export class Projects extends Component {
           </Col>
         </Row>
         <hr />
-        <Row>
+        <Row style={Styles.row}>
           <Col>
             <ProjectCollection />
           </Col>

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {Row} from "reactstrap";
 
 export const InfoPanelText = styled.div`
   position: relative;
@@ -14,3 +15,15 @@ export const PageHeading = styled.h1`
   font: ${props => props.font || "Poiret One, cursive"};
   font-size: ${props => props.size || "36px"};
 `;
+
+
+export const Section = styled(Row)`
+  padding: ${props => props.padding || "5% 2% 2% 2%"};
+`;
+
+export const Styles = {
+  row: {
+    marginLeft: '0px', 
+    marginRight: '0px'
+  }
+}

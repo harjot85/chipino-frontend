@@ -1,6 +1,14 @@
 import React, { Component } from "react";
-import { Row, Col, Badge } from "reactstrap";
-import { Card, CardHeader, CardLink, CardText, CardBody } from "reactstrap";
+import {
+  Row,
+  Col,
+  Badge,
+  Card,
+  CardHeader,
+  CardLink,
+  CardText,
+  CardBody
+} from "reactstrap";
 
 import styled from "styled-components";
 
@@ -41,12 +49,7 @@ export class ProjectCollection extends Component {
             let repoTech =
               item.language == null ? "Not Specified" : item.language;
             return (
-              <Col
-                sm="12"
-                lg="3"
-                md="4"
-                style={{  }}
-              >
+              <Col sm="12" lg="3" md="4" style={{}}>
                 <ProjectCard key={index}>
                   <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
                     <CardHeader>
