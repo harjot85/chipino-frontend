@@ -1,10 +1,9 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
+import { Row, Col } from "reactstrap";
 
 //Components
-import NavPanel from "../../components/navpanel/navpanel";
-import { InfoPanelText } from "../../utilities/styledShared";
-import { ContainerCurved } from "../../utilities/styledShared";
+import { PageHeading, InfoPanelText } from "../../utilities/styledShared";
+import Chester from "../../components/chester/chester";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
@@ -28,12 +27,24 @@ export class About extends Component {
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Container style={{ height: "100%", display: "flex" }}>
-          <NavPanel />
-          <ContainerCurved>
-            <InfoPanelText>{aboutText}</InfoPanelText>
-          </ContainerCurved>
-        </Container>
+        <Row>
+          <Col >
+            <Row>
+              <Col style={{ textAlign: "left" }}>
+                <PageHeading>About</PageHeading>
+              </Col>
+            </Row>
+            <hr />
+            <Row>
+              <Col lg ={6} md ={6}>
+                <InfoPanelText>{aboutText}</InfoPanelText>
+              </Col>
+              <Col lg ={6} md ={6}>
+                <Chester/>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }

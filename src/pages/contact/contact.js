@@ -1,9 +1,5 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
-
-//Components
-import NavPanel from "../../components/navpanel/navpanel";
-import { ContainerCurved } from "../../utilities/styledShared";
+import { Row, Col } from "reactstrap";
 
 import Iframe from "react-iframe";
 import Spinner from "react-spinkit";
@@ -31,30 +27,22 @@ export default class Contact extends Component {
           rel="stylesheet"
         />
 
-        <Container style={{ height: "100%", display: "flex" }}>
-          <NavPanel />
-
-          <ContainerCurved>
-            <div
-              style={{
-                overflow: "hidden",
-                marginRight: "1%",
-                float: "right",
-                width: "65%"
-              }}
+        <Row>
+          <Col lg={12}>
+            <div style={{ overflow: "hidden" }}
             >
               {this.state.loading ? (
+                // todo: Do we still need this spinner ? 
                 <div style={{ textAlign: "center" }}>
                   <div style={{ display: "inline-block" }}>
                     <Spinner name="cube-grid" color="Turquoise" fadeIn="none" />
                   </div>
                 </div>
               ) : null}
-              <br />
               <Iframe
                 url="https://forms.gle/DSjzvpTkPB83bgRZ6"
-                width="950px"
-                height="850px"
+                height="1000px"
+                width="100%"
                 id="myId"
                 className="myClassname"
                 display="initial"
@@ -62,8 +50,8 @@ export default class Contact extends Component {
                 onLoad={this.hideSpinner}
               />
             </div>
-          </ContainerCurved>
-        </Container>
+          </Col>
+        </Row>
       </React.Fragment>
     );
   }

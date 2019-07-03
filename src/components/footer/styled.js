@@ -1,31 +1,21 @@
 import styled from "styled-components";
+import { Col } from "reactstrap";
 
-export const FooterStyled = styled.div`
-  margin-bottom: 0em;
+export const FooterStyled = styled(Col)`
+  height: 100%;
+  background-color: black;
   left: 0;
   bottom: 0;
   text-align: center;
-`;
-
-
-export const FooterIconContainer = styled.div`
-  margin-top: 3%;
-  margin-left: 5%;
-  margin-right: 5%;
-  border: 3px solid black;
-  border-radius: 50%;
-  padding: 8px;
-  
-  &:hover {
-    border-color: ${props => props.hoverColor|| "blue" };
-   }
+  margin-top: 2%;
 `;
 
 export const FooterIcon = styled.div`
-  font-size: 32px;
-  color: black;
+  font-size: 48px;
+  color: white;
+  padding: 4% 1% 4% 1%;
   
-  ${FooterIconContainer}:hover & {
-   color: ${props => props.hoverColor|| "blue" };
+  :hover {
+    color: ${props => props.hoverColor || "blue"};
   }
 `;
