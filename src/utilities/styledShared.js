@@ -18,7 +18,7 @@ export const PageHeading = styled.h1`
 
 
 export const Section = styled(Row)`
-  padding: ${props => props.padding || "5% 2% 2% 2%"};
+  padding: ${props => props.padding || "7% 2% 2% 2%"};
 `;
 
 export const Styles = {
