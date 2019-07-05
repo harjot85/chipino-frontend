@@ -14,7 +14,7 @@ import {
   TechBadgeHolder
 } from "./styles";
 
-import { getCardsForScreen } from"../../utilities/functions";
+import { getElementsPerScreen } from"../../utilities/functions";
 
 export class ProjectSlider extends Component {
   constructor(props) {
@@ -42,9 +42,9 @@ export class ProjectSlider extends Component {
   }
 
   updatePredicate = () => {
-    var cardsFor;
-    cardsFor = getCardsForScreen(cardsFor);
-    this.setState({ cards: cardsFor });
+    var showCards;
+    showCards = getElementsPerScreen();
+    this.setState({ cards: showCards });
   };
 
   changeActiveItem = activeItemIndex => this.setState({ activeItemIndex });

@@ -7,17 +7,18 @@ const size = {
     xl: 5
   };
 
-export function getCardsForScreen(cardsFor) {
+export function getElementsPerScreen() {
+    var showCards
     window.innerWidth <= 765
-      ? (cardsFor = size.xs)
+      ? (showCards = size.xs)
       : window.innerWidth <= 1099
-        ? (cardsFor = size.sm)
+        ? (showCards = size.sm)
         : window.innerWidth <= 1399
-          ? (cardsFor = size.md)
+          ? (showCards = size.md)
           : window.innerWidth <= 1699
-            ? (cardsFor = size.lg)
-            : (cardsFor = size.xl);
-    return cardsFor;
+            ? (showCards = size.lg)
+            : (showCards = size.xl);
+    return showCards;
   }
   
   
