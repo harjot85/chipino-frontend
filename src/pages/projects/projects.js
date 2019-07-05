@@ -16,8 +16,7 @@ import {
 } from "reactstrap";
 
 import styled from "styled-components";
-
-import { PageHeading, Styles } from "../../utilities/styledShared";
+import { PageHeading, Section, Styles } from "../../utilities/styledShared";
 
 //Redux
 import { getAllPublicRepos } from "../../redux/actions/github";
@@ -40,7 +39,6 @@ const ProjectCard = styled(Card)`
 `;
 
 const TechBadge = styled(Badge)`
-  padding: 6px;
   margin-left: 6px;
   box-shadow: 0 0 3px #07c;
 `;
@@ -71,13 +69,14 @@ export class Projects extends Component {
 
     return (
       <React.Fragment>
-        <Row style={Styles.row}>
+        <Section padding="0 2% 0 2%" style={Styles.row}>
           <Col>
             <PageHeading>Projects</PageHeading>
+            <hr />
           </Col>
-        </Row>
-        <hr />
-        <Row style={Styles.row}>
+        </Section>
+
+        <Section padding="0 2% 0 2%" style={Styles.row}>
           <Col>
             <Button
               outline
@@ -113,50 +112,46 @@ export class Projects extends Component {
                 <DropdownItem>Show All</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
+            <hr />
           </Col>
-        </Row>
-        <hr />
-        <Row style={Styles.row}>
-            {rs.map((item, index) => {
-              let repoTech =
-                item.language == null ? "Not Specified" : item.language;
-              return (
-                  <Col sm="6" lg="3" md="4" style={{textAlign: "center"}}>
-                    <ProjectCard key={index}>
-                      <CardLink
-                        href={item.html_url}
-                        style={{ color: "#202A2E" }}
-                      >
-                        <CardHeader>
-                          <strong>{item.name}</strong>
-                        </CardHeader>
-                        <CardBody>
-                          <CardText>
-                            <b>Id:</b> {item.id}
-                          </CardText>
-                          <CardText>
-                            <b>Desc:</b>
-                            {item.description}
-                          </CardText>
-                        </CardBody>
-                        <div
-                          style={{
-                            bottom: "3px",
-                            height: "30px",
-                            position: "absolute"
-                          }}
-                        >
-                          {repoTech !== "Not Specified" && (
-                            <TechBadge color="info">{repoTech}</TechBadge>
-                          )}
-                        </div>
-                      </CardLink>
-                    </ProjectCard>
-                  </Col>
-             
-              );
-            })}
-          
+        </Section>
+
+        <Row style={{ margin: "0 5%" }}>
+          {rs.map((item, index) => {
+            let repoTech =
+              item.language == null ? "Not Specified" : item.language;
+            return (
+              <Col xl={3} lg={4} md={4} sm={6} xs={12}>
+                <ProjectCard key={index}>
+                  <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
+                    <CardHeader>
+                      <strong>{item.name}</strong>
+                    </CardHeader>
+                    <CardBody>
+                      <CardText>
+                        <b>Id:</b> {item.id}
+                      </CardText>
+                      <CardText>
+                        <b>Desc:</b>
+                        {item.description}
+                      </CardText>
+                    </CardBody>
+                    <div
+                      style={{
+                        bottom: "3px",
+                        height: "30px",
+                        position: "absolute"
+                      }}
+                    >
+                      {repoTech !== "Not Specified" && (
+                        <TechBadge color="info">{repoTech}</TechBadge>
+                      )}
+                    </div>
+                  </CardLink>
+                </ProjectCard>
+              </Col>
+            );
+          })}
         </Row>
       </React.Fragment>
     );

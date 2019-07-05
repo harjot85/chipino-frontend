@@ -16,7 +16,6 @@ import {
 
 import { getCardsForScreen } from"../../utilities/functions";
 
-
 export class ProjectSlider extends Component {
   constructor(props) {
     super(props);
@@ -52,7 +51,6 @@ export class ProjectSlider extends Component {
 
   render() {
     const { activeItemIndex } = this.state;
-
     const { ...p } = this.props;
     const rs = p.repoCollection;
 

@@ -8,11 +8,13 @@ import store from "./redux/store";
 import { Provider } from "react-redux";
 import Navigation from "./components/navigation/navigation";
 
+//import Navigation from "./components/navigation/navigation";
+
 class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Navigation />
+        <Navigation/>
         <Router>
           <div className="app">
             <Route exact path="/" component={Home} />

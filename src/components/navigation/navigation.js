@@ -66,13 +66,13 @@ export default class Navigation extends Component {
               <NavLink href="/">Home</NavLink>
             </NavItemStyled>
             <NavItemStyled>
-              <NavLink href="#about">About</NavLink>
+              <NavLink href="/#about">About</NavLink>
             </NavItemStyled>
             <NavItemStyled>
-              <NavLink href="#projects">Projects</NavLink>
+              <NavLink href="/#projects">Projects</NavLink>
             </NavItemStyled>
             <NavItemStyled>
-              <NavLink href="#contact">Contact</NavLink>
+              <NavLink href="/#contact">Contact</NavLink>
             </NavItemStyled>
           </Nav>
         </Collapse>

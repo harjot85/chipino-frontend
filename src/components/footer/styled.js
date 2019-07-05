@@ -7,13 +7,13 @@ export const FooterStyled = styled(Col)`
   left: 0;
   bottom: 0;
   text-align: center;
-  margin-top: 2%;
+  margin-top: 4%;
 `;
 
 export const FooterIcon = styled.div`
   font-size: 48px;
   color: white;
-  padding: 4% 1% 4% 1%;
+  padding: 6% 1% 6% 1%;
   
   :hover {
     color: ${props => props.hoverColor || "blue"};
