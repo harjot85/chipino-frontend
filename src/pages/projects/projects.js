@@ -7,10 +7,16 @@ import {
   CardHeader,
   CardLink,
   CardText,
-  CardBody
+  CardBody,
+  Button,
+  ButtonDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem
 } from "reactstrap";
 
 import styled from "styled-components";
+import { PageHeading, Section, Styles } from "../../utilities/styledShared";
 
 //Redux
 import { getAllPublicRepos } from "../../redux/actions/github";
@@ -21,18 +27,37 @@ const ProjectCard = styled(Card)`
   height: 300px;
   width: 240px;
   background-color: white;
-  margin: 10px;
+  margin: auto;
+  margin-bottom: 8%;
   padding-bottom: 25px;
   position: relative;
+
+  @media (max-width: 1000px) {
+    height: 260px;
+    width: 220px;
+  }
 `;
 
 const TechBadge = styled(Badge)`
-  padding: 6px;
   margin-left: 6px;
   box-shadow: 0 0 3px #07c;
 `;
 
-export class ProjectCollection extends Component {
+export class Projects extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      dropdownOpen: false
+    };
+  }
+
+  toggle = () => {
+    this.setState({
+      dropdownOpen: !this.state.dropdownOpen
+    });
+  };
+
   componentDidMount() {
     const { ...p } = this.props;
     p.getAllPublicRepos();
@@ -44,12 +69,59 @@ export class ProjectCollection extends Component {
 
     return (
       <React.Fragment>
-        <Row>
-          {rs.slice(0, 4).map((item, index) => {
+        <Section padding="0 2% 0 2%" style={Styles.row}>
+          <Col>
+            <PageHeading>Projects</PageHeading>
+            <hr />
+          </Col>
+        </Section>
+
+        <Section padding="0 2% 0 2%" style={Styles.row}>
+          <Col>
+            <Button
+              outline
+              color="primary"
+              size="md"
+              style={{ marginRight: "1%" }}
+            >
+              Technology
+            </Button>
+
+            <Button
+              outline
+              color="primary"
+              size="md"
+              style={{ marginRight: "1%" }}
+            >
+              Most Recent
+            </Button>
+
+            <ButtonDropdown
+              isOpen={this.state.dropdownOpen}
+              toggle={this.toggle}
+              style={{ marginRight: "1%" }}
+            >
+              <DropdownToggle caret color="primary">
+                Solutions
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>Medicine</DropdownItem>
+                <DropdownItem>Real Estate</DropdownItem>
+                <DropdownItem>Automobiles</DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>Show All</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+            <hr />
+          </Col>
+        </Section>
+
+        <Row style={{ margin: "0 5%" }}>
+          {rs.map((item, index) => {
             let repoTech =
               item.language == null ? "Not Specified" : item.language;
             return (
-              <Col sm="12" lg="3" md="4" style={{}}>
+              <Col xl={3} lg={4} md={4} sm={6} xs={12}>
                 <ProjectCard key={index}>
                   <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
                     <CardHeader>
@@ -97,4 +169,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProjectCollection);
+)(Projects);
