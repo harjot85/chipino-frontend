@@ -8,7 +8,7 @@ import Contact from "../contact/contact";
 import Footer from "../../components/footer/footer";
 import HomeContentPanel from "../../components/homeContentPanel/homeContentPanel";
 
-import ProjectCollection from "../../components/projectCollection/projectCollection";
+import ProjectSlider from "../../components/projectSlider/projectSlider";
 import { PageHeading, Section, Styles } from "../../utilities/styledShared";
 
 export default class Home extends Component {
@@ -46,7 +46,7 @@ export default class Home extends Component {
           
           <Col>
           <hr/>
-            <ProjectCollection />
+            <ProjectSlider />
           </Col>
         
         </Section>

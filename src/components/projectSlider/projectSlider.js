@@ -1,50 +1,27 @@
 import React, { Component } from "react";
-import {
-  Row,
-  Col,
-  Badge,
-  Card,
-  CardHeader,
-  CardLink,
-  CardText,
-  CardBody,
-  Button
-} from "reactstrap";
-
-import styled from "styled-components";
-import ItemsCarousel from "react-items-carousel";
+import { Row, Col, CardHeader, CardLink, CardText, CardBody } from "reactstrap";
 
 //Redux
 import { getAllPublicRepos } from "../../redux/actions/github";
 import { connect } from "react-redux";
 
-const ProjectCard = styled(Card)`
-  display: inline-block;
-  height: 300px;
-  width: 240px;
-  background-color: white;
-  margin: 10px;
-  padding-bottom: 25px;
-  position: relative;
-`;
+//Custom Components
+import {
+  ProjectCard,
+  Carousel,
+  SliderButton,
+  TechBadge,
+  TechBadgeHolder
+} from "./styles";
 
-const TechBadge = styled(Badge)`
-  padding: 6px;
-  margin-left: 6px;
-  box-shadow: 0 0 3px #07c;
-`;
+import { getCardsForScreen } from"../../utilities/functions";
 
-const SliderButton = styled(Button)`
-  &&& {
-    border-radius: 50%;
-  }
-`;
 
-export class ProjectCollection extends Component {
+export class ProjectSlider extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isDesktop: false
+      cards: 3
     };
   }
 
@@ -66,13 +43,14 @@ export class ProjectCollection extends Component {
   }
 
   updatePredicate = () => {
-    this.setState({ isDesktop: window.innerWidth > 1450 });
+    var cardsFor;
+    cardsFor = getCardsForScreen(cardsFor);
+    this.setState({ cards: cardsFor });
   };
 
   changeActiveItem = activeItemIndex => this.setState({ activeItemIndex });
 
   render() {
-    const isDesktop = this.state.isDesktop;
     const { activeItemIndex } = this.state;
 
     const { ...p } = this.props;
@@ -84,9 +62,8 @@ export class ProjectCollection extends Component {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
         />
-        <ItemsCarousel
-          style={{ paddingLeft: "5%", paddingRight: "5%" }}
-          numberOfCards={isDesktop ? 5 : 3}
+        <Carousel
+          numberOfCards={this.state.cards}
           gutter={12}
           showSlither={false}
           firstAndLastGutter={false}
@@ -112,7 +89,7 @@ export class ProjectCollection extends Component {
               item.language == null ? "Not Specified" : item.language;
             return (
               <Row>
-                <Col sm="12" lg="2" md="4" style={{}}>
+                <Col sm="12" lg="2" md="4" style={{ textAlign: "center" }}>
                   <ProjectCard key={index}>
                     <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
                       <CardHeader>
@@ -127,24 +104,20 @@ export class ProjectCollection extends Component {
                           {item.description}
                         </CardText>
                       </CardBody>
-                      <div
-                        style={{
-                          bottom: "3px",
-                          height: "30px",
-                          position: "absolute"
-                        }}
-                      >
+                      <TechBadgeHolder>
                         {repoTech !== "Not Specified" && (
-                          <TechBadge color="info">{repoTech}</TechBadge>
+                          <h5>
+                            <TechBadge color="info">{repoTech}</TechBadge>
+                          </h5>
                         )}
-                      </div>
+                      </TechBadgeHolder>
                     </CardLink>
                   </ProjectCard>
                 </Col>
               </Row>
             );
           })}
-        </ItemsCarousel>
+        </Carousel>
       </>
     );
   }
@@ -161,4 +134,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ProjectCollection);
+)(ProjectSlider);
