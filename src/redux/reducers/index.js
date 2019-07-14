@@ -4,6 +4,7 @@ import socialMediaReducer from './socialMedia';
 import mediaReducer from './media';
 import carouselReducer from './carousel'
 import { githubReducer } from './github';
+import navbarReducer from './navbar';
 
 
 export const Reducers = combineReducers({
@@ -12,4 +13,5 @@ export const Reducers = combineReducers({
     media: mediaReducer,
     github: githubReducer,
     carousel: carouselReducer,
+    navbar: navbarReducer
 });

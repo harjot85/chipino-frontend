@@ -10,6 +10,11 @@ import {
 } from "reactstrap";
 import styled from "styled-components";
 
+//Redux
+import { connect } from "react-redux";
+import { getNavbarItems } from "../../redux/actions/navbar";
+
+
 const NavbarStyled = styled(Navbar)`
   height: 80px;
 `;
@@ -20,7 +25,7 @@ const NavItemStyled = styled(NavItem)`
   padding-left: 5%;
 `;
 
-export default class Navigation extends Component {
+export class Navigation extends Component {
   constructor(props) {
     super(props);
 
@@ -41,6 +46,7 @@ export default class Navigation extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.shadowOnScroll);
+    this.props.getNavbarItems();
   }
 
   toggle() {
@@ -50,6 +56,14 @@ export default class Navigation extends Component {
   }
 
   render() {
+    const { ...p } = this.props;
+
+    const navbar = p.navbar.map(item => ({
+      id: item.id,
+      menuItem: item.menuItem,
+      routeTo: item.routeTo
+    }));
+
     return (
       <NavbarStyled
         color="white"
@@ -62,21 +76,25 @@ export default class Navigation extends Component {
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
+            {navbar.map(menuItem => (
             <NavItemStyled>
-              <NavLink href="/">Home</NavLink>
+              <NavLink href={menuItem.routeTo}>{menuItem.menuItem}</NavLink>
             </NavItemStyled>
-            <NavItemStyled>
-              <NavLink href="/#about">About</NavLink>
-            </NavItemStyled>
-            <NavItemStyled>
-              <NavLink href="/#projects">Projects</NavLink>
-            </NavItemStyled>
-            <NavItemStyled>
-              <NavLink href="/#contact">Contact</NavLink>
-            </NavItemStyled>
+            ))}
           </Nav>
         </Collapse>
       </NavbarStyled>
     );
   }
 }
+const mapStateToProps = state => ({
+  navbar: state.navbar.navbar
+});
+
+const mapDispatchToProps = {
+  getNavbarItems
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Navigation);
