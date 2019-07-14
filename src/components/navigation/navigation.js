@@ -1,29 +1,13 @@
 import React, { Component } from "react";
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink
-} from "reactstrap";
-import styled from "styled-components";
+import { Collapse, NavbarToggler, NavbarBrand, Nav, NavLink } from "reactstrap";
+
+//Components
+import * as constant from "../../utilities/constants";
+import { NavbarStyled, NavItemStyled } from "./styled";
 
 //Redux
 import { connect } from "react-redux";
 import { getNavbarItems } from "../../redux/actions/navbar";
-
-
-const NavbarStyled = styled(Navbar)`
-  height: 80px;
-`;
-
-const NavItemStyled = styled(NavItem)`
-  font-size: 24px;
-  color: black;
-  padding-left: 5%;
-`;
 
 export class Navigation extends Component {
   constructor(props) {
@@ -32,16 +16,14 @@ export class Navigation extends Component {
     this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
-      shadow: "0 0 10px rgba(0, 0, 0, 0)"
+      shadow: constant.navbar.noShadow
     };
   }
 
   shadowOnScroll = e => {
-    if (window.scrollY > 400) {
-      this.setState({ shadow: "0 0 10px rgba(0, 0, 0, 0.4)" });
-    } else {
-      this.setState({ shadow: "0 0 10px rgba(0, 0, 0, 0)" });
-    }
+    window.scrollY > 200
+      ? this.setState({ shadow: constant.navbar.showShadow })
+      : this.setState({ shadow: constant.navbar.noShadow });
   };
 
   componentDidMount() {
@@ -72,14 +54,14 @@ export class Navigation extends Component {
         sticky={"top"}
         style={{ boxShadow: this.state.shadow }}
       >
-        <NavbarBrand href="/">Chipino Meshworks</NavbarBrand>
+        <NavbarBrand href="/"><div style={{border: "1px solid #D9DFE2", borderRadius: '2%', padding: '10px 20px'}}>Chipino Meshworks</div></NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             {navbar.map(menuItem => (
-            <NavItemStyled>
-              <NavLink href={menuItem.routeTo}>{menuItem.menuItem}</NavLink>
-            </NavItemStyled>
+              <NavItemStyled>
+                <NavLink href={menuItem.routeTo}>{menuItem.menuItem}</NavLink>
+              </NavItemStyled>
             ))}
           </Nav>
         </Collapse>
