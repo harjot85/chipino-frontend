@@ -11,6 +11,10 @@ export const ProjectCard = styled(Card)`
   margin-bottom: 10px;
   position: relative;
   box-shadow: 1px 2px 4px 1px #c8d8d8;
+  @media (max-width:515px){
+    height:300px;
+    width: 200px;
+  }
 `;
 
 export const TechBadge = styled(Badge)`
@@ -31,6 +35,10 @@ export const SliderButton = styled(Button)`
   &&& {
     border-radius: 50%;
     box-shadow: 0 0 4px 1px #c8d8d8;
+    
+    @media (max-width:515px){
+      padding: 2px 10px;
+    }
   }
 `;
 

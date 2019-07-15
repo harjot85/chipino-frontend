@@ -1,14 +1,13 @@
 import React, { Component } from "react";
-import {
- Button,
-  Row,
-  Col
-} from "reactstrap";
+import { Col } from "reactstrap";
 
 //Components
 import {
   InfoPanelText,
   PageHeading,
+  ButtonStyled,
+  Section,
+  Styles
 } from "../../utilities/styledShared";
 
 //Redux
@@ -38,26 +37,28 @@ export class HomeContentPanel extends Component {
     const homeText = text.filter(x => x.key === 201).map(x => x.data);
 
     return (
-      <div style={{height: '100vh'}}>
+      <div style={{ height: "100vh" }}>
         <link
           href="https://fonts.googleapis.com/css?family=Poiret+One"
           rel="stylesheet"
         />
-        <Row style={{paddingTop: "40%"}}> 
+        <Section padding="40% 0 0 0" style={Styles.row}>
           <Col>
             <PageHeading>Software Solutions</PageHeading>
           </Col>
-        </Row>
-        <Row>
+        </Section>
+        <Section padding="0 0 0 2%">
           <Col>
             <InfoPanelText>{homeText}</InfoPanelText>
           </Col>
-        </Row>
-        <Row style={{paddingTop: "20%"}}>
+        </Section>
+        <Section padding="20% 0 0 2%">
           <Col>
-          <Button outline color="primary" size="lg">Explore</Button>
+            <ButtonStyled outline color="primary" size="lg">
+              Explore
+            </ButtonStyled>
           </Col>
-        </Row>
+        </Section>
       </div>
     );
   }
