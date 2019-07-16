@@ -40,7 +40,7 @@ export class About extends Component {
                 <InfoPanelText>{aboutText}</InfoPanelText>
               </Col>
               <Col lg ={6} md ={6}>
-                <Chester/>
+               <Chester/>
               </Col>
             </Row>
           </Col>

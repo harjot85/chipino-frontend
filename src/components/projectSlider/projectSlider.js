@@ -98,7 +98,7 @@ export class ProjectSlider extends Component {
                           <b>Id:</b> {item.id}
                         </CardText>
                         <CardText>
-                          <b>Desc:</b>
+                          <b>Desc: </b>
                           {item.description}
                         </CardText>
                       </CardBody>
