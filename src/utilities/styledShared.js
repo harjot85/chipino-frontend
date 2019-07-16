@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {Row} from "reactstrap";
+import {Row, Button} from "reactstrap";
 
 export const InfoPanelText = styled.div`
   position: relative;
@@ -27,3 +27,9 @@ export const Styles = {
     marginRight: '0px'
   }
 }
+
+export const ButtonStyled = styled(Button)`
+  &&& { 
+    padding: 1% 5%;
+  }
+`;
