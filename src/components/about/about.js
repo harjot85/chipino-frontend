@@ -3,7 +3,7 @@ import { Row, Col } from "reactstrap";
 
 //Components
 import { PageHeading, InfoPanelText } from "../../utilities/styledShared";
-import Chester from "../../components/chester/chester";
+import Chester from "../chester/chester";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";

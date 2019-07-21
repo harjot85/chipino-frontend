@@ -3,24 +3,14 @@ import { Row, Col } from "reactstrap";
 
 //Components
 import Chester from "../../components/chester/chester";
-import About from "../about/about";
-import Contact from "../contact/contact";
+import About from "../../components/about/about";
+import Contact from "../../components/contact/contact";
 import Footer from "../../components/footer/footer";
 import HomeContentPanel from "../../components/homeContentPanel/homeContentPanel";
 
 import ProjectSlider from "../../components/projectSlider/projectSlider";
 import { PageHeading, Section, Styles } from "../../utilities/styledShared";
-
-function Separator() {
-  return (
-    <Col style={{ paddingTop: "4%", textAlign: "center" }}>
-      {" "}
-      <h1>
-        <i style={{ color: "#C4C4C4" }} class="fas fa-chevron-down" />
-      </h1>{" "}
-    </Col>
-  );
-}
+import { Separator } from "../../utilities/functions";
 
 export default class Home extends Component {
   componentDidMount() {
@@ -30,24 +20,22 @@ export default class Home extends Component {
   render() {
     return (
       <React.Fragment>
-        <div>
-          <div style={{ height: "100vh" }}>
-            <Section id="home" padding="2% 2% 0 2%" style={Styles.row}>
-              <Col lg={6} md={6}>
-                <HomeContentPanel />
-              </Col>
-              <Col lg={6} md={6}>
-                <Chester />
-              </Col>
-              {Separator()}
-            </Section>
-          </div>
-          <Section id="about" style={Styles.row}>
-            <Col>
-              <About />
+        <div style={{ height: "100vh" }}>
+          <Section id="home" padding="2% 2% 0 2%" style={Styles.row}>
+            <Col lg={6} md={6}>
+              <HomeContentPanel />
             </Col>
+            <Col lg={6} md={6}>
+              <Chester />
+            </Col>
+            {Separator()}
           </Section>
         </div>
+        <Section id="about" style={Styles.row}>
+          <Col>
+            <About />
+          </Col>
+        </Section>
 
         <Section id="projects" padding="7% 2% 20% 2%" style={Styles.row}>
           <Col lg="10" md="10" sm="10">

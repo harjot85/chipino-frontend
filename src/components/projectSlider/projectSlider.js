@@ -87,7 +87,7 @@ export class ProjectSlider extends Component {
               item.language == null ? "Not Specified" : item.language;
             return (
               <Row>
-                <Col sm="12" lg="2" md="4" style={{ textAlign: "center" }}>
+                <Col sm="12" lg="2" md="4" style={{ textAlign: "center", marginTop: '5%' }}>
                   <ProjectCard key={index}>
                     <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
                       <CardHeader>
