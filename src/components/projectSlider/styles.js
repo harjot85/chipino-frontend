@@ -8,13 +8,24 @@ export const ProjectCard = styled(Card)`
   width: 260px;
   background-color: white;
   margin: auto;
+  
   margin-bottom: 10px;
   position: relative;
-  box-shadow: 1px 2px 4px 1px #c8d8d8;
+  box-shadow: 1px 1px 4px 1px #c8d8d8;
+  transition: all .2s ease-in-out; 
+  @media (min-width:515px){
+    margin-left: 10px;
+  }
   @media (max-width:515px){
     height:300px;
     width: 200px;
   }
+  &&& {
+  :hover { 
+    transform: scale(1.05); 
+    box-shadow: 1px 1px 4px 0px #6C9CC2;
+  }
+}
 `;
 
 export const TechBadge = styled(Badge)`
@@ -23,6 +34,7 @@ export const TechBadge = styled(Badge)`
   &&& {
     font-weight: 500;
   }
+ 
 `;
 
 export const TechBadgeHolder = styled.div`
