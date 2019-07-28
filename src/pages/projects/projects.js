@@ -12,7 +12,11 @@ import {
   ButtonDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem
+  DropdownItem,
+  Modal,
+  ModalHeader,
+  ModalBody,
+  ModalFooter
 } from "reactstrap";
 
 import styled from "styled-components";
@@ -29,7 +33,6 @@ const ProjectCard = styled(Card)`
   background-color: white;
   margin: auto;
   margin-bottom: 8%;
-  padding-bottom: 25px;
   position: relative;
 
   @media (max-width: 1000px) {
@@ -39,7 +42,7 @@ const ProjectCard = styled(Card)`
 `;
 
 const TechBadge = styled(Badge)`
-  margin-left: 6px;
+  margin-top: 10px;
   box-shadow: 0 0 3px #07c;
 `;
 
@@ -48,14 +51,38 @@ export class Projects extends Component {
     super(props);
 
     this.state = {
-      dropdownOpen: false
+      dropdownOpen: false,
+      modal: false,
+      repo: {
+        name: "",
+        description: "",
+        link: ""
+      }
     };
   }
 
-  toggle = () => {
+  toggleDropDown = () => {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
+  };
+
+  toggleModal = () => {
+    this.setState({
+      modal: !this.state.modal
+    });
+  };
+
+  handleToggleModal = (name, desc, link) => {
+    var repo = { ...this.state.repo };
+    repo.name = name;
+    repo.description = desc;
+    repo.link = link;
+    this.setState({
+      repo
+    });
+
+    this.toggleModal();
   };
 
   componentDidMount() {
@@ -69,6 +96,30 @@ export class Projects extends Component {
 
     return (
       <React.Fragment>
+        <Modal
+          isOpen={this.state.modal}
+          toggle={this.toggleModal}
+          className={this.props.className}
+        >
+          <ModalHeader toggle={this.toggleModal}>
+            {this.state.repo.name}
+          </ModalHeader>
+          <ModalBody>{this.state.repo.description}</ModalBody>
+          <ModalFooter>
+            <Button color="primary" href={this.state.repo.link}>
+              Visit Github
+            </Button>{" "}
+            <Button color="danger" onClick={this.toggleModal}>
+              Close
+            </Button>
+          </ModalFooter>
+        </Modal>
+        <link
+          rel="stylesheet"
+          href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+          integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+          crossOrigin="anonymous"
+        />
         <Section padding="0 2% 0 2%" style={Styles.row}>
           <Col>
             <PageHeading>Projects</PageHeading>
@@ -98,7 +149,7 @@ export class Projects extends Component {
 
             <ButtonDropdown
               isOpen={this.state.dropdownOpen}
-              toggle={this.toggle}
+              toggle={this.toggleDropDown}
               style={{ marginRight: "1%" }}
             >
               <DropdownToggle caret color="primary">
@@ -123,31 +174,56 @@ export class Projects extends Component {
             return (
               <Col xl={3} lg={4} md={4} sm={6} xs={12}>
                 <ProjectCard key={index}>
-                  <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
-                    <CardHeader>
-                      <strong>{item.name}</strong>
-                    </CardHeader>
-                    <CardBody>
-                      <CardText>
+                  <CardHeader>
+                    <strong>{item.name}</strong>
+
+                    <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
+                      <span style={{ float: "right" }}>
+                        <i
+                          class="fab fa-github"
+                          style={{ fontSize: "28px", color: "#6699C7" }}
+                        />
+                      </span>
+                    </CardLink>
+                  </CardHeader>
+                  <CardBody>
+                    {/* <CardText>
                         <b>Id:</b> {item.id}
-                      </CardText>
-                      <CardText>
-                        <b>Desc:</b>
-                        {item.description}
-                      </CardText>
-                    </CardBody>
-                    <div
-                      style={{
-                        bottom: "3px",
-                        height: "30px",
-                        position: "absolute"
-                      }}
-                    >
+                      </CardText> */}
+                    <CardText>{item.description}</CardText>
+                  </CardBody>
+                  <Row style={{ padding: ".5rem" }}>
+                    <Col lg="8" md="8" xs="6">
                       {repoTech !== "Not Specified" && (
-                        <TechBadge color="info">{repoTech}</TechBadge>
+                        <TechBadge
+                          color="info"
+                          size="sm"
+                          className="float-left"
+                        >
+                          {repoTech}
+                        </TechBadge>
                       )}
-                    </div>
-                  </CardLink>
+                    </Col>
+                    <Col lg="4" md="4" xs="6">
+                      <Button
+                        outline
+                        className="float-right"
+                        color="secondary"
+                        size="sm"
+                        onClick={e => this.handleToggleModal(
+                          item.name,
+                          item.description,
+                          item.html_url
+                        )}
+                        style={{
+                          borderRadius: "50%",
+                          padding: "3px 8px"
+                        }}
+                      >
+                        +
+                      </Button>
+                    </Col>
+                  </Row>
                 </ProjectCard>
               </Col>
             );
