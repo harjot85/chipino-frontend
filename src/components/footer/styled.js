@@ -16,14 +16,10 @@ export const FooterIcon = styled.div`
   color: grey;
   padding: 8px;
   margin: 6% 10px;
-  border-radius: 50%;
   transition: all .2s ease-in-out; 
 
   :hover {
     color: ${props => props.hoverColor || "blue"};
     transform: scale(1.1); 
-    border-bottom-color: ${props => props.hoverColor || "blue"};
-    box-shadow:
-    0 0 30px 10px ${props => props.hoverColor || "blue"};
   }
 `;
