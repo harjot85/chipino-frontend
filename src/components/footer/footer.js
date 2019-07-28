@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 //Components
-import {  FooterIcon, FooterStyled } from "./styled";
+import { FooterIcon, FooterStyled } from "./styled";
 
 //Redux
 import { connect } from "react-redux";
@@ -31,17 +31,18 @@ export class Footer extends Component {
           crossOrigin="anonymous"
         />
 
+
         <FooterStyled>
-            {faviconCollection.map(socialMediaIcon => (
-                  <a href={socialMediaIcon.linkTo}>
-                    <FooterIcon
-                      key={socialMediaIcon.id}
-                      className={socialMediaIcon.iconClass}
-                      hoverColor={socialMediaIcon.hoverColor}
-                    />
-                  </a>
-            ))}
-     </FooterStyled>
+          {faviconCollection.map(socialMediaIcon => (
+            <a href={socialMediaIcon.linkTo}>
+              <FooterIcon
+                key={socialMediaIcon.id}
+                className={socialMediaIcon.iconClass}
+                hoverColor={socialMediaIcon.hoverColor}
+              />
+            </a>
+          ))}
+        </FooterStyled>
       </>
     );
   }
