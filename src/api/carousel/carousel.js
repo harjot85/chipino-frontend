@@ -1,8 +1,10 @@
 import axios from "axios";
+import { GetEnvironment } from"../../utilities/functions";
 
 export function getCarousel() {
+  let envData = GetEnvironment();
   return axios.get(
-    "https://staging-api-chipinomeshworks.herokuapp.com/api/carousel",
+    `${envData.baseUrl}/api/carousel`,
     {
       method: "GET"
     }

@@ -26,3 +26,33 @@ export function Separator() {
     </Col>
   );
 }
+
+export function GetEnvironment(){
+  let envType = process.env.NODE_ENV;
+  let data = {};
+  console.log(`Env Proc Env Node_ENV: ${envType}`);
+
+  switch (envType) {
+    case "development": 
+      data = { 
+        baseUrl: process.env.REACT_APP_API_LOCAL
+      }
+    break;
+    case "qa":
+      data = {
+        baseUrl: process.env.REACT_APP_API_LOCAL
+      }
+      break;
+    case "production": 
+      data = {
+        baseUrl: process.env.REACT_APP_API_STAGING
+      }
+      break;
+    default: 
+      data = {
+        baseUrl: process.env.REACT_APP_API_LOCAL
+      }
+      break;
+    }
+    return data;
+}

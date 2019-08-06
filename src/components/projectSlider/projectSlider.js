@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, CardHeader, CardLink, CardText, CardBody } from "reactstrap";
 
 //Redux
-import { getAllPublicRepos } from "../../redux/actions/github";
+import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
 import { connect } from "react-redux";
 
 //Custom Components
@@ -126,7 +126,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getAllPublicRepos
+  getAllPublicRepos, 
+  getFilteredRepos
 };
 
 export default connect(
