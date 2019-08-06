@@ -1,8 +1,11 @@
 import axios from "axios";
+import { GetEnvironment } from"../../utilities/functions";
 
 export function getImages() {
+  let envData = GetEnvironment();
+  console.log(`${envData.baseUrl}/api/media`);
   return axios.get(
-    "https://staging-api-chipinomeshworks.herokuapp.com/api/media",
+    `${envData.baseUrl}/api/media`,
     {
       method: "GET"
     }

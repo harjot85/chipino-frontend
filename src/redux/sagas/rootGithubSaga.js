@@ -23,8 +23,29 @@ export function* getAllRepos(){
     }
 }
 
+export function* getFilteredRepos(params){
+    
+    try {
+        const response = yield githubAPI.getFilteredRepos(params)
+        yield put({
+          type: actionType.GET_FILTERED_REPOS_SUCCESS,
+          payload: {
+              repos: response.data
+          }  
+        })
+    }
+    catch (error){
+        yield put({
+            type: actionType.GET_FILTERED_REPOS_ERROR,
+            payload: {
+                error
+            }
+        })
+    }
+}
+
 function* watchgetAllRepos(){
-    yield takeLatest(actionType.GET_GITHUB_REPOS, getAllRepos)
+    yield takeLatest(actionType.GET_GITHUB_REPOS, getAllRepos, getFilteredRepos)
 }
 
 export default function* rootGithubSaga(){

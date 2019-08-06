@@ -6,8 +6,8 @@ export const size = {
     xl: 5
   };
 
-  export const navbar = {
-    showShadow: "0 0 10px rgba(0, 0, 0, 0.4)",
-    noShadow: "0 0 10px rgba(0, 0, 0, 0)"
-  } 
+export const navbar = {
+  showShadow: "0 0 10px rgba(0, 0, 0, 0.4)",
+  noShadow: "0 0 10px rgba(0, 0, 0, 0)"
+} 
   

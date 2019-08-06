@@ -23,7 +23,7 @@ import styled from "styled-components";
 import { PageHeading, Section, Styles } from "../../utilities/styledShared";
 
 //Redux
-import { getAllPublicRepos } from "../../redux/actions/github";
+import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
 import { connect } from "react-redux";
 
 const ProjectCard = styled(Card)`
@@ -56,7 +56,8 @@ export class Projects extends Component {
       repo: {
         name: "",
         description: "",
-        link: ""
+        link: "",
+        params:""
       }
     };
   }
@@ -65,6 +66,11 @@ export class Projects extends Component {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
     });
+  };
+
+  handleDropDownSelected = ()=> {
+    alert("Setting params");
+    this.setState({params: "C#"});
   };
 
   toggleModal = () => {
@@ -239,7 +245,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getAllPublicRepos
+  getAllPublicRepos, getFilteredRepos
 };
 
 export default connect(
