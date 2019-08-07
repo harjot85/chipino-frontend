@@ -25,3 +25,9 @@ export const NavLinkStyled = styled(NavLink)`
     }
   }
 `;
+
+export const BrandName = styled.div`
+  border: 1px solid #D9DFE2;
+  border-radius: 2%;
+  padding: 10px 20px;
+`;
