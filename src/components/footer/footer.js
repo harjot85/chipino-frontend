@@ -30,8 +30,6 @@ export class Footer extends Component {
           integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
           crossOrigin="anonymous"
         />
-
-
         <FooterStyled>
           {faviconCollection.map(socialMediaIcon => (
             <a href={socialMediaIcon.linkTo}>

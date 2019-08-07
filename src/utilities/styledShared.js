@@ -6,13 +6,12 @@ export const InfoPanelText = styled.div`
   top: 50%;
   transform: translateY(-50%);
   font-size: 24px;
+  font-weight: 200;
   color: black;
-  font-family: Poiret One, cursive;
 `;
 
 export const PageHeading = styled.h1`
   color: ${props => props.color || "black"};
-  font: ${props => props.font || "Poiret One, cursive"};
   font-size: ${props => props.size || "36px"};
 `;
 

@@ -38,10 +38,6 @@ export class HomeContentPanel extends Component {
 
     return (
       <div>
-        <link
-          href="https://fonts.googleapis.com/css?family=Poiret+One"
-          rel="stylesheet"
-        />
         <Section padding="40% 0 0 0" style={Styles.row}>
           <Col>
             <PageHeading>Software Solutions</PageHeading>

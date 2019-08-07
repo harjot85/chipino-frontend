@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Collapse, NavbarToggler, NavbarBrand, Nav, NavLink } from "reactstrap";
+import { Collapse, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
 
 //Components
 import * as constant from "../../utilities/constants";
-import { NavbarStyled, NavItemStyled } from "./styled";
+import { NavbarStyled, NavItemStyled, NavLinkStyled } from "./styled";
 
 //Redux
 import { connect } from "react-redux";
@@ -60,7 +60,7 @@ export class Navigation extends Component {
           <Nav className="ml-auto" navbar>
             {navbar.map(menuItem => (
               <NavItemStyled>
-                <NavLink href={menuItem.routeTo}>{menuItem.menuItem}</NavLink>
+                <NavLinkStyled href={menuItem.routeTo} >{menuItem.menuItem}</NavLinkStyled>
               </NavItemStyled>
             ))}
           </Nav>
