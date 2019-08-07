@@ -23,10 +23,6 @@ export class About extends Component {
     const aboutText = text.filter(x => x.key === 101).map(x => x.data);
     return (
       <React.Fragment>
-        <link
-          href="https://fonts.googleapis.com/css?family=Poiret+One"
-          rel="stylesheet"
-        />
         <Row>
           <Col >
             <Row>

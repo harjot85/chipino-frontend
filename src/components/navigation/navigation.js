@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import { Collapse, NavbarToggler, NavbarBrand, Nav, NavLink } from "reactstrap";
+import { Collapse, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
 
 //Components
 import * as constant from "../../utilities/constants";
-import { NavbarStyled, NavItemStyled } from "./styled";
+import { NavbarStyled, NavItemStyled, BrandName, NavLinkStyled } from "./styled";
 
 //Redux
 import { connect } from "react-redux";
@@ -54,13 +54,15 @@ export class Navigation extends Component {
         sticky={"top"}
         style={{ boxShadow: this.state.shadow }}
       >
-        <NavbarBrand href="/"><div style={{border: "1px solid #D9DFE2", borderRadius: '2%', padding: '10px 20px'}}>Chipino Meshworks</div></NavbarBrand>
+        <NavbarBrand href="/">
+          <BrandName>Chipino Meshworks</BrandName>
+        </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
           <Nav className="ml-auto" navbar>
             {navbar.map(menuItem => (
               <NavItemStyled>
-                <NavLink href={menuItem.routeTo}>{menuItem.menuItem}</NavLink>
+                <NavLinkStyled href={menuItem.routeTo} >{menuItem.menuItem}</NavLinkStyled>
               </NavItemStyled>
             ))}
           </Nav>

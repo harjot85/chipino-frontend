@@ -56,10 +56,6 @@ export class ProjectSlider extends Component {
 
     return (
       <>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
         <Carousel
           numberOfCards={this.state.cards}
           gutter={12}
