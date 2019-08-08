@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Row, Col, CardHeader, CardLink, CardText, CardBody } from "reactstrap";
 
 //Redux
-import { getAllPublicRepos } from "../../redux/actions/github";
+import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
 import { connect } from "react-redux";
 
 //Custom Components
@@ -56,10 +56,6 @@ export class ProjectSlider extends Component {
 
     return (
       <>
-        <link
-          rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-        />
         <Carousel
           numberOfCards={this.state.cards}
           gutter={12}
@@ -87,7 +83,7 @@ export class ProjectSlider extends Component {
               item.language == null ? "Not Specified" : item.language;
             return (
               <Row>
-                <Col sm="12" lg="2" md="4" style={{ textAlign: "center" }}>
+                <Col sm="12" lg="2" md="4" style={{ textAlign: "center", marginTop: '5%' }}>
                   <ProjectCard key={index}>
                     <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
                       <CardHeader>
@@ -98,7 +94,7 @@ export class ProjectSlider extends Component {
                           <b>Id:</b> {item.id}
                         </CardText>
                         <CardText>
-                          <b>Desc:</b>
+                          <b>Desc: </b>
                           {item.description}
                         </CardText>
                       </CardBody>
@@ -126,7 +122,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getAllPublicRepos
+  getAllPublicRepos, 
+  getFilteredRepos
 };
 
 export default connect(

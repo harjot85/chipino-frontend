@@ -9,6 +9,13 @@ export const githubReducer = (state = { repos: [] }, action) => {
       };
 
       break;
+    case actionType.GET_FILTERED_REPOS_SUCCESS:
+      state = {
+        ...state,
+        repos: action.payload.repos,
+      };
+
+      break;
 
     default: {
       break;

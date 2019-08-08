@@ -22,11 +22,6 @@ export default class Contact extends Component {
   render() {
     return (
       <React.Fragment>
-        <link
-          href="https://fonts.googleapis.com/css?family=Poiret+One"
-          rel="stylesheet"
-        />
-
         <Row>
           <Col lg={12}>
             <div style={{ overflow: "hidden" }}

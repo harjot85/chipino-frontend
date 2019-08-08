@@ -37,11 +37,7 @@ export class HomeContentPanel extends Component {
     const homeText = text.filter(x => x.key === 201).map(x => x.data);
 
     return (
-      <div style={{ height: "100vh" }}>
-        <link
-          href="https://fonts.googleapis.com/css?family=Poiret+One"
-          rel="stylesheet"
-        />
+      <div>
         <Section padding="40% 0 0 0" style={Styles.row}>
           <Col>
             <PageHeading>Software Solutions</PageHeading>
@@ -54,9 +50,11 @@ export class HomeContentPanel extends Component {
         </Section>
         <Section padding="20% 0 0 2%">
           <Col>
-            <ButtonStyled outline color="primary" size="lg">
-              Explore
-            </ButtonStyled>
+            <a href="/projects">
+              <ButtonStyled outline color="primary" size="lg">
+                Explore
+              </ButtonStyled>
+            </a>
           </Col>
         </Section>
       </div>

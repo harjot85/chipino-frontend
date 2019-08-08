@@ -3,7 +3,7 @@ import { Row, Col } from "reactstrap";
 
 //Components
 import { PageHeading, InfoPanelText } from "../../utilities/styledShared";
-import Chester from "../../components/chester/chester";
+import Chester from "../chester/chester";
 
 //Redux
 import { getAllText } from "../../redux/actions/text";
@@ -23,10 +23,6 @@ export class About extends Component {
     const aboutText = text.filter(x => x.key === 101).map(x => x.data);
     return (
       <React.Fragment>
-        <link
-          href="https://fonts.googleapis.com/css?family=Poiret+One"
-          rel="stylesheet"
-        />
         <Row>
           <Col >
             <Row>
@@ -40,7 +36,7 @@ export class About extends Component {
                 <InfoPanelText>{aboutText}</InfoPanelText>
               </Col>
               <Col lg ={6} md ={6}>
-                <Chester/>
+               <Chester/>
               </Col>
             </Row>
           </Col>

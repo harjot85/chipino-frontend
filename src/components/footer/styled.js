@@ -8,14 +8,18 @@ export const FooterStyled = styled(Col)`
   bottom: 0;
   text-align: center;
   margin-top: 4%;
+  position: fixed;
 `;
 
 export const FooterIcon = styled.div`
-  font-size: 48px;
-  color: white;
-  padding: 6% 1% 6% 1%;
-  
+  font-size: 64px;
+  color: grey;
+  padding: 8px;
+  margin: 6% 10px;
+  transition: all .2s ease-in-out; 
+
   :hover {
     color: ${props => props.hoverColor || "blue"};
+    transform: scale(1.1); 
   }
 `;
