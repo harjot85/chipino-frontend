@@ -27,7 +27,12 @@ export const NavLinkStyled = styled(NavLink)`
 `;
 
 export const BrandName = styled.div`
-  border: 1px solid #D9DFE2;
+  border: 1px solid #d9dfe2;
   border-radius: 2%;
   padding: 10px 20px;
+`;
+
+export const ChipinoLogo = styled.img`
+  max-width: 100px;
+  max-height: 55px;
 `;
