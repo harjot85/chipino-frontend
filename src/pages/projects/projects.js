@@ -7,7 +7,6 @@ import {
   CardHeader,
   CardLink,
   CardText,
-  CardBody,
   Button,
   ButtonDropdown,
   DropdownToggle,
@@ -20,7 +19,7 @@ import {
 } from "reactstrap";
 
 import styled from "styled-components";
-import { PageHeading, Section, Styles } from "../../utilities/styledShared";
+import { PageHeading, Section, Styles, CardBodyStyled } from "../../utilities/styledShared";
 
 //Redux
 import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
@@ -42,7 +41,7 @@ const ProjectCard = styled(Card)`
 `;
 
 const TechBadge = styled(Badge)`
-  margin-top: 10px;
+  margin-top: 2px;
   box-shadow: 0 0 3px #07c;
 `;
 
@@ -192,14 +191,14 @@ export class Projects extends Component {
                       </span>
                     </CardLink>
                   </CardHeader>
-                  <CardBody>
+                  <CardBodyStyled >
                     {/* <CardText>
                         <b>Id:</b> {item.id}
                       </CardText> */}
-                    <CardText>{item.description}</CardText>
-                  </CardBody>
-                  <Row style={{ padding: ".5rem" }}>
-                    <Col lg="8" md="8" xs="6">
+                    <CardText >{item.description}</CardText>
+                  </CardBodyStyled>
+                  <Row style={{ padding: "4px 10px" }}>
+                    <Col lg="6" md="6" xs="6">
                       {repoTech !== "Not Specified" && (
                         <TechBadge
                           color="info"
@@ -210,24 +209,27 @@ export class Projects extends Component {
                         </TechBadge>
                       )}
                     </Col>
-                    <Col lg="4" md="4" xs="6">
-                      <Button
-                        outline
+                    <Col lg="6" md="6" xs="6">
+                    <a href="#" onClick={e => this.handleToggleModal(
+                          item.name,
+                          item.description,
+                          item.html_url
+                        )}>See More...</a>
+                      {/* <Button
                         className="float-right"
                         color="secondary"
-                        size="sm"
+                        size="md"
                         onClick={e => this.handleToggleModal(
                           item.name,
                           item.description,
                           item.html_url
                         )}
                         style={{
-                          borderRadius: "50%",
                           padding: "3px 8px"
                         }}
                       >
-                        +
-                      </Button>
+                        See More
+                      </Button> */}
                     </Col>
                   </Row>
                 </ProjectCard>

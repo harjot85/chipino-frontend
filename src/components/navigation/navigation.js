@@ -2,8 +2,15 @@ import React, { Component } from "react";
 import { Collapse, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
 
 //Components
+import logo from "../../resources/chester.png";
 import * as constant from "../../utilities/constants";
-import { NavbarStyled, NavItemStyled, BrandName, NavLinkStyled } from "./styled";
+import {
+  NavbarStyled,
+  NavItemStyled,
+  BrandName,
+  NavLinkStyled,
+  ChipinoLogo
+} from "./styled";
 
 //Redux
 import { connect } from "react-redux";
@@ -55,6 +62,9 @@ export class Navigation extends Component {
         style={{ boxShadow: this.state.shadow }}
       >
         <NavbarBrand href="/">
+          <ChipinoLogo src={logo} alt="Chipino" />
+        </NavbarBrand>
+        <NavbarBrand href="/">
           <BrandName>Chipino Meshworks</BrandName>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
@@ -62,7 +72,9 @@ export class Navigation extends Component {
           <Nav className="ml-auto" navbar>
             {navbar.map(menuItem => (
               <NavItemStyled>
-                <NavLinkStyled href={menuItem.routeTo} >{menuItem.menuItem}</NavLinkStyled>
+                <NavLinkStyled href={menuItem.routeTo}>
+                  {menuItem.menuItem}
+                </NavLinkStyled>
               </NavItemStyled>
             ))}
           </Nav>
