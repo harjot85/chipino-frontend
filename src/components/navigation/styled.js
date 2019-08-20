@@ -18,9 +18,9 @@ export const NavLinkStyled = styled(NavLink)`
   &&&& {
     color: #171717;
     border-bottom: 2px solid transparent;
-
+    
     :hover {
-      border-bottom: 2px solid #47a7fa;
+      border-bottom-color: ${props => props.bottomBorderColor || "#47a7fa"};
       color: #000;
     }
   }

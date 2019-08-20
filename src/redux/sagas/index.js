@@ -5,6 +5,7 @@ import rootMediaSaga from "./rootMediaSaga";
 import rootGithubSaga from "./rootGithubSaga";
 import rootCarouselSaga from "./rootCarouselSaga";
 import rootNavbarSaga from "./rootNavbarSaga";
+import rootConfigurationSaga from "./rootConfigurationSaga"
 
 export default function* rootSaga() {
   yield all([
@@ -13,6 +14,7 @@ export default function* rootSaga() {
     spawn(rootGithubSaga),
     spawn(rootMediaSaga),
     spawn(rootCarouselSaga),
-    spawn(rootNavbarSaga)
+    spawn(rootNavbarSaga),
+    spawn(rootConfigurationSaga),
   ]);
 }

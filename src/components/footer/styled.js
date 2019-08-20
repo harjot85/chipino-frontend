@@ -3,6 +3,7 @@ import { Col } from "reactstrap";
 
 export const FooterStyled = styled(Col)`
   height: 100%;
+  max-height: 300px;
   background-color: black;
   left: 0;
   bottom: 0;
