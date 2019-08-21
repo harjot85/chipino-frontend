@@ -13,6 +13,8 @@ import {
 //Redux
 import { getAllText } from "../../redux/actions/text";
 import { getCarousel } from "../../redux/actions/carousel";
+import { getConfiguration } from "../../redux/actions/configuration";
+
 import { connect } from "react-redux";
 
 export class HomeContentPanel extends Component {
@@ -24,6 +26,7 @@ export class HomeContentPanel extends Component {
   componentDidMount() {
     const { ...p } = this.props;
     p.getAllText();
+    p.getConfiguration();
   }
 
   render() {
@@ -31,28 +34,37 @@ export class HomeContentPanel extends Component {
 
     const text = p.textCollection.map(textElement => ({
       key: textElement.id,
-      data: textElement.pageData
+      data: textElement.displayText
     }));
 
-    const homeText = text.filter(x => x.key === 201).map(x => x.data);
+    const config = p.configuration.map(c => ({
+      key: c.id,
+      bootstrapClass: c.buttonClass
+    }));
+
+    
+    const bootstrapClass = config.map(x => x.bootstrapClass);
+    const headText = text.filter(x => x.key === 103).map(x => x.data);
+    const subText = text.filter(x => x.key === 102).map(x => x.data);
+    const buttonText = text.filter(x => x.key === 107).map(x => x.data);
 
     return (
       <div>
         <Section padding="40% 0 0 0" style={Styles.row}>
           <Col>
-            <PageHeading>Software Solutions</PageHeading>
+            <PageHeading>{headText}</PageHeading>
           </Col>
         </Section>
         <Section padding="0 0 0 2%">
           <Col>
-            <InfoPanelText>{homeText}</InfoPanelText>
+            <InfoPanelText>{subText}</InfoPanelText>
           </Col>
         </Section>
         <Section padding="20% 0 0 2%">
           <Col>
             <a href="/projects">
-              <ButtonStyled outline color="primary" size="lg">
-                Explore
+              <ButtonStyled outline color={bootstrapClass} size="lg">
+                {buttonText}
               </ButtonStyled>
             </a>
           </Col>
@@ -64,12 +76,14 @@ export class HomeContentPanel extends Component {
 
 const mapStateToProps = state => ({
   textCollection: state.text.allText,
-  carousel: state.carousel.carousel
+  carousel: state.carousel.carousel,
+  configuration: state.configuration.configuration
 });
 
 const mapDispatchToProps = {
   getAllText,
-  getCarousel
+  getCarousel,
+  getConfiguration
 };
 
 export default connect(

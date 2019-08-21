@@ -50,7 +50,8 @@ export class Navigation extends Component {
     const navbar = p.navbar.map(item => ({
       id: item.id,
       menuItem: item.menuItem,
-      routeTo: item.routeTo
+      routeTo: item.routeTo,
+      bottomBorderColor: item.bottomBorderColor
     }));
 
     return (
@@ -69,10 +70,10 @@ export class Navigation extends Component {
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>
+          <Nav className="ml-auto" navbar>      
             {navbar.map(menuItem => (
               <NavItemStyled>
-                <NavLinkStyled href={menuItem.routeTo}>
+                <NavLinkStyled href={menuItem.routeTo} bottomBorderColor={menuItem.bottomBorderColor}>
                   {menuItem.menuItem}
                 </NavLinkStyled>
               </NavItemStyled>

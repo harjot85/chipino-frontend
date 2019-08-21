@@ -5,6 +5,7 @@ import mediaReducer from './media';
 import carouselReducer from './carousel'
 import { githubReducer } from './github';
 import navbarReducer from './navbar';
+import {configReducer} from './configuration';
 
 
 export const Reducers = combineReducers({
@@ -13,5 +14,6 @@ export const Reducers = combineReducers({
     media: mediaReducer,
     github: githubReducer,
     carousel: carouselReducer,
-    navbar: navbarReducer
+    navbar: navbarReducer,
+    configuration: configReducer
 });
