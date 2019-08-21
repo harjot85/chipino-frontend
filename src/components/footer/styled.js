@@ -9,8 +9,8 @@ export const FooterStyled = styled(Col)`
   bottom: 0;
   text-align: center;
   margin-top: 4%;
-  position: fixed;
-`;
+  position: sticky
+  `;
 
 export const FooterIcon = styled.div`
   font-size: 64px;
