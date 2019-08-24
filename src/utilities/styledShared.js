@@ -35,4 +35,12 @@ export const ButtonStyled = styled(Button)`
 export const CardBodyStyled = styled(CardBody)`
   overflow: auto;
   margin-bottom: 10%;
+  max-height: 65%;
+`;
+
+export const CardFooterStyled = styled(Row)`
+  padding: 4px 10px;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
 `;

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ItemsCarousel from "react-items-carousel";
-import { Badge, Card, Button } from "reactstrap";
+import { Badge, Card, Button, CardBody } from "reactstrap";
 
 export const ProjectCard = styled(Card)`
   display: inline-block;
@@ -60,4 +60,10 @@ export const Carousel = styled(ItemsCarousel)`
   button {
     background-color: white;
   }
+`;
+
+export const CardBodyStyled = styled(CardBody)`
+  overflow: hidden;
+  margin-bottom: 10%;
+  max-height: 35%;
 `;
