@@ -19,10 +19,19 @@ import {
 } from "reactstrap";
 
 import styled from "styled-components";
-import { PageHeading, Section, Styles, CardBodyStyled } from "../../utilities/styledShared";
+import {
+  PageHeading,
+  Section,
+  Styles,
+  CardBodyStyled,
+  CardFooterStyled
+} from "../../utilities/styledShared";
 
 //Redux
-import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
+import {
+  getAllPublicRepos,
+  getFilteredRepos
+} from "../../redux/actions/github";
 import { connect } from "react-redux";
 
 const ProjectCard = styled(Card)`
@@ -56,7 +65,7 @@ export class Projects extends Component {
         name: "",
         description: "",
         link: "",
-        params:""
+        params: ""
       }
     };
   }
@@ -67,9 +76,9 @@ export class Projects extends Component {
     });
   };
 
-  handleDropDownSelected = ()=> {
+  handleDropDownSelected = () => {
     alert("Setting params");
-    this.setState({params: "C#"});
+    this.setState({ params: "C#" });
   };
 
   toggleModal = () => {
@@ -191,13 +200,10 @@ export class Projects extends Component {
                       </span>
                     </CardLink>
                   </CardHeader>
-                  <CardBodyStyled >
-                    {/* <CardText>
-                        <b>Id:</b> {item.id}
-                      </CardText> */}
-                    <CardText >{item.description}</CardText>
+                  <CardBodyStyled>
+                    <CardText>{item.description}</CardText>
                   </CardBodyStyled>
-                  <Row style={{ padding: "4px 10px" }}>
+                  <CardFooterStyled>
                     <Col lg="6" md="6" xs="6">
                       {repoTech !== "Not Specified" && (
                         <TechBadge
@@ -210,28 +216,20 @@ export class Projects extends Component {
                       )}
                     </Col>
                     <Col lg="6" md="6" xs="6">
-                    <a href="#" onClick={e => this.handleToggleModal(
-                          item.name,
-                          item.description,
-                          item.html_url
-                        )}>See More...</a>
-                      {/* <Button
-                        className="float-right"
-                        color="secondary"
-                        size="md"
-                        onClick={e => this.handleToggleModal(
-                          item.name,
-                          item.description,
-                          item.html_url
-                        )}
-                        style={{
-                          padding: "3px 8px"
-                        }}
+                      <a
+                        href="#"
+                        onClick={e =>
+                          this.handleToggleModal(
+                            item.name,
+                            item.description,
+                            item.html_url
+                          )
+                        }
                       >
-                        See More
-                      </Button> */}
+                        See More...
+                      </a>
                     </Col>
-                  </Row>
+                  </CardFooterStyled>
                 </ProjectCard>
               </Col>
             );
@@ -247,7 +245,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = {
-  getAllPublicRepos, getFilteredRepos
+  getAllPublicRepos,
+  getFilteredRepos
 };
 
 export default connect(
