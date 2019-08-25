@@ -61,11 +61,11 @@ export class Projects extends Component {
     this.state = {
       dropdownOpen: false,
       modal: false,
+      qry: "",
       repo: {
         name: "",
         description: "",
-        link: "",
-        params: ""
+        link: ""
       }
     };
   }
@@ -76,9 +76,9 @@ export class Projects extends Component {
     });
   };
 
-  handleDropDownSelected = () => {
-    alert("Setting params");
-    this.setState({ params: "C#" });
+  handleDropDownSelected = (event)=> {
+    const { ...p } = this.props;
+    p.getFilteredRepos(event.target.innerHTML);
   };
 
   toggleModal = () => {
@@ -100,6 +100,7 @@ export class Projects extends Component {
   };
 
   componentDidMount() {
+    console.log("in Component did mount")
     const { ...p } = this.props;
     p.getAllPublicRepos();
   }
@@ -170,8 +171,8 @@ export class Projects extends Component {
                 Solutions
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Medicine</DropdownItem>
-                <DropdownItem>Real Estate</DropdownItem>
+                <DropdownItem onClick={(e)=>this.handleDropDownSelected(e)}>C#</DropdownItem>
+                <DropdownItem onClick={(e)=>this.handleDropDownSelected(e)}>F#</DropdownItem>
                 <DropdownItem>Automobiles</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>Show All</DropdownItem>
@@ -241,12 +242,13 @@ export class Projects extends Component {
 }
 
 const mapStateToProps = state => ({
-  repoCollection: state.github.repos
+  repoCollection: state.github.repos,
+  qry: state.qry
 });
 
 const mapDispatchToProps = {
-  getAllPublicRepos,
-  getFilteredRepos
+    getAllPublicRepos: () => ({type: 'GET_GITHUB_REPOS'}), 
+    getFilteredRepos: (filter) => ({type: 'GET_FILTERED_REPOS', val: filter})
 };
 
 export default connect(
