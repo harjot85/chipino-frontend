@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GetEnvironment } from"../../utilities/functions";
+import { GetEnvironment } from "../../utilities/functions";
 
 let envData = GetEnvironment();
 
@@ -12,8 +12,8 @@ export function getRepos() {
   );
 }
 
-export function getFilteredRepos(params){
-  let query = encodeURIComponent(params);
+export function getFilteredRepos(qryParam){
+  let query = encodeURIComponent(qryParam);
   return axios.get(
     `${envData.baseUrl}/api/gitrepo/getfilteredrepos?language=${query}`,
     {

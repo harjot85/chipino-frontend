@@ -23,15 +23,14 @@ export function* getAllRepos(){
     }
 }
 
-export function* getFilteredRepos(params){
-    
+export function* getFilteredRepos(action){
     try {
-        const response = yield githubAPI.getFilteredRepos(params)
+        const response = yield githubAPI.getFilteredRepos(action.val)
         yield put({
           type: actionType.GET_FILTERED_REPOS_SUCCESS,
           payload: {
               repos: response.data
-          }  
+          }
         })
     }
     catch (error){
@@ -45,7 +44,8 @@ export function* getFilteredRepos(params){
 }
 
 function* watchgetAllRepos(){
-    yield takeLatest(actionType.GET_GITHUB_REPOS, getAllRepos, getFilteredRepos)
+    yield takeLatest(actionType.GET_GITHUB_REPOS, getAllRepos);
+    yield takeLatest(actionType.GET_FILTERED_REPOS, getFilteredRepos);
 }
 
 export default function* rootGithubSaga(){
