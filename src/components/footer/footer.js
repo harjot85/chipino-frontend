@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import { Row } from "reactstrap";
 
 //Components
 import { FooterIcon, FooterStyled } from "./styled";
+import { Text, ColStyled } from "../../utilities/styledShared";
 
 //Redux
 import { connect } from "react-redux";
@@ -40,6 +42,21 @@ export class Footer extends Component {
               />
             </a>
           ))}
+          <Row>
+            <ColStyled padding="0 25% 2% 25%">
+              <Text textColor="grey"> 
+              Copyright information placeholder
+              Copyright information placeholder
+              Copyright information placeholder
+              Copyright information placeholder
+              Copyright information placeholder
+
+              Copyright information placeholder
+              Copyright information placeholder
+              Copyright information placeholder
+              </Text>
+            </ColStyled>
+          </Row>
         </FooterStyled>
       </>
     );

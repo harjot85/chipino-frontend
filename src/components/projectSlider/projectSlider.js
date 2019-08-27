@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, CardHeader, CardLink, CardText, CardBody } from "reactstrap";
+import { Row, Col, CardHeader, CardLink, CardText } from "reactstrap";
 
 //Redux
 import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
@@ -16,7 +16,6 @@ import {
 } from "./styles";
 
 import { getElementsPerScreen } from"../../utilities/functions";
-
 
 export class ProjectSlider extends Component {
   constructor(props) {

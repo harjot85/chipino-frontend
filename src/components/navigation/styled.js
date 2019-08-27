@@ -30,6 +30,7 @@ export const BrandName = styled.div`
   border: 1px solid #d9dfe2;
   border-radius: 2%;
   padding: 10px 20px;
+  
 `;
 
 export const ChipinoLogo = styled.img`
