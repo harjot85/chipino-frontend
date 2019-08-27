@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col } from "reactstrap";
+import { Row, Col, Button } from "reactstrap";
 
 //Components
 import Chester from "../../components/chester/chester";
@@ -38,11 +38,15 @@ export default class Home extends Component {
         </Section>
 
         <Section id="projects" padding="7% 2% 20% 2%" style={Styles.row}>
-          <Col lg="10" md="10" sm="10">
+          <Col lg="8" md="8" sm="8">
             <PageHeading>Projects</PageHeading>
           </Col>
-          <Col lg="2" md="2" sm="2" className="text-right">
-            <a href="/projects">See all ></a>
+          <Col lg="4" md="4" sm="4" className="text-right">
+             <a href="/projects">
+            <Button outline color="info" size="lg">
+                See All >
+              </Button>
+              </a>
           </Col>
 
           <Col>

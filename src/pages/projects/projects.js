@@ -18,11 +18,24 @@ import {
   ModalFooter
 } from "reactstrap";
 
+import Footer from "../../components/footer/footer";
+
 import styled from "styled-components";
-import { PageHeading, Section, Styles, CardBodyStyled } from "../../utilities/styledShared";
+import {
+  PageHeading,
+  Section,
+  Styles,
+  ColStyled,
+  CardBodyStyled,
+  CardFooterStyled,
+  ButtonLink
+} from "../../utilities/styledShared";
 
 //Redux
-import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
+import {
+  getAllPublicRepos,
+  getFilteredRepos
+} from "../../redux/actions/github";
 import { connect } from "react-redux";
 
 const ProjectCard = styled(Card)`
@@ -52,11 +65,11 @@ export class Projects extends Component {
     this.state = {
       dropdownOpen: false,
       modal: false,
+      qry: "",
       repo: {
         name: "",
         description: "",
-        link: "",
-        params:""
+        link: ""
       }
     };
   }
@@ -67,9 +80,9 @@ export class Projects extends Component {
     });
   };
 
-  handleDropDownSelected = ()=> {
-    alert("Setting params");
-    this.setState({params: "C#"});
+  handleDropDownSelected = (event)=> {
+    const { ...p } = this.props;
+    p.getFilteredRepos(event.target.innerHTML);
   };
 
   toggleModal = () => {
@@ -91,6 +104,7 @@ export class Projects extends Component {
   };
 
   componentDidMount() {
+    console.log("in Component did mount")
     const { ...p } = this.props;
     p.getAllPublicRepos();
   }
@@ -161,8 +175,8 @@ export class Projects extends Component {
                 Solutions
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Medicine</DropdownItem>
-                <DropdownItem>Real Estate</DropdownItem>
+                <DropdownItem onClick={(e)=>this.handleDropDownSelected(e)}>C#</DropdownItem>
+                <DropdownItem onClick={(e)=>this.handleDropDownSelected(e)}>F#</DropdownItem>
                 <DropdownItem>Automobiles</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>Show All</DropdownItem>
@@ -180,25 +194,30 @@ export class Projects extends Component {
               <Col xl={3} lg={4} md={4} sm={6} xs={12}>
                 <ProjectCard key={index}>
                   <CardHeader>
-                    <strong>{item.name}</strong>
-
-                    <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
-                      <span style={{ float: "right" }}>
-                        <i
-                          class="fab fa-github"
-                          style={{ fontSize: "28px", color: "#6699C7" }}
-                        />
-                      </span>
-                    </CardLink>
+                    <Row>
+                    <ColStyled md="8" lg="8" sm="8" xs="8" padding="0 0 0 15px">
+                      <strong>{item.name}</strong>
+                    </ColStyled>
+                    <ColStyled md="4" lg="4" sm="4" xs="4">
+                      <CardLink
+                        href={item.html_url}
+                        style={{ color: "#202A2E" }}
+                      >
+                        <span style={{ float: "right" }}>
+                          <i
+                            class="fab fa-github"
+                            style={{ fontSize: "28px", color: "#6699C7" }}
+                          />
+                        </span>
+                      </CardLink>
+                    </ColStyled>
+                    </Row>
                   </CardHeader>
-                  <CardBodyStyled >
-                    {/* <CardText>
-                        <b>Id:</b> {item.id}
-                      </CardText> */}
-                    <CardText >{item.description}</CardText>
+                  <CardBodyStyled>
+                    <CardText>{item.description}</CardText>
                   </CardBodyStyled>
-                  <Row style={{ padding: "4px 10px" }}>
-                    <Col lg="6" md="6" xs="6">
+                  <CardFooterStyled>
+                    <ColStyled lg="6" md="6" xs="6"  padding="0 0 0 15px">
                       {repoTech !== "Not Specified" && (
                         <TechBadge
                           color="info"
@@ -208,46 +227,42 @@ export class Projects extends Component {
                           {repoTech}
                         </TechBadge>
                       )}
-                    </Col>
-                    <Col lg="6" md="6" xs="6">
-                    <a href="#" onClick={e => this.handleToggleModal(
-                          item.name,
-                          item.description,
-                          item.html_url
-                        )}>See More...</a>
-                      {/* <Button
-                        className="float-right"
-                        color="secondary"
-                        size="md"
-                        onClick={e => this.handleToggleModal(
-                          item.name,
-                          item.description,
-                          item.html_url
-                        )}
-                        style={{
-                          padding: "3px 8px"
-                        }}
+                    </ColStyled>
+                    <ColStyled lg="6" md="6" xs="6" padding="0 0 0 0">
+                      <ButtonLink color="primary"
+                        onClick={e =>
+                          this.handleToggleModal(
+                            item.name,
+                            item.description,
+                            item.html_url
+                          )
+                        }
                       >
-                        See More
-                      </Button> */}
-                    </Col>
-                  </Row>
+                        See More...
+                      </ButtonLink>
+                    </ColStyled>
+                  </CardFooterStyled>
                 </ProjectCard>
               </Col>
             );
           })}
         </Row>
+        <Section marginTop="10%" padding="0">
+          <Footer />
+        </Section>
       </React.Fragment>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  repoCollection: state.github.repos
+  repoCollection: state.github.repos,
+  qry: state.qry
 });
 
 const mapDispatchToProps = {
-  getAllPublicRepos, getFilteredRepos
+    getAllPublicRepos: () => ({type: 'GET_GITHUB_REPOS'}), 
+    getFilteredRepos: (filter) => ({type: 'GET_FILTERED_REPOS', val: filter})
 };
 
 export default connect(

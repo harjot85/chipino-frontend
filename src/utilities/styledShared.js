@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Row, Button, CardBody } from "reactstrap";
+import { Row, Col, Button, CardBody } from "reactstrap";
 
 export const InfoPanelText = styled.div`
   position: relative;
@@ -17,6 +17,11 @@ export const PageHeading = styled.h1`
 
 export const Section = styled(Row)`
   padding: ${props => props.padding || "7% 2% 2% 2%"};
+  margin-top: ${props => props.marginTop};
+
+  @media (max-width: 1400px) {
+    text-align:  ${props => props.marginTop || "center"}; 
+  }
 `;
 
 export const Styles = {
@@ -32,7 +37,44 @@ export const ButtonStyled = styled(Button)`
   }
 `;
 
+export const ButtonLink = styled(Button)`
+  &&& {
+    background-color: transparent;
+    padding: 0;
+    color: #17a2b8;
+    border-color: transparent;
+    :hover {
+      text-decoration: underline;
+      background-color: transparent;
+    }
+  }
+`;
+
 export const CardBodyStyled = styled(CardBody)`
   overflow: auto;
   margin-bottom: 10%;
+  max-height: 56%;
+
+  @media (max-width: 1000px) {
+    max-height: 25%;
+  }
+`;
+
+export const CardFooterStyled = styled(Row)`
+  padding: 4px 10px;
+  bottom: 0px;
+  position: absolute;
+  width: 100%;
+`;
+
+export const ColStyled = styled(Col)`
+  &&& {
+    padding: ${props => props.padding || "0"};
+  }
+`;
+
+export const Text = styled.p`
+  color: ${props => props.textColor || "black"};
+  padding: ${props => props.padding || "0"};
+  margin-block-end: auto;
 `;

@@ -18,7 +18,7 @@ export class About extends Component {
     const { ...p } = this.props;
     const text = p.textCollection.map(textElement => ({
       key: textElement.id,
-      data: textElement.pageData
+      data: textElement.displayText
     }));
     const aboutText = text.filter(x => x.key === 101).map(x => x.data);
     return (

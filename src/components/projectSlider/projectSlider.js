@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Row, Col, CardHeader, CardLink, CardText, CardBody } from "reactstrap";
+import { Row, Col, CardHeader, CardLink, CardText } from "reactstrap";
 
 //Redux
 import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
@@ -11,7 +11,8 @@ import {
   Carousel,
   SliderButton,
   TechBadge,
-  TechBadgeHolder
+  TechBadgeHolder,
+  CardBodyStyled
 } from "./styles";
 
 import { getElementsPerScreen } from"../../utilities/functions";
@@ -89,15 +90,11 @@ export class ProjectSlider extends Component {
                       <CardHeader>
                         <strong>{item.name}</strong>
                       </CardHeader>
-                      <CardBody>
+                      <CardBodyStyled>
                         <CardText>
-                          <b>Id:</b> {item.id}
-                        </CardText>
-                        <CardText>
-                          <b>Desc: </b>
                           {item.description}
                         </CardText>
-                      </CardBody>
+                      </CardBodyStyled>
                       <TechBadgeHolder>
                         {repoTech !== "Not Specified" && (
                           <h5>
