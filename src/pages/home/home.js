@@ -57,7 +57,7 @@ export default class Home extends Component {
 
         <Section id="contact" style={Styles.row}>
           <Col lg="12" md="12" sm="12">
-            <PageHeading>Say Hello</PageHeading>
+            <PageHeading>Contact</PageHeading>
             <hr />
           </Col>
           <Col>
