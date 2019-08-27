@@ -18,13 +18,17 @@ import {
   ModalFooter
 } from "reactstrap";
 
+import Footer from "../../components/footer/footer";
+
 import styled from "styled-components";
 import {
   PageHeading,
   Section,
   Styles,
+  ColStyled,
   CardBodyStyled,
-  CardFooterStyled
+  CardFooterStyled,
+  ButtonLink
 } from "../../utilities/styledShared";
 
 //Redux
@@ -189,22 +193,30 @@ export class Projects extends Component {
               <Col xl={3} lg={4} md={4} sm={6} xs={12}>
                 <ProjectCard key={index}>
                   <CardHeader>
-                    <strong>{item.name}</strong>
-
-                    <CardLink href={item.html_url} style={{ color: "#202A2E" }}>
-                      <span style={{ float: "right" }}>
-                        <i
-                          class="fab fa-github"
-                          style={{ fontSize: "28px", color: "#6699C7" }}
-                        />
-                      </span>
-                    </CardLink>
+                    <Row>
+                    <ColStyled md="8" lg="8" sm="8" xs="8" padding="0 0 0 15px">
+                      <strong>{item.name}</strong>
+                    </ColStyled>
+                    <ColStyled md="4" lg="4" sm="4" xs="4">
+                      <CardLink
+                        href={item.html_url}
+                        style={{ color: "#202A2E" }}
+                      >
+                        <span style={{ float: "right" }}>
+                          <i
+                            class="fab fa-github"
+                            style={{ fontSize: "28px", color: "#6699C7" }}
+                          />
+                        </span>
+                      </CardLink>
+                    </ColStyled>
+                    </Row>
                   </CardHeader>
                   <CardBodyStyled>
                     <CardText>{item.description}</CardText>
                   </CardBodyStyled>
                   <CardFooterStyled>
-                    <Col lg="6" md="6" xs="6">
+                    <ColStyled lg="6" md="6" xs="6"  padding="0 0 0 15px">
                       {repoTech !== "Not Specified" && (
                         <TechBadge
                           color="info"
@@ -214,10 +226,9 @@ export class Projects extends Component {
                           {repoTech}
                         </TechBadge>
                       )}
-                    </Col>
-                    <Col lg="6" md="6" xs="6">
-                      <a
-                        href="#"
+                    </ColStyled>
+                    <ColStyled lg="6" md="6" xs="6" padding="0 0 0 0">
+                      <ButtonLink color="primary"
                         onClick={e =>
                           this.handleToggleModal(
                             item.name,
@@ -227,14 +238,17 @@ export class Projects extends Component {
                         }
                       >
                         See More...
-                      </a>
-                    </Col>
+                      </ButtonLink>
+                    </ColStyled>
                   </CardFooterStyled>
                 </ProjectCard>
               </Col>
             );
           })}
         </Row>
+        <Section marginTop="10%" padding="0">
+          <Footer />
+        </Section>
       </React.Fragment>
     );
   }

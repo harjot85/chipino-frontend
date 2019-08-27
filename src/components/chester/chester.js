@@ -7,12 +7,11 @@ import { getAllImages } from "../../redux/actions/media";
 import { Col, Row } from "reactstrap";
 
 const ChesterImage = styled.img`
-  width: 600px;
-  height: 650px;
+  width: 560px;
+  height: 600px;
 
   @media (max-width: 1400px) {
-    width: 500px;
-    height: 540px;  
+    display: none;
   }
 `;
 

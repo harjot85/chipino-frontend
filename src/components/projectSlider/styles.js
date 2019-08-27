@@ -65,5 +65,5 @@ export const Carousel = styled(ItemsCarousel)`
 export const CardBodyStyled = styled(CardBody)`
   overflow: hidden;
   margin-bottom: 10%;
-  max-height: 35%;
+  max-height: 31%;
 `;
