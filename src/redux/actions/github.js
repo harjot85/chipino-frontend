@@ -6,7 +6,7 @@ export function getAllPublicRepos(){
     }
 }
 
-export function getFilteredRepos(param){
+export function getFilteredRepos(){
     return {
         type: actionType.GET_FILTERED_REPOS
     }

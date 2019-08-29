@@ -31,11 +31,6 @@ import {
   ButtonLink
 } from "../../utilities/styledShared";
 
-//Redux
-import {
-  getAllPublicRepos,
-  getFilteredRepos
-} from "../../redux/actions/github";
 import { connect } from "react-redux";
 
 const ProjectCard = styled(Card)`
