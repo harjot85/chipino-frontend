@@ -39,25 +39,36 @@ export class HomeContentPanel extends Component {
 
     const config = p.configuration.map(c => ({
       key: c.id,
-      bootstrapClass: c.buttonClass
+      bootstrapClass: c.buttonClass,
+      headTitleFontSize: c.headTitleFontSize,
+      headTitleFontColor: c.headTitleFontColor,
+      subHeadTitleFontSize: c.subHeadTitleFontSize,
+      subHeadTitleFontColor: c.subHeadTitleFontColor,
     }));
 
     
     const bootstrapClass = config.map(x => x.bootstrapClass);
+
     const headText = text.filter(x => x.key === 103).map(x => x.data);
+    const headTitleFontSize = config.map(x => x.headTitleFontSize);
+    const headTitleTextFontColor = config.map(x => x.headTitleFontColor);
+
     const subText = text.filter(x => x.key === 102).map(x => x.data);
+    const subHeadTitleFontSize = config.map(x => x.subHeadTitleFontSize);
+    const subHeadTitleTextFontColor = config.map(x => x.subHeadTitleFontColor);
+
     const buttonText = text.filter(x => x.key === 107).map(x => x.data);
 
     return (
       <div>
         <Section padding="40% 0 0 0" style={Styles.row}>
           <Col>
-            <PageHeading>{headText}</PageHeading>
+            <PageHeading color={headTitleTextFontColor} size={headTitleFontSize}>{headText}</PageHeading>
           </Col>
         </Section>
         <Section padding="0 0 0 2%">
           <Col>
-            <InfoPanelText>{subText}</InfoPanelText>
+            <InfoPanelText color={subHeadTitleTextFontColor} size={subHeadTitleFontSize}>{subText}</InfoPanelText>
           </Col>
         </Section>
         <Section padding="20% 0 0 2%">

@@ -18,7 +18,7 @@ export const NavLinkStyled = styled(NavLink)`
   &&&& {
     color: #171717;
     border-bottom: 2px solid transparent;
-    
+
     :hover {
       border-bottom-color: ${props => props.bottomBorderColor || "#47a7fa"};
       color: #000;
@@ -30,7 +30,10 @@ export const BrandName = styled.div`
   border: 1px solid #d9dfe2;
   border-radius: 2%;
   padding: 10px 20px;
-  
+  &&& {
+    font-size: ${props => props.fontSize || "20px"};
+    color: ${props => props.fontColor || "grey"};
+  }
 `;
 
 export const ChipinoLogo = styled.img`
