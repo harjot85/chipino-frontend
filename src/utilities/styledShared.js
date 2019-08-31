@@ -5,9 +5,9 @@ export const InfoPanelText = styled.div`
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 24px;
   font-weight: 200;
-  color: black;
+  color: ${props => props.color || "black"};
+  font-size: ${props => props.size || "24px"};
 `;
 
 export const PageHeading = styled.h1`
@@ -75,6 +75,7 @@ export const ColStyled = styled(Col)`
 
 export const Text = styled.p`
   color: ${props => props.textColor || "black"};
+  font-size: ${props => props.fontSize || "12px"};
   padding: ${props => props.padding || "0"};
   margin-block-end: auto;
 `;
