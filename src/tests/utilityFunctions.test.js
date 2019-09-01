@@ -1,7 +1,9 @@
-import { getElementsPerScreen } from '../utilities/functions'
+import { getElementsPerScreen } from "../utilities/functions"
 
-test('should return a number when getElementsPerScreen() is called', () => {
+describe("should return a number between 0 and 6", () => {
+  test("testing getElementsPerScreen()", () => {
     const value = getElementsPerScreen()
     expect(value).toBeGreaterThan(0)
     expect(value).toBeLessThan(6)
+  })
 })
