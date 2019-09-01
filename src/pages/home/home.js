@@ -12,13 +12,39 @@ import ProjectSlider from "../../components/projectSlider/projectSlider";
 import { PageHeading, Section, Styles } from "../../utilities/styledShared";
 import { Separator } from "../../utilities/functions";
 
-export default class Home extends Component {
+//Redux
+import { getAllText } from "../../redux/actions/text";
+import { getConfiguration } from "../../redux/actions/configuration";
+import { connect } from "react-redux";
+
+export class Home extends Component {
   componentDidMount() {
     window.addEventListener("scroll", this.shadowOnScroll);
+    this.props.getAllText();
   }
 
   render() {
-    return (
+
+    const { ...p } = this.props;
+
+    const text = p.textCollection.map(textElement => ({
+      key: textElement.id,
+      data: textElement.displayText
+    }));
+
+    const about = text.filter(x => x.key === 106).map(x => x.data);
+    const projects = text.filter(x => x.key === 105).map(x => x.data);
+    const seeProjects = text.filter(x => x.key === 107).map(x => x.data);
+    const contact = text.filter(x => x.key === 108).map(x => x.data);
+
+    const config = p.configuration.map(c => ({
+      key: c.id,
+      bootstrapClass: c.projectSliderButtonsBootstrapClass,
+    }));
+
+    const bootstrapClass = config.map(x => x.bootstrapClass);
+
+      return (
       <React.Fragment>
         <div style={{ height: "100vh" }}>
           <Section id="home" padding="2% 2% 0 2%" style={Styles.row}>
@@ -31,20 +57,25 @@ export default class Home extends Component {
             {Separator()}
           </Section>
         </div>
+
         <Section id="about" style={Styles.row}>
+        <Col lg="12" md="12" sm="12">
+            <PageHeading>{about}</PageHeading>
+            <hr/>
+          </Col>
           <Col>
             <About />
           </Col>
         </Section>
 
         <Section id="projects" padding="7% 2% 20% 2%" style={Styles.row}>
-          <Col lg="8" md="8" sm="8">
-            <PageHeading>Projects</PageHeading>
+          <Col lg="8" md="8" sm="6" xs="6">
+            <PageHeading>{projects}</PageHeading>
           </Col>
-          <Col lg="4" md="4" sm="4" className="text-right">
+          <Col lg="4" md="4" sm="6"  xs="6" className="text-right">
              <a href="/projects">
-            <Button outline color="info" size="lg">
-                See All >
+            <Button outline color={bootstrapClass} size="lg">
+               {seeProjects}
               </Button>
               </a>
           </Col>
@@ -57,7 +88,7 @@ export default class Home extends Component {
 
         <Section id="contact" style={Styles.row}>
           <Col lg="12" md="12" sm="12">
-            <PageHeading>Say Hello</PageHeading>
+            <PageHeading>{contact}</PageHeading>
             <hr />
           </Col>
           <Col>
@@ -72,3 +103,18 @@ export default class Home extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  textCollection: state.text.allText,
+  configuration: state.configuration.configuration
+});
+
+const mapDispatchToProps = {
+  getAllText,
+  getConfiguration
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Home);

@@ -5,9 +5,9 @@ export const InfoPanelText = styled.div`
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 24px;
   font-weight: 200;
-  color: black;
+  color: ${props => props.color || "black"};
+  font-size: ${props => props.size || "24px"};
 `;
 
 export const PageHeading = styled.h1`
@@ -19,7 +19,10 @@ export const Section = styled(Row)`
   padding: ${props => props.padding || "7% 2% 2% 2%"};
   margin-top: ${props => props.marginTop};
 
-  @media (max-width: 1400px) {
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) {
     text-align:  ${props => props.marginTop || "center"}; 
   }
 `;
@@ -75,6 +78,7 @@ export const ColStyled = styled(Col)`
 
 export const Text = styled.p`
   color: ${props => props.textColor || "black"};
+  font-size: ${props => props.fontSize || "12px"};
   padding: ${props => props.padding || "0"};
   margin-block-end: auto;
 `;

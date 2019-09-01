@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Collapse, NavbarToggler, NavbarBrand, Nav } from "reactstrap";
 
 //Components
-import logo from "../../resources/chester.png";
 import * as constant from "../../utilities/constants";
 import {
   NavbarStyled,
@@ -15,6 +14,8 @@ import {
 //Redux
 import { connect } from "react-redux";
 import { getNavbarItems } from "../../redux/actions/navbar";
+import { getConfiguration } from "../../redux/actions/configuration";
+import { getAllImages } from "../../redux/actions/media";
 
 export class Navigation extends Component {
   constructor(props) {
@@ -35,7 +36,10 @@ export class Navigation extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.shadowOnScroll);
-    this.props.getNavbarItems();
+
+    const { ...p } = this.props;
+    p.getNavbarItems();
+    p.getConfiguration();
   }
 
   toggle() {
@@ -54,6 +58,28 @@ export class Navigation extends Component {
       bottomBorderColor: item.bottomBorderColor
     }));
 
+    const config = p.configuration.map(c => ({
+      key: c.id,
+      brandText: c.navbar.BrandText,
+      brandFontSize: c.navbar.BrandFontSize,
+      brandFontColor: c.navbar.BrandFontColor
+    }));
+    
+    const brandText = config.map(x => x.brandText);
+    const brandFontSize = config.map(x => x.brandFontSize);
+    const brandFontColor = config.map(x => x.brandFontColor);
+
+
+    const logo = p.images.map(image => ({
+      key: image.id,
+      file: image.fileContent,
+      type: image.fileType
+    }));
+
+    const logoData = logo.filter(x => x.key === 202).map(x => x.file);
+    const logoType = logo.filter(x => x.key === 202).map(x => x.type);
+    const navbarLogo = logoType + logoData;
+
     return (
       <NavbarStyled
         color="white"
@@ -63,17 +89,22 @@ export class Navigation extends Component {
         style={{ boxShadow: this.state.shadow }}
       >
         <NavbarBrand href="/">
-          <ChipinoLogo src={logo} alt="Chipino" />
+          <ChipinoLogo src={navbarLogo} alt="Chipino" />
         </NavbarBrand>
         <NavbarBrand href="/">
-          <BrandName>Chipino Meshworks</BrandName>
+          <BrandName fontSize={brandFontSize} fontColor={brandFontColor}>
+            {brandText}
+          </BrandName>
         </NavbarBrand>
         <NavbarToggler onClick={this.toggle} />
         <Collapse isOpen={this.state.isOpen} navbar>
-          <Nav className="ml-auto" navbar>      
+          <Nav className="ml-auto" navbar>
             {navbar.map(menuItem => (
               <NavItemStyled>
-                <NavLinkStyled href={menuItem.routeTo} bottomBorderColor={menuItem.bottomBorderColor}>
+                <NavLinkStyled
+                  href={menuItem.routeTo}
+                  bottomBorderColor={menuItem.bottomBorderColor}
+                >
                   {menuItem.menuItem}
                 </NavLinkStyled>
               </NavItemStyled>
@@ -85,11 +116,15 @@ export class Navigation extends Component {
   }
 }
 const mapStateToProps = state => ({
-  navbar: state.navbar.navbar
+  navbar: state.navbar.navbar,
+  configuration: state.configuration.configuration,
+  images: state.media.images
 });
 
 const mapDispatchToProps = {
-  getNavbarItems
+  getNavbarItems,
+  getConfiguration,
+  getAllImages
 };
 export default connect(
   mapStateToProps,

@@ -8,10 +8,14 @@ import { Text, ColStyled } from "../../utilities/styledShared";
 //Redux
 import { connect } from "react-redux";
 import { getAllSocialMediaIcons } from "../../redux/actions/socialMedia";
+import { getConfiguration } from "../../redux/actions/configuration";
+import { getAllText } from "../../redux/actions/text";
 
 export class Footer extends Component {
   componentDidMount() {
-    this.props.getAllSocialMediaIcons();
+    const { ...p } = this.props;
+    p.getAllSocialMediaIcons();
+    p.getAllText();
   }
 
   render() {
@@ -23,6 +27,23 @@ export class Footer extends Component {
       linkTo: favicon.linkTo,
       hoverColor: favicon.hoverColor
     }));
+
+    const text = p.textCollection.map(textElement => ({
+      key: textElement.id,
+      data: textElement.displayText
+    }));
+
+    const config = p.configuration.map(c => ({
+      key: c.id,
+      footerCopyrightFontSize: c.footerCopyrightFontSize,
+      footerCopyrightFontColor: c.footerCopyrightFontColor
+    }));
+    
+    const footerCopyrightFontSize = config.map(x => x.footerCopyrightFontSize);
+    const footerCopyrightFontColor = config.map(x => x.footerCopyrightFontColor);
+    console.log(config)
+
+    const copyrightText = text.filter(x => x.key === 109).map(x => x.data);
 
     return (
       <>
@@ -44,17 +65,7 @@ export class Footer extends Component {
           ))}
           <Row>
             <ColStyled padding="0 25% 2% 25%">
-              <Text textColor="grey"> 
-              Copyright information placeholder
-              Copyright information placeholder
-              Copyright information placeholder
-              Copyright information placeholder
-              Copyright information placeholder
-
-              Copyright information placeholder
-              Copyright information placeholder
-              Copyright information placeholder
-              </Text>
+              <Text fontSize={footerCopyrightFontSize} textColor={footerCopyrightFontColor}> {copyrightText}</Text>
             </ColStyled>
           </Row>
         </FooterStyled>
@@ -63,11 +74,15 @@ export class Footer extends Component {
   }
 }
 const mapStateToProps = state => ({
-  socialMedia: state.socialMedia.socialMediaIcons
+  socialMedia: state.socialMedia.socialMediaIcons,
+  textCollection: state.text.allText,
+  configuration: state.configuration.configuration
 });
 
 const mapDispatchToProps = {
-  getAllSocialMediaIcons
+  getAllSocialMediaIcons,
+  getAllText,
+  getConfiguration
 };
 
 export default connect(
