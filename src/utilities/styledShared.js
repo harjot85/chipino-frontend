@@ -19,7 +19,10 @@ export const Section = styled(Row)`
   padding: ${props => props.padding || "7% 2% 2% 2%"};
   margin-top: ${props => props.marginTop};
 
-  @media (max-width: 1400px) {
+  @media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 736px) 
+  and (-webkit-min-device-pixel-ratio: 3) {
     text-align:  ${props => props.marginTop || "center"}; 
   }
 `;

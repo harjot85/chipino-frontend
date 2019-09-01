@@ -3,6 +3,7 @@ import { Row, Col, CardHeader, CardLink, CardText } from "reactstrap";
 
 //Redux
 import { getAllPublicRepos, getFilteredRepos } from "../../redux/actions/github";
+import { getConfiguration } from "../../redux/actions/configuration";
 import { connect } from "react-redux";
 
 //Custom Components
@@ -16,6 +17,7 @@ import {
 } from "./styles";
 
 import { getElementsPerScreen } from"../../utilities/functions";
+
 
 export class ProjectSlider extends Component {
   constructor(props) {
@@ -55,6 +57,13 @@ export class ProjectSlider extends Component {
     const { ...p } = this.props;
     const rs = p.repoCollection;
 
+    const config = p.configuration.map(c => ({
+      key: c.id,
+      bootstrapClass: c.projectSliderButtonsBootstrapClass,
+    }));
+
+    const bootstrapClass = config.map(x => x.bootstrapClass);
+
     return (
       <>
         <Carousel
@@ -68,12 +77,12 @@ export class ProjectSlider extends Component {
           activePosition={"center"}
           chevronWidth={99}
           rightChevron={
-            <SliderButton outline color="info" size="lg">
+            <SliderButton outline color={bootstrapClass} size="lg">
               {">"}
             </SliderButton>
           }
           leftChevron={
-            <SliderButton outline color="info" size="lg">
+            <SliderButton outline color={bootstrapClass} size="lg">
               {"<"}
             </SliderButton>
           }
@@ -115,12 +124,14 @@ export class ProjectSlider extends Component {
 }
 
 const mapStateToProps = state => ({
-  repoCollection: state.github.repos
+  repoCollection: state.github.repos,
+  configuration: state.configuration.configuration
 });
 
 const mapDispatchToProps = {
   getAllPublicRepos, 
-  getFilteredRepos
+  getFilteredRepos,
+  getConfiguration
 };
 
 export default connect(
