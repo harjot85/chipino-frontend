@@ -39,12 +39,11 @@ export class Home extends Component {
 
     const config = p.configuration.map(c => ({
       key: c.id,
-      bootstrapClass: c.projectLinkButtonClass,
+      bootstrapClass: c.projectSliderButtonsBootstrapClass,
     }));
 
     const bootstrapClass = config.map(x => x.bootstrapClass);
 
-    
       return (
       <React.Fragment>
         <div style={{ height: "100vh" }}>
@@ -70,10 +69,10 @@ export class Home extends Component {
         </Section>
 
         <Section id="projects" padding="7% 2% 20% 2%" style={Styles.row}>
-          <Col lg="8" md="8" sm="8">
+          <Col lg="8" md="8" sm="6" xs="6">
             <PageHeading>{projects}</PageHeading>
           </Col>
-          <Col lg="4" md="4" sm="4" className="text-right">
+          <Col lg="4" md="4" sm="6"  xs="6" className="text-right">
              <a href="/projects">
             <Button outline color={bootstrapClass} size="lg">
                {seeProjects}

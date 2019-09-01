@@ -32,6 +32,8 @@ import {
 } from "../../utilities/styledShared";
 
 import { connect } from "react-redux";
+import { getConfiguration } from "../../redux/actions/configuration";
+import { getAllImages } from "../../redux/actions/media";
 
 const ProjectCard = styled(Card)`
   display: inline-block;
@@ -75,7 +77,7 @@ export class Projects extends Component {
     });
   };
 
-  handleDropDownSelected = (event)=> {
+  handleDropDownSelected = event => {
     const { ...p } = this.props;
     p.getFilteredRepos(event.target.innerHTML);
   };
@@ -99,9 +101,10 @@ export class Projects extends Component {
   };
 
   componentDidMount() {
-    console.log("in Component did mount")
+    console.log("in Component did mount");
     const { ...p } = this.props;
     p.getAllPublicRepos();
+    p.getAllImages();
   }
 
   render() {
@@ -170,8 +173,12 @@ export class Projects extends Component {
                 Solutions
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={(e)=>this.handleDropDownSelected(e)}>C#</DropdownItem>
-                <DropdownItem onClick={(e)=>this.handleDropDownSelected(e)}>F#</DropdownItem>
+                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
+                  C#
+                </DropdownItem>
+                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
+                  F#
+                </DropdownItem>
                 <DropdownItem>Automobiles</DropdownItem>
                 <DropdownItem divider />
                 <DropdownItem>Show All</DropdownItem>
@@ -190,29 +197,35 @@ export class Projects extends Component {
                 <ProjectCard key={index}>
                   <CardHeader>
                     <Row>
-                    <ColStyled md="8" lg="8" sm="8" xs="8" padding="0 0 0 15px">
-                      <strong>{item.name}</strong>
-                    </ColStyled>
-                    <ColStyled md="4" lg="4" sm="4" xs="4">
-                      <CardLink
-                        href={item.html_url}
-                        style={{ color: "#202A2E" }}
+                      <ColStyled
+                        md="8"
+                        lg="8"
+                        sm="8"
+                        xs="8"
+                        padding="0 0 0 15px"
                       >
-                        <span style={{ float: "right" }}>
-                          <i
-                            class="fab fa-github"
-                            style={{ fontSize: "28px", color: "#6699C7" }}
-                          />
-                        </span>
-                      </CardLink>
-                    </ColStyled>
+                        <strong>{item.name}</strong>
+                      </ColStyled>
+                      <ColStyled md="4" lg="4" sm="4" xs="4">
+                        <CardLink
+                          href={item.html_url}
+                          style={{ color: "#202A2E" }}
+                        >
+                          <span style={{ float: "right" }}>
+                            <i
+                              class="fab fa-github"
+                              style={{ fontSize: "28px", color: "#6699C7" }}
+                            />
+                          </span>
+                        </CardLink>
+                      </ColStyled>
                     </Row>
                   </CardHeader>
                   <CardBodyStyled>
                     <CardText>{item.description}</CardText>
                   </CardBodyStyled>
                   <CardFooterStyled>
-                    <ColStyled lg="6" md="6" xs="6"  padding="0 0 0 15px">
+                    <ColStyled lg="6" md="6" xs="6" padding="0 0 0 15px">
                       {repoTech !== "Not Specified" && (
                         <TechBadge
                           color="info"
@@ -224,7 +237,8 @@ export class Projects extends Component {
                       )}
                     </ColStyled>
                     <ColStyled lg="6" md="6" xs="6" padding="0 0 0 0">
-                      <ButtonLink color="primary"
+                      <ButtonLink
+                        color="primary"
                         onClick={e =>
                           this.handleToggleModal(
                             item.name,
@@ -252,12 +266,16 @@ export class Projects extends Component {
 
 const mapStateToProps = state => ({
   repoCollection: state.github.repos,
-  qry: state.qry
+  qry: state.qry,
+  configuration: state.configuration.configuration,
+  images: state.media.images
 });
 
 const mapDispatchToProps = {
-    getAllPublicRepos: () => ({type: 'GET_GITHUB_REPOS'}), 
-    getFilteredRepos: (filter) => ({type: 'GET_FILTERED_REPOS', val: filter})
+  getConfiguration,
+  getAllImages,
+  getAllPublicRepos: () => ({ type: "GET_GITHUB_REPOS" }),
+  getFilteredRepos: filter => ({ type: "GET_FILTERED_REPOS", val: filter })
 };
 
 export default connect(
