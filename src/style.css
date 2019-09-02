@@ -1,11 +1,15 @@
 #app::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
-#app{
-    scrollbar-width: none;
+#app {
+  scrollbar-width: none;
+}
+
+html {
+  scroll-behavior: smooth;
 }

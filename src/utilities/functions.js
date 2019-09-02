@@ -21,7 +21,9 @@ export function Separator() {
     <Col style={{ paddingTop: "4%", textAlign: "center" }}>
       {" "}
       <h1>
+      <a href="#about">
         <i style={{ color: "#C4C4C4" }} class="fas fa-chevron-down" />
+        </a>
       </h1>{" "}
     </Col>
   );
