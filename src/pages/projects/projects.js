@@ -161,7 +161,8 @@ export class Projects extends Component {
         </Section>
 
         <Section padding="0 2% 0 2%" style={Styles.row}>
-          <Col>
+          
+          <Col md='10'> 
             <ButtonDropdown
               isOpen={this.state.dropdownLangOpen}
               toggle={()=>this.toggleDropDown('lang')}
@@ -199,19 +200,20 @@ export class Projects extends Component {
                 </DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
+          </Col>
+          <Col md='2'>
             <Button
-              outline
               color="primary"
               size="md"
               style={{ marginRight: "1%" }}
+              className='float-right'
               onClick={this.clearFilters}
             >
               Clear
             </Button>
-            <hr />
           </Col>
         </Section>
-
+        <Row style={{padding:'0 3% 0 3%'}}><Col><hr/></Col></Row>
         <Row style={{ margin: "0 5%" }}>
           {rs.map((item, index) => {
             let repoTech =
