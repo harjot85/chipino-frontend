@@ -61,20 +61,30 @@ export class Projects extends Component {
 
     this.state = {
       dropdownOpen: false,
+      dropdownLangOpen: false,
       modal: false,
       qry: "",
       repo: {
         name: "",
         description: "",
         link: ""
-      }
+      },
+      types: ['Front-End','Back-End'],
+      language: ['C#','F#','JavaScript','Python']
     };
   }
 
-  toggleDropDown = () => {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
+  toggleDropDown = (myDd) => {
+    console.log(myDd);
+    if (myDd === 'sol') {
+      this.setState({
+        dropdownOpen: !this.state.dropdownOpen
+      });
+    } else if (myDd === 'lang'){
+      this.setState({
+        dropdownLangOpen: !this.state.dropdownLangOpen
+      });
+    }
   };
 
   handleDropDownSelected = event => {
@@ -98,6 +108,12 @@ export class Projects extends Component {
     });
 
     this.toggleModal();
+  };
+
+  clearFilters = () => {
+    console.log('In clear Filters');
+    const { ...p } = this.props;
+    p.getAllPublicRepos();
   };
 
   componentDidMount() {
@@ -145,28 +161,25 @@ export class Projects extends Component {
         </Section>
 
         <Section padding="0 2% 0 2%" style={Styles.row}>
-          <Col>
-            <Button
-              outline
-              color="primary"
-              size="md"
+          
+          <Col md='10'> 
+            <ButtonDropdown
+              isOpen={this.state.dropdownLangOpen}
+              toggle={()=>this.toggleDropDown('lang')}
               style={{ marginRight: "1%" }}
             >
-              Technology
-            </Button>
-
-            <Button
-              outline
-              color="primary"
-              size="md"
-              style={{ marginRight: "1%" }}
-            >
-              Most Recent
-            </Button>
-
+              <DropdownToggle caret color="primary">
+                Type
+              </DropdownToggle>
+              <DropdownMenu>
+                <DropdownItem>Language</DropdownItem>
+                <DropdownItem>Technology</DropdownItem>
+              </DropdownMenu>
+            </ButtonDropdown>
+            
             <ButtonDropdown
               isOpen={this.state.dropdownOpen}
-              toggle={this.toggleDropDown}
+              toggle={()=>this.toggleDropDown('sol')}
               style={{ marginRight: "1%" }}
             >
               <DropdownToggle caret color="primary">
@@ -179,15 +192,28 @@ export class Projects extends Component {
                 <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
                   F#
                 </DropdownItem>
-                <DropdownItem>Automobiles</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Show All</DropdownItem>
+                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
+                  JavaScript
+                </DropdownItem>
+                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
+                  Python
+                </DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
-            <hr />
+          </Col>
+          <Col md='2'>
+            <Button
+              color="primary"
+              size="md"
+              style={{ marginRight: "1%" }}
+              className='float-right'
+              onClick={this.clearFilters}
+            >
+              Clear
+            </Button>
           </Col>
         </Section>
-
+        <Row style={{padding:'0 3% 0 3%'}}><Col><hr/></Col></Row>
         <Row style={{ margin: "0 5%" }}>
           {rs.map((item, index) => {
             let repoTech =
