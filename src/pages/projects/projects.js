@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+
+//STYLES
 import {
   Row,
   Col,
-  Badge,
-  Card,
   CardHeader,
   CardLink,
   CardText,
@@ -17,10 +17,6 @@ import {
   ModalBody,
   ModalFooter
 } from "reactstrap";
-
-import Footer from "../../components/footer/footer";
-
-import styled from "styled-components";
 import {
   PageHeading,
   Section,
@@ -30,30 +26,15 @@ import {
   CardFooterStyled,
   ButtonLink
 } from "../../utilities/styledShared";
+import { FilterValuesHolder, ProjectCard, TechBadge } from "./styled";
 
+//COMPONENTS
+import Footer from "../../components/footer/footer";
+
+//REDUX
 import { connect } from "react-redux";
 import { getConfiguration } from "../../redux/actions/configuration";
 import { getAllImages } from "../../redux/actions/media";
-
-const ProjectCard = styled(Card)`
-  display: inline-block;
-  height: 300px;
-  width: 240px;
-  background-color: white;
-  margin: auto;
-  margin-bottom: 8%;
-  position: relative;
-
-  @media (max-width: 1000px) {
-    height: 260px;
-    width: 220px;
-  }
-`;
-
-const TechBadge = styled(Badge)`
-  margin-top: 2px;
-  box-shadow: 0 0 3px #07c;
-`;
 
 export class Projects extends Component {
   constructor(props) {
@@ -64,23 +45,24 @@ export class Projects extends Component {
       dropdownLangOpen: false,
       modal: false,
       qry: "",
+      filterBadge: "",
       repo: {
         name: "",
         description: "",
         link: ""
       },
-      types: ['Front-End','Back-End'],
-      language: ['C#','F#','JavaScript','Python']
+      types: ["Front-End", "Back-End"],
+      language: ["C#", "F#", "JavaScript", "Python"]
     };
   }
 
-  toggleDropDown = (myDd) => {
+  toggleDropDown = myDd => {
     console.log(myDd);
-    if (myDd === 'sol') {
+    if (myDd === "sol") {
       this.setState({
         dropdownOpen: !this.state.dropdownOpen
       });
-    } else if (myDd === 'lang'){
+    } else if (myDd === "lang") {
       this.setState({
         dropdownLangOpen: !this.state.dropdownLangOpen
       });
@@ -89,7 +71,10 @@ export class Projects extends Component {
 
   handleDropDownSelected = event => {
     const { ...p } = this.props;
-    p.getFilteredRepos(event.target.innerHTML);
+    const filterValue = event.target.innerHTML;
+
+    p.getFilteredRepos(filterValue);
+    this.setState({ filterBadge: filterValue });
   };
 
   toggleModal = () => {
@@ -111,9 +96,10 @@ export class Projects extends Component {
   };
 
   clearFilters = () => {
-    console.log('In clear Filters');
+    console.log("In clear Filters");
     const { ...p } = this.props;
     p.getAllPublicRepos();
+    this.setState({ filterBadge: "" });
   };
 
   componentDidMount() {
@@ -161,14 +147,13 @@ export class Projects extends Component {
         </Section>
 
         <Section padding="0 2% 0 2%" style={Styles.row}>
-          
-          <Col md='10'> 
+          <Col md="10">
             <ButtonDropdown
               isOpen={this.state.dropdownLangOpen}
-              toggle={()=>this.toggleDropDown('lang')}
+              toggle={() => this.toggleDropDown("lang")}
               style={{ marginRight: "1%" }}
             >
-              <DropdownToggle caret color="primary">
+              <DropdownToggle caret color="info">
                 Type
               </DropdownToggle>
               <DropdownMenu>
@@ -176,13 +161,13 @@ export class Projects extends Component {
                 <DropdownItem>Technology</DropdownItem>
               </DropdownMenu>
             </ButtonDropdown>
-            
+
             <ButtonDropdown
               isOpen={this.state.dropdownOpen}
-              toggle={()=>this.toggleDropDown('sol')}
+              toggle={() => this.toggleDropDown("sol")}
               style={{ marginRight: "1%" }}
             >
-              <DropdownToggle caret color="primary">
+              <DropdownToggle caret color="info">
                 Solutions
               </DropdownToggle>
               <DropdownMenu>
@@ -201,19 +186,39 @@ export class Projects extends Component {
               </DropdownMenu>
             </ButtonDropdown>
           </Col>
-          <Col md='2'>
-            <Button
-              color="primary"
-              size="md"
-              style={{ marginRight: "1%" }}
-              className='float-right'
-              onClick={this.clearFilters}
-            >
-              Clear
-            </Button>
+          <Col md="2">
+            {this.state.filterBadge && (
+              <Button
+                color="primary"
+                size="md"
+                style={{ marginRight: "1%" }}
+                className="float-right"
+                onClick={this.clearFilters}
+              >
+                Clear
+              </Button>
+            )}
           </Col>
         </Section>
-        <Row style={{padding:'0 3% 0 3%'}}><Col><hr/></Col></Row>
+
+        {this.state.filterBadge && (
+          <Section padding="0 2%" style={Styles.row}>
+            <FilterValuesHolder>
+              <span>Search results for:</span>
+              <Col lg="6" md="6">
+                <TechBadge padding="5px 10px" outline color="info">
+                  {this.state.filterBadge}
+                </TechBadge>
+              </Col>
+            </FilterValuesHolder>
+          </Section>
+        )}
+
+        <Row style={{ padding: "0 3% 0 3%" }}>
+          <Col>
+            <hr />
+          </Col>
+        </Row>
         <Row style={{ margin: "0 5%" }}>
           {rs.map((item, index) => {
             let repoTech =
