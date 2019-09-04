@@ -41,7 +41,6 @@ export class Footer extends Component {
     
     const footerCopyrightFontSize = config.map(x => x.footerCopyrightFontSize);
     const footerCopyrightFontColor = config.map(x => x.footerCopyrightFontColor);
-    console.log(config)
 
     const copyrightText = text.filter(x => x.key === 109).map(x => x.data);
 

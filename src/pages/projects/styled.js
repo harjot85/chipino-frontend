@@ -30,6 +30,7 @@ export const TechBadge = styled(Badge)`
   box-shadow: 0 0 3px #07c;
   &&& {
     padding: ${props => props.padding};
+    margin-left: ${props => props.marginLeft};
   }
 `;
 
