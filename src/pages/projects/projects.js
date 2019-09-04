@@ -26,7 +26,7 @@ import {
   CardFooterStyled,
   ButtonLink
 } from "../../utilities/styledShared";
-import { FilterValuesHolder, ProjectCard, TechBadge } from "./styled";
+import { FilterValuesHolder, ProjectCard, TechBadge, DropdownMenuStyled } from "./styled";
 
 //COMPONENTS
 import Footer from "../../components/footer/footer";
@@ -165,14 +165,40 @@ export class Projects extends Component {
             <ButtonDropdown
               isOpen={this.state.dropdownOpen}
               toggle={() => this.toggleDropDown("sol")}
-              style={{ marginRight: "1%" }}
+               style={{ marginRight: "1%" }}
             >
               <DropdownToggle caret color="info">
                 Solutions
               </DropdownToggle>
-              <DropdownMenu>
+              <DropdownMenuStyled 
+                modifiers={{
+                  setMaxHeight: {
+                    enabled: true,
+                    order: 890,
+                    fn: data => {
+                      return {
+                        ...data,
+                        styles: {
+                          ...data.styles,
+                          overflow: "auto",
+                          maxHeight: 200
+                        }
+                      };
+                    }
+                  }
+                }}
+              >
                 <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
                   C#
+                </DropdownItem>
+                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
+                  Brain Fuck
+                </DropdownItem>
+                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
+                  Go
+                </DropdownItem>
+                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
+                  Haskell
                 </DropdownItem>
                 <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
                   F#
@@ -183,7 +209,7 @@ export class Projects extends Component {
                 <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
                   Python
                 </DropdownItem>
-              </DropdownMenu>
+              </DropdownMenuStyled>
             </ButtonDropdown>
           </Col>
           <Col md="2">

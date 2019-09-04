@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Badge, Card } from "reactstrap";
+import { Badge, Card, DropdownMenu } from "reactstrap";
 
 export const FilterValuesHolder = styled.div`
   padding: 15px;
@@ -30,5 +30,26 @@ export const TechBadge = styled(Badge)`
   box-shadow: 0 0 3px #07c;
   &&& {
     padding: ${props => props.padding};
+  }
+`;
+
+export const DropdownMenuStyled = styled(DropdownMenu)`
+  /* Scroll Bar */
+
+  &&& {
+    ::-webkit-scrollbar {
+      display: block;
+      width: 2px;
+      height: 0px;
+    }
+  }
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #17a2b8;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
   }
 `;
