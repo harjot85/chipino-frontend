@@ -26,7 +26,12 @@ import {
   CardFooterStyled,
   ButtonLink
 } from "../../utilities/styledShared";
-import { FilterValuesHolder, ProjectCard, TechBadge } from "./styled";
+import {
+  FilterValuesHolder,
+  ProjectCard,
+  TechBadge,
+  DropdownMenuStyled
+} from "./styled";
 
 //COMPONENTS
 import Footer from "../../components/footer/footer";
@@ -45,24 +50,24 @@ export class Projects extends Component {
       dropdownLangOpen: false,
       modal: false,
       qry: "",
-      filterBadge: "",
+      dropDownOnefilter: "",
+      dropDownTwofilter: "",
       repo: {
         name: "",
         description: "",
         link: ""
       },
-      types: ["Proj.Types", "Language"],
+      types: ["Project Type", "Language"],
       language: []
     };
   }
 
-  toggleDropDown = myDd => {
-    console.log(myDd);
-    if (myDd === "sol") {
+  toggleDropDown = dropdown => {
+    if (dropdown === "sol") {
       this.setState({
         dropdownOpen: !this.state.dropdownOpen
       });
-    } else if (myDd === "lang") {
+    } else if (dropdown === "lang") {
       this.setState({
         dropdownLangOpen: !this.state.dropdownLangOpen
       });
@@ -74,16 +79,27 @@ export class Projects extends Component {
     const filterValue = event.target.innerHTML;
 
     p.getFilteredRepos(filterValue);
-    this.setState({ filterBadge: filterValue });
+    this.setState({ dropDownTwofilter: filterValue });
   };
 
-  change = event => {
-    console.log('Value in change fn: ' + event.target.innerHTML);
-    let myVal = event.target.innerHTML;
-    if(myVal==="Language")
-      this.setState({language: ["C#","F#","JavaScript","Python", "Django"]});
-    else
-      this.setState({language: ["FrontEnd","BackEnd"]});
+  handleDropdownOneSelected = event => {
+    const filterValue = event.target.innerHTML;
+
+    filterValue === "Language"
+      ? this.setState({
+          language: [
+            "C#",
+            "F#",
+            "BrainFuck",
+            "Haskell",
+            "JavaScript",
+            "Python",
+            "Django"
+          ]
+        })
+      : this.setState({ language: ["FrontEnd", "BackEnd"] });
+
+    this.setState({ dropDownOnefilter: filterValue });
   };
 
   toggleModal = () => {
@@ -105,14 +121,14 @@ export class Projects extends Component {
   };
 
   clearFilters = () => {
-    console.log("In clear Filters");
     const { ...p } = this.props;
     p.getAllPublicRepos();
-    this.setState({ filterBadge: "" });
+    this.setState({ dropDownTwofilter: "" });
+    this.setState({ dropDownOnefilter: "" });
+    this.setState({ language: [] });
   };
 
   componentDidMount() {
-    console.log("in Component did mount");
     const { ...p } = this.props;
     p.getAllPublicRepos();
     p.getAllImages();
@@ -168,46 +184,67 @@ export class Projects extends Component {
                 Type
               </DropdownToggle>
               <DropdownMenu>
-                {dp_types.map((it, index)=>{
-                    return(
-                      <DropdownItem 
-                        key={index} 
-                        onClick={this.change} 
-                        value={this.state.value}>
-                        {it}
-                      </DropdownItem>
-                    );
-                  })
-                }
+                {dp_types.map((it, index) => {
+                  return (
+                    <DropdownItem
+                      key={index}
+                      onClick={this.handleDropdownOneSelected}
+                      value={this.state.value}
+                    >
+                      {it}
+                    </DropdownItem>
+                  );
+                })}
               </DropdownMenu>
             </ButtonDropdown>
 
-            <ButtonDropdown
-              isOpen={this.state.dropdownOpen}
-              toggle={() => this.toggleDropDown("sol")}
-              style={{ marginRight: "1%" }}
-            >
-              <DropdownToggle caret color="info">
-                Solutions
-              </DropdownToggle>
-              <DropdownMenu>
-                {dp_lang.map((it, index) => {
-                  return(
-                    <DropdownItem 
-                      key={index}
-                      onClick={(e) => this.handleDropDownSelected(e)}>
-                      {it}
-                    </DropdownItem>
+            {this.state.language.length > 0 && (
+              <ButtonDropdown
+                isOpen={this.state.dropdownOpen}
+                toggle={() => this.toggleDropDown("sol")}
+                style={{ marginRight: "1%" }}
+              >
+                <DropdownToggle caret color="info">
+                  Solutions
+                </DropdownToggle>
+
+                <DropdownMenuStyled
+                  modifiers={{
+                    setMaxHeight: {
+                      enabled: true,
+                      order: 890,
+                      fn: data => {
+                        return {
+                          ...data,
+                          styles: {
+                            ...data.styles,
+                            overflow: "auto",
+                            maxHeight: 200
+                          }
+                        };
+                      }
+                    }
+                  }}
+                >
+                  {dp_lang.map((it, index) => {
+                    return (
+                      <DropdownItem
+                        key={index}
+                        onClick={e => this.handleDropDownSelected(e)}
+                      >
+                        {it}
+                      </DropdownItem>
                     );
-                  })
-                }
-              </DropdownMenu>
-            </ButtonDropdown>
+                  })}
+                </DropdownMenuStyled>
+              </ButtonDropdown>
+            )}
           </Col>
           <Col md="2">
-            {this.state.filterBadge && (
+            {this.state.dropDownTwofilter && (
               <Button
-                color="primary"
+                outline
+                color="info"
                 size="md"
                 style={{ marginRight: "1%" }}
                 className="float-right"
@@ -219,21 +256,29 @@ export class Projects extends Component {
           </Col>
         </Section>
 
-        {this.state.filterBadge && (
+        {this.state.dropDownOnefilter && (
           <Section padding="0 2%" style={Styles.row}>
             <FilterValuesHolder>
               <span>Search results for:</span>
               <Col lg="6" md="6">
                 <TechBadge padding="5px 10px" outline color="info">
-                  {this.state.filterBadge}
+                  {this.state.dropDownOnefilter}
                 </TechBadge>
+
+
+                <TechBadge padding="5px 10px" marginLeft="10px" outline color="info">
+                  {this.state.dropDownTwofilter}
+                </TechBadge>
+
               </Col>
             </FilterValuesHolder>
           </Section>
         )}
 
         <Row style={{ padding: "0 3% 0 3%" }}>
-          <Col><hr /></Col>
+          <Col>
+            <hr />
+          </Col>
         </Row>
         <Row style={{ margin: "0 5%" }}>
           {rs.map((item, index) => {
