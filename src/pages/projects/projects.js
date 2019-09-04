@@ -51,8 +51,8 @@ export class Projects extends Component {
         description: "",
         link: ""
       },
-      types: ["Front-End", "Back-End"],
-      language: ["C#", "F#", "JavaScript", "Python"]
+      types: ["Proj.Types", "Language"],
+      language: []
     };
   }
 
@@ -75,6 +75,15 @@ export class Projects extends Component {
 
     p.getFilteredRepos(filterValue);
     this.setState({ filterBadge: filterValue });
+  };
+
+  change = event => {
+    console.log('Value in change fn: ' + event.target.innerHTML);
+    let myVal = event.target.innerHTML;
+    if(myVal==="Language")
+      this.setState({language: ["C#","F#","JavaScript","Python", "Django"]});
+    else
+      this.setState({language: ["FrontEnd","BackEnd"]});
   };
 
   toggleModal = () => {
@@ -112,6 +121,8 @@ export class Projects extends Component {
   render() {
     const { ...p } = this.props;
     const rs = p.repoCollection;
+    const dp_types = this.state.types;
+    const dp_lang = this.state.language;
 
     return (
       <React.Fragment>
@@ -157,8 +168,17 @@ export class Projects extends Component {
                 Type
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem>Language</DropdownItem>
-                <DropdownItem>Technology</DropdownItem>
+                {dp_types.map((it, index)=>{
+                    return(
+                      <DropdownItem 
+                        key={index} 
+                        onClick={this.change} 
+                        value={this.state.value}>
+                        {it}
+                      </DropdownItem>
+                    );
+                  })
+                }
               </DropdownMenu>
             </ButtonDropdown>
 
@@ -170,6 +190,7 @@ export class Projects extends Component {
               <DropdownToggle caret color="info">
                 Solutions
               </DropdownToggle>
+              
               <DropdownMenuStyled 
                 modifiers={{
                   setMaxHeight: {
@@ -188,27 +209,16 @@ export class Projects extends Component {
                   }
                 }}
               >
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  C#
-                </DropdownItem>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  Brain Fuck
-                </DropdownItem>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  Go
-                </DropdownItem>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  Haskell
-                </DropdownItem>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  F#
-                </DropdownItem>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  JavaScript
-                </DropdownItem>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  Python
-                </DropdownItem>
+                {dp_lang.map((it, index) => {
+                  return(
+                    <DropdownItem 
+                      key={index}
+                      onClick={(e) => this.handleDropDownSelected(e)}>
+                      {it}
+                    </DropdownItem>
+                    );
+                  })
+                }
               </DropdownMenuStyled>
             </ButtonDropdown>
           </Col>
@@ -241,9 +251,7 @@ export class Projects extends Component {
         )}
 
         <Row style={{ padding: "0 3% 0 3%" }}>
-          <Col>
-            <hr />
-          </Col>
+          <Col><hr /></Col>
         </Row>
         <Row style={{ margin: "0 5%" }}>
           {rs.map((item, index) => {
