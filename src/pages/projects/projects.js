@@ -1,9 +1,9 @@
 import React, { Component } from "react";
+
+//STYLES
 import {
   Row,
   Col,
-  Badge,
-  Card,
   CardHeader,
   CardLink,
   CardText,
@@ -17,10 +17,6 @@ import {
   ModalBody,
   ModalFooter
 } from "reactstrap";
-
-import Footer from "../../components/footer/footer";
-
-import styled from "styled-components";
 import {
   PageHeading,
   Section,
@@ -30,30 +26,20 @@ import {
   CardFooterStyled,
   ButtonLink
 } from "../../utilities/styledShared";
+import {
+  FilterValuesHolder,
+  ProjectCard,
+  TechBadge,
+  DropdownMenuStyled
+} from "./styled";
 
+//COMPONENTS
+import Footer from "../../components/footer/footer";
+
+//REDUX
 import { connect } from "react-redux";
 import { getConfiguration } from "../../redux/actions/configuration";
 import { getAllImages } from "../../redux/actions/media";
-
-const ProjectCard = styled(Card)`
-  display: inline-block;
-  height: 300px;
-  width: 240px;
-  background-color: white;
-  margin: auto;
-  margin-bottom: 8%;
-  position: relative;
-
-  @media (max-width: 1000px) {
-    height: 260px;
-    width: 220px;
-  }
-`;
-
-const TechBadge = styled(Badge)`
-  margin-top: 2px;
-  box-shadow: 0 0 3px #07c;
-`;
 
 export class Projects extends Component {
   constructor(props) {
@@ -61,25 +47,59 @@ export class Projects extends Component {
 
     this.state = {
       dropdownOpen: false,
+      dropdownLangOpen: false,
       modal: false,
       qry: "",
+      dropDownOnefilter: "",
+      dropDownTwofilter: "",
       repo: {
         name: "",
         description: "",
         link: ""
-      }
+      },
+      types: ["Project Type", "Language"],
+      language: []
     };
   }
 
-  toggleDropDown = () => {
-    this.setState({
-      dropdownOpen: !this.state.dropdownOpen
-    });
+  toggleDropDown = dropdown => {
+    if (dropdown === "sol") {
+      this.setState({
+        dropdownOpen: !this.state.dropdownOpen
+      });
+    } else if (dropdown === "lang") {
+      this.setState({
+        dropdownLangOpen: !this.state.dropdownLangOpen
+      });
+    }
   };
 
   handleDropDownSelected = event => {
     const { ...p } = this.props;
-    p.getFilteredRepos(event.target.innerHTML);
+    const filterValue = event.target.innerHTML;
+
+    p.getFilteredRepos(filterValue);
+    this.setState({ dropDownTwofilter: filterValue });
+  };
+
+  handleDropdownOneSelected = event => {
+    const filterValue = event.target.innerHTML;
+
+    filterValue === "Language"
+      ? this.setState({
+          language: [
+            "C#",
+            "F#",
+            "BrainFuck",
+            "Haskell",
+            "JavaScript",
+            "Python",
+            "Django"
+          ]
+        })
+      : this.setState({ language: ["FrontEnd", "BackEnd"] });
+
+    this.setState({ dropDownOnefilter: filterValue });
   };
 
   toggleModal = () => {
@@ -100,8 +120,15 @@ export class Projects extends Component {
     this.toggleModal();
   };
 
+  clearFilters = () => {
+    const { ...p } = this.props;
+    p.getAllPublicRepos();
+    this.setState({ dropDownTwofilter: "" });
+    this.setState({ dropDownOnefilter: "" });
+    this.setState({ language: [] });
+  };
+
   componentDidMount() {
-    console.log("in Component did mount");
     const { ...p } = this.props;
     p.getAllPublicRepos();
     p.getAllImages();
@@ -110,6 +137,8 @@ export class Projects extends Component {
   render() {
     const { ...p } = this.props;
     const rs = p.repoCollection;
+    const dp_types = this.state.types;
+    const dp_lang = this.state.language;
 
     return (
       <React.Fragment>
@@ -145,49 +174,112 @@ export class Projects extends Component {
         </Section>
 
         <Section padding="0 2% 0 2%" style={Styles.row}>
-          <Col>
-            <Button
-              outline
-              color="primary"
-              size="md"
-              style={{ marginRight: "1%" }}
-            >
-              Technology
-            </Button>
-
-            <Button
-              outline
-              color="primary"
-              size="md"
-              style={{ marginRight: "1%" }}
-            >
-              Most Recent
-            </Button>
-
+          <Col md="10">
             <ButtonDropdown
-              isOpen={this.state.dropdownOpen}
-              toggle={this.toggleDropDown}
+              isOpen={this.state.dropdownLangOpen}
+              toggle={() => this.toggleDropDown("lang")}
               style={{ marginRight: "1%" }}
             >
-              <DropdownToggle caret color="primary">
-                Solutions
+              <DropdownToggle caret color="info">
+                Type
               </DropdownToggle>
               <DropdownMenu>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  C#
-                </DropdownItem>
-                <DropdownItem onClick={e => this.handleDropDownSelected(e)}>
-                  F#
-                </DropdownItem>
-                <DropdownItem>Automobiles</DropdownItem>
-                <DropdownItem divider />
-                <DropdownItem>Show All</DropdownItem>
+                {dp_types.map((it, index) => {
+                  return (
+                    <DropdownItem
+                      key={index}
+                      onClick={this.handleDropdownOneSelected}
+                      value={this.state.value}
+                    >
+                      {it}
+                    </DropdownItem>
+                  );
+                })}
               </DropdownMenu>
             </ButtonDropdown>
-            <hr />
+
+            {this.state.language.length > 0 && (
+              <ButtonDropdown
+                isOpen={this.state.dropdownOpen}
+                toggle={() => this.toggleDropDown("sol")}
+                style={{ marginRight: "1%" }}
+              >
+                <DropdownToggle caret color="info">
+                  Solutions
+                </DropdownToggle>
+
+                <DropdownMenuStyled
+                  modifiers={{
+                    setMaxHeight: {
+                      enabled: true,
+                      order: 890,
+                      fn: data => {
+                        return {
+                          ...data,
+                          styles: {
+                            ...data.styles,
+                            overflow: "auto",
+                            maxHeight: 200
+                          }
+                        };
+                      }
+                    }
+                  }}
+                >
+                  {dp_lang.map((it, index) => {
+                    return (
+                      <DropdownItem
+                        key={index}
+                        onClick={e => this.handleDropDownSelected(e)}
+                      >
+                        {it}
+                      </DropdownItem>
+                    );
+                  })}
+                </DropdownMenuStyled>
+              </ButtonDropdown>
+            )}
+          </Col>
+          <Col md="2">
+            {this.state.dropDownTwofilter && (
+              <Button
+                outline
+                color="info"
+                size="md"
+                style={{ marginRight: "1%" }}
+                className="float-right"
+                onClick={this.clearFilters}
+              >
+                Clear
+              </Button>
+            )}
           </Col>
         </Section>
 
+        {this.state.dropDownOnefilter && (
+          <Section padding="0 2%" style={Styles.row}>
+            <FilterValuesHolder>
+              <span>Search results for:</span>
+              <Col lg="6" md="6">
+                <TechBadge padding="5px 10px" outline color="info">
+                  {this.state.dropDownOnefilter}
+                </TechBadge>
+
+
+                <TechBadge padding="5px 10px" marginLeft="10px" outline color="info">
+                  {this.state.dropDownTwofilter}
+                </TechBadge>
+
+              </Col>
+            </FilterValuesHolder>
+          </Section>
+        )}
+
+        <Row style={{ padding: "0 3% 0 3%" }}>
+          <Col>
+            <hr />
+          </Col>
+        </Row>
         <Row style={{ margin: "0 5%" }}>
           {rs.map((item, index) => {
             let repoTech =

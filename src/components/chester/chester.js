@@ -1,28 +1,19 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+import { Col, Row } from "reactstrap";
 
 import { connect } from "react-redux";
 import { getAllImages } from "../../redux/actions/media";
 
-import { Col, Row } from "reactstrap";
-
-const ChesterImage = styled.img`
-  width: 560px;
-  height: 600px;
-
-  @media (max-width: 1400px) {
-    display: none;
-  }
-`;
+import { ChesterImage } from "../../utilities/styledShared";
 
 export class Chester extends Component {
   componentDidMount() {
-    this.props.getAllImages();
+    if (!sessionStorage["ChesterImage"]) {
+      this.props.getAllImages();
+    }
   }
 
-  render() {
-    const { ...p } = this.props;
-
+  getImage = p => {
     const logo = p.images.map(image => ({
       key: image.id,
       file: image.fileContent,
@@ -32,6 +23,18 @@ export class Chester extends Component {
     const logoData = logo.filter(x => x.key === 201).map(x => x.file);
     const logoType = logo.filter(x => x.key === 201).map(x => x.type);
     const chesterLogo = logoType + logoData;
+
+    sessionStorage["ChesterImage"]= chesterLogo;
+
+    return chesterLogo;
+  };
+
+  render() {
+    const { ...p } = this.props;
+
+    const chesterLogo = sessionStorage["ChesterImage"]
+      ? sessionStorage["ChesterImage"]
+      : this.getImage(p);
 
     return (
       <React.Fragment>

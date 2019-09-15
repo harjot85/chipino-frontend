@@ -48,6 +48,21 @@ export class Navigation extends Component {
     });
   }
 
+  getLogo = (p) => {
+    const logo = p.images.map(image => ({
+      key: image.id,
+      file: image.fileContent,
+      type: image.fileType
+    }));
+
+    const logoData = logo.filter(x => x.key === 202).map(x => x.file);
+    const logoType = logo.filter(x => x.key === 202).map(x => x.type);
+    const navbarLogo = logoType + logoData;
+
+    sessionStorage["logo"] = navbarLogo;
+    return navbarLogo;
+  }
+
   render() {
     const { ...p } = this.props;
 
@@ -70,15 +85,9 @@ export class Navigation extends Component {
     const brandFontColor = config.map(x => x.brandFontColor);
 
 
-    const logo = p.images.map(image => ({
-      key: image.id,
-      file: image.fileContent,
-      type: image.fileType
-    }));
-
-    const logoData = logo.filter(x => x.key === 202).map(x => x.file);
-    const logoType = logo.filter(x => x.key === 202).map(x => x.type);
-    const navbarLogo = logoType + logoData;
+    const navbarLogo = sessionStorage["logo"]
+    ? sessionStorage["logo"]
+    : this.getLogo(p);
 
     return (
       <NavbarStyled

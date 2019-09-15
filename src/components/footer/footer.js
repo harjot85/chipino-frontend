@@ -41,7 +41,6 @@ export class Footer extends Component {
     
     const footerCopyrightFontSize = config.map(x => x.footerCopyrightFontSize);
     const footerCopyrightFontColor = config.map(x => x.footerCopyrightFontColor);
-    console.log(config)
 
     const copyrightText = text.filter(x => x.key === 109).map(x => x.data);
 
@@ -53,6 +52,7 @@ export class Footer extends Component {
           integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns"
           crossOrigin="anonymous"
         />
+        {faviconCollection.length && (
         <FooterStyled>
           {faviconCollection.map(socialMediaIcon => (
             <a href={socialMediaIcon.linkTo}>
@@ -69,6 +69,7 @@ export class Footer extends Component {
             </ColStyled>
           </Row>
         </FooterStyled>
+        )}
       </>
     );
   }
