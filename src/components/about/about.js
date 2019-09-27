@@ -39,6 +39,7 @@ export class About extends Component {
       <React.Fragment>
         <Row>
           <Col lg={6} md={6}>
+          {/* This is a test comment */}
             <InfoPanelText size={size} color={color}>{aboutText}</InfoPanelText>
           </Col>
           <Col lg={6} md={6}>
